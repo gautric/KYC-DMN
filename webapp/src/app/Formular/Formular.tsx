@@ -16,6 +16,7 @@ import { Form,
   Title} from '@patternfly/react-core';
 import { HelpIcon } from '@patternfly/react-icons'; 
 
+const KYC_DMN_URL = process.env.KYC_DMN_URL;
 
 interface IKYCState {
   url: string,
@@ -31,7 +32,7 @@ class KYCForm extends React.Component<{},IKYCState> {
   constructor(props) {
     super(props);
     this.state = {
-      url: 'http://localhost:8080/KYC',
+      url: KYC_DMN_URL,
       pep: false,
       amount: 100000,
       fiscalResidency: 'FR',
