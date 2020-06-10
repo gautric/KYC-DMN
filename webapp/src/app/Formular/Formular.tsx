@@ -12,6 +12,7 @@ import { Form,
   Button,
   PageSection, 
   Alert,
+  AlertVariant,
   Title} from '@patternfly/react-core';
 import { HelpIcon } from '@patternfly/react-icons'; 
 
@@ -94,26 +95,39 @@ class KYCForm extends React.Component<{},IKYCState> {
   }
 
   convertLevel = (level,name) => {
-    var ret = 'default';
-    console.log(level[name])
+    var ret = AlertVariant.default;
     if(level[name]){
       switch (level[name]) {
         case "LOW":
-          ret = 'success';
+          ret = AlertVariant.success;
           break;
         case "MEDIUM":
-          ret = 'warning';
+          ret = AlertVariant.warning;
           break;   
         case "HIGH":
-          ret = 'error';
-          break; 
         case "VERY HIGH":
-          ret = 'error';
+          ret = AlertVariant.danger;
           break; 
       }
     }
     return ret;
   }
+
+  convertKYC = (kyc) => {
+    var ret = AlertVariant.default;
+    
+    if(kyc){
+      if(kyc < 60) {
+        ret = AlertVariant.success;
+      } else if(kyc >= 60 && kyc <= 150){
+          ret = AlertVariant.warning;
+      } else {
+          ret = AlertVariant.danger;
+      }
+    }
+    return ret;
+  }
+
 
   handlePep = (checked, event) => {
     this.setState({ ["pep"] : event.target.checked });
@@ -202,11 +216,10 @@ class KYCForm extends React.Component<{},IKYCState> {
             </Button>
           ]}
         >          
-          {/* <Alert isLiveRegion={this.state.isResultModal} variant={this.convertLevel(this.state.result,"Amount Rule")} title="Amount Rule" />
-          <Alert isLiveRegion={this.state.isResultModal} variant={this.convertLevel(this.state.result,"PEP Rule")} title="PEP Rule" />
-          <Alert isLiveRegion={this.state.isResultModal} variant={this.convertLevel(this.state.result,"Fiscal Residency Rule")} title="Fiscal Residency" /> */}
-          <Alert isLiveRegion={this.state.isResultModal} variant="default" title={this.state.result.KYC} /> 
-
+          <Alert  variant={this.convertLevel(this.state.result,"PEP Rule")} title={"PEP Score " + this.state.result["PEP Rule"]} /> 
+          <Alert  variant={this.convertLevel(this.state.result,"Amount Rule")} title={"Amount Score " + this.state.result["Amount Rule"]} /> 
+          <Alert  variant={this.convertLevel(this.state.result,"Fiscal Residency Rule")} title={"Fiscal Residency Score " + this.state.result["Fiscal Residency Rule"]} /> 
+          <Alert  variant={this.convertKYC(this.state.result.KYC)} title={"Score KYC " + this.state.result.KYC} /> 
         </Modal>
       </Form>
     );
@@ -218,8 +231,6 @@ const Formular: React.FunctionComponent = () => (
   <PageSection>
     <Title headingLevel="h1" size="lg">KYC Formular</Title>
     <KYCForm/>
-    
-
   </PageSection>
 )
 
