@@ -1,12 +1,11 @@
 import * as React from 'react';
-import {fetch as fetchPolyfill} from 'whatwg-fetch'
-import axios from 'axios';
+import 'whatwg-fetch'
 import { Form,
   FormGroup,
   TextInput,
   FormSelect,
   FormSelectOption,
-  Checkbox,
+  Switch,
   Modal,
   ModalVariant,
   ActionGroup,
@@ -62,7 +61,7 @@ class KYCForm extends React.Component<{},IKYCState> {
     var httpHeaders = new Headers();
     httpHeaders.append("Content-Type", "application/json");
 
-    fetchPolyfill(this.state.url, {
+    fetch(this.state.url, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -106,7 +105,7 @@ class KYCForm extends React.Component<{},IKYCState> {
   handleAmount = (amount, event) => {
       console.log(amount);
       console.log(amount.replace(/\D/g,''));
-      this.setState({amount : amount.replace(/\D/g,'')});
+      this.setState({amount : parseInt(amount.replace(/\D/g,''))});
   };
 
   handleFiscalResidency = (fiscalResidency, event) => {
@@ -137,11 +136,11 @@ class KYCForm extends React.Component<{},IKYCState> {
           />
         </FormGroup>
         <FormGroup
-          label="Political Exposed People"
+          label="Political Exposed Person"
           fieldId="pep">
-          <Checkbox id="pep" 
-            label="Yes / No" 
-            description="  "
+          <Switch id="pep" 
+            label="Political Exposed Person"
+            labelOff="Anonymous Person"
             isChecked={this.state.pep}
             onChange={this.handlePep}/> 
         </FormGroup>
