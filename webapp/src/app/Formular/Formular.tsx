@@ -19,7 +19,6 @@ import { HelpIcon } from '@patternfly/react-icons';
 interface IKYCState {
   url: string,
   pep: boolean,
-  value3: string,
   amount: number,
   fiscalResidency: string,
   result: object,
@@ -33,7 +32,6 @@ class KYCForm extends React.Component<{},IKYCState> {
     this.state = {
       url: 'http://localhost:8080/KYC',
       pep: false,
-      value3: 'FR',
       amount: 100000,
       fiscalResidency: 'FR',
       result: 0,
@@ -66,10 +64,8 @@ class KYCForm extends React.Component<{},IKYCState> {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-        // 'Access-Control-Allow-Origin': 'http://localhost:9000',
-        // 'Access-Control-Allow-Credentials': 'true'
+
       },
-   //   mode: 'no-cors',
       body: JSON.stringify({
         "PEP": this.state.pep,
         "Amount": this.state.amount,
@@ -84,11 +80,10 @@ class KYCForm extends React.Component<{},IKYCState> {
           result: result
         });
       },
-
       (error) => {
         this.setState({
-          isResultModal: true,
-          error
+         // isResultModal: true,
+         // error
         });
       }
     )
@@ -103,8 +98,6 @@ class KYCForm extends React.Component<{},IKYCState> {
   };
 
   handleAmount = (amount, event) => {
-      console.log(amount);
-      console.log(amount.replace(/\D/g,''));
       this.setState({amount : parseInt(amount.replace(/\D/g,''))});
   };
 
@@ -187,10 +180,12 @@ class KYCForm extends React.Component<{},IKYCState> {
             </Button>
           ]}
         >
-          Lorem ipsum dolor sit amet,   {JSON.stringify(this.state.result)}
-          <Alert variant="success" title="Success alert title" />
-          <Alert variant="warning" title="Warning alert title" />
-          <Alert variant="danger" title="Danger alert title" />
+          {JSON.stringify(this.state.result)}
+          <Alert variant="success" title="Amount Rule" />
+          <Alert variant="warning" title="PEP Rule" />
+          <Alert variant="danger" title="Fiscal Residency" />
+          <Alert variant="danger" title={this.state.result.KYC} />
+
         </Modal>
       </Form>
     );
