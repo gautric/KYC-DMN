@@ -93,6 +93,28 @@ class KYCForm extends React.Component<{},IKYCState> {
     event.preventDefault();
   }
 
+  convertLevel = (level,name) => {
+    var ret = 'default';
+    console.log(level[name])
+    if(level[name]){
+      switch (level[name]) {
+        case "LOW":
+          ret = 'success';
+          break;
+        case "MEDIUM":
+          ret = 'warning';
+          break;   
+        case "HIGH":
+          ret = 'error';
+          break; 
+        case "VERY HIGH":
+          ret = 'error';
+          break; 
+      }
+    }
+    return ret;
+  }
+
   handlePep = (checked, event) => {
     this.setState({ ["pep"] : event.target.checked });
   };
@@ -179,12 +201,11 @@ class KYCForm extends React.Component<{},IKYCState> {
               OK
             </Button>
           ]}
-        >
-          {JSON.stringify(this.state.result)}
-          <Alert variant="success" title="Amount Rule" />
-          <Alert variant="warning" title="PEP Rule" />
-          <Alert variant="danger" title="Fiscal Residency" />
-          <Alert variant="danger" title={this.state.result.KYC} />
+        >          
+          {/* <Alert isLiveRegion={this.state.isResultModal} variant={this.convertLevel(this.state.result,"Amount Rule")} title="Amount Rule" />
+          <Alert isLiveRegion={this.state.isResultModal} variant={this.convertLevel(this.state.result,"PEP Rule")} title="PEP Rule" />
+          <Alert isLiveRegion={this.state.isResultModal} variant={this.convertLevel(this.state.result,"Fiscal Residency Rule")} title="Fiscal Residency" /> */}
+          <Alert isLiveRegion={this.state.isResultModal} variant="default" title={this.state.result.KYC} /> 
 
         </Modal>
       </Form>
