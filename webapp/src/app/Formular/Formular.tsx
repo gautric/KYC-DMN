@@ -34,9 +34,9 @@ class KYCForm extends React.Component<{},IKYCState> {
     this.state = {
       url: KYC_DMN_URL,
       pep: false,
-      amount: 100000,
+      amount: 10000,
       fiscalResidency: 'FR',
-      result: 0,
+      result: {"KYC" : {"Level":0, "Score":"LOW"}},
       isResultModal: false
     };
      
@@ -97,7 +97,9 @@ class KYCForm extends React.Component<{},IKYCState> {
 
   convertLevel = (level,name) => {
     var ret = AlertVariant.default;
+
     if(level[name]){
+      console.log(level[name]);
       switch (level[name]) {
         case "LOW":
           ret = AlertVariant.success;
@@ -213,14 +215,14 @@ class KYCForm extends React.Component<{},IKYCState> {
           onClose={this.handleResultModal}
           actions={[
             <Button key="confirm" variant="primary" onClick={this.handleResultModal}>
-              OK
+              Close
             </Button>
           ]}
         >          
-          <Alert  variant={this.convertLevel(this.state.result,"PEP Rule")} title={"PEP Score " + this.state.result["PEP Rule"]} /> 
-          <Alert  variant={this.convertLevel(this.state.result,"Amount Rule")} title={"Amount Score " + this.state.result["Amount Rule"]} /> 
-          <Alert  variant={this.convertLevel(this.state.result,"Fiscal Residency Rule")} title={"Fiscal Residency Score " + this.state.result["Fiscal Residency Rule"]} /> 
-          <Alert  variant={this.convertKYC(this.state.result.KYC)} title={"Score KYC " + this.state.result.KYC} /> 
+          <Alert variant={this.convertLevel(this.state.result,"PEP Rule")} title={"PEP Score " + this.state.result["PEP Rule"]} /> 
+          <Alert variant={this.convertLevel(this.state.result,"Amount Rule")} title={"Amount Score " + this.state.result["Amount Rule"]} /> 
+          <Alert variant={this.convertLevel(this.state.result,"Fiscal Residency Rule")} title={"Fiscal Residency Score " + this.state.result["Fiscal Residency Rule"]} /> 
+          <Alert variant={this.convertLevel(this.state.result.KYC,"Level")}  title={"Score KYC " + this.state.result.KYC.Score} />  
         </Modal>
       </Form>
     );
