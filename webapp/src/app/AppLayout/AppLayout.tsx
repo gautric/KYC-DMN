@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
+  Brand,
   Nav,
   NavList,
   NavItem,
@@ -10,6 +11,8 @@ import {
   SkipToContent
 } from '@patternfly/react-core';
 import { routes } from '@app/routes';
+
+//import logo from '@app/KYC-icon.svg'
 
 interface IAppLayout {
   children: React.ReactNode;
@@ -35,6 +38,7 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({children}) => {
   const Header = (
     <PageHeader
       logo="KYC DMN"
+      logo={<img src={'/KYC-icon.svg'} width="125" height="50"/>}
       logoProps={logoProps}
       showNavToggle
       isNavOpen={isNavOpen}
