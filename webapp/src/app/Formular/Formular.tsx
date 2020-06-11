@@ -215,7 +215,7 @@ const Formular: React.FunctionComponent = () => (
       <CardTitle>  
         <Title headingLevel="h1" size="lg">KYC Formular</Title>
       </CardTitle>
-      <CardBody className="kyc"> 
+      <CardBody> 
         <KYCForm/>
       </CardBody>
     </Card>
