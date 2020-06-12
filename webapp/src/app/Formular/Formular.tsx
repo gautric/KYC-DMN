@@ -1,7 +1,10 @@
 import * as React from 'react';
 import 'whatwg-fetch';
 import { Form,
-  Card, CardTitle, CardBody,
+  Card, 
+  CardTitle, 
+  CardBody,
+  Divider,
   FormGroup,
   TextInput,
   FormSelect,
@@ -101,7 +104,7 @@ class KYCForm extends React.Component<{},IKYCState> {
   convertLevel = (level,name) => {
     var ret = AlertVariant.default;
     if(level){
-      console.log(level, name);
+      //console.log(level, name);
 
       if(level[name]){
         switch (level[name]) {
@@ -182,6 +185,9 @@ class KYCForm extends React.Component<{},IKYCState> {
             onChange={this.handleUrl}
           />
         </FormGroup>
+
+        <Divider />
+
         <FormGroup
           label="Political Exposed Person"
           fieldId="pep-param">
@@ -233,9 +239,10 @@ class KYCForm extends React.Component<{},IKYCState> {
             </Button>
           ]}
         >          
-          <Alert variant={this.convertLevel(this.state.result,"PEP Rule")} isInline title={"PEP Score " + this.state.result["PEP Rule"]} /> 
-          <Alert variant={this.convertLevel(this.state.result,"Amount Rule")} isInline title={"Amount Score " + this.state.result["Amount Rule"]} /> 
-          <Alert variant={this.convertLevel(this.state.result,"Fiscal Residency Rule")} isInline title={"Fiscal Residency Score " + this.state.result["Fiscal Residency Rule"]} /> 
+          <Alert variant={this.convertLevel(this.state.result,"PEP Rule")}  title={"PEP Score " + this.state.result["PEP Rule"]} /> 
+          <Alert variant={this.convertLevel(this.state.result,"Amount Rule")}  title={"Amount Score " + this.state.result["Amount Rule"]} /> 
+          <Alert variant={this.convertLevel(this.state.result,"Fiscal Residency Rule")}  title={"Fiscal Residency Score " + this.state.result["Fiscal Residency Rule"]} /> 
+          <Divider />
           <Alert variant={this.convertLevel(this.state.result.KYC,"Level")} isInline title={"Score KYC " + this.state.result.KYC.Score} />  
         </Modal>
       </Form>
