@@ -1,5 +1,5 @@
 import * as React from 'react';
-import 'whatwg-fetch'
+import 'whatwg-fetch';
 import { Form,
   Card, CardTitle, CardBody,
   FormGroup,
@@ -13,9 +13,10 @@ import { Form,
   Button,
   PageSection, 
   Alert,
+  AlertGroup,
+  AlertActionCloseButton,
   AlertVariant,
   Title} from '@patternfly/react-core';
-import { HelpIcon } from '@patternfly/react-icons'; 
 
 const KYC_DMN_URL = process.env.KYC_DMN_URL;
 
@@ -25,7 +26,8 @@ interface IKYCState {
   amount: number,
   fiscalResidency: string,
   result: object,
-  isResultModal: boolean
+  isResultModal: boolean,
+  alerts: array
 }
 
 class KYCForm extends React.Component<{},IKYCState> {
@@ -38,7 +40,8 @@ class KYCForm extends React.Component<{},IKYCState> {
       amount: 10000,
       fiscalResidency: 'FR',
       result: {"KYC" : {"Level":0, "Score":"LOW"}},
-      isResultModal: false
+      isResultModal: false,
+      alerts: []
     };
      
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -57,6 +60,8 @@ class KYCForm extends React.Component<{},IKYCState> {
     this.setState({ url });
   };
 
+  getUniqueId = () => (new Date().getTime());
+
   handleSubmit(event) {
 
     fetch(this.state.url, {
@@ -71,46 +76,60 @@ class KYCForm extends React.Component<{},IKYCState> {
         "Fiscal Residency": this.state.fiscalResidency
       })
     })
-    .then(res => res.json())
     .then(
       (result) => {
-        this.setState({
-          isResultModal: true,
-          result: result
-        });
+        if(result.ok){
+          result.json().then((body) => { 
+              this.setState({
+                isResultModal: true,
+                result: body
+              });
+              this.setState({isResultModal:true});
+            });
+          } else {
+            this.addAlert('Call Error : ' + result.status + ' ' + result.statusText , 'danger', this.getUniqueId());
+          }
       },
       (error) => {
-        this.setState({
-         // isResultModal: true,
-         // error
-        });
+        this.addAlert('Network Error : ' + error, 'danger', this.getUniqueId());
       }
-    )
+    );
 
-
-    this.setState({isResultModal:true});
     event.preventDefault();
   }
 
   convertLevel = (level,name) => {
     var ret = AlertVariant.default;
+    if(level){
+      console.log(level, name);
 
-    if(level[name]){
-      switch (level[name]) {
-        case "LOW":
-          ret = AlertVariant.success;
-          break;
-        case "MEDIUM":
-          ret = AlertVariant.warning;
-          break;   
-        case "HIGH":
-        case "VERY HIGH":
-          ret = AlertVariant.danger;
-          break; 
+      if(level[name]){
+        switch (level[name]) {
+          case "LOW":
+            ret = AlertVariant.success;
+            break;
+          case "MEDIUM":
+            ret = AlertVariant.warning;
+            break;   
+          case "HIGH":
+          case "VERY HIGH":
+            ret = AlertVariant.danger;
+            break; 
+        }
       }
     }
     return ret;
   }
+
+  addAlert = (title, variant, key) => {
+    this.setState({
+      alerts: [ ...this.state.alerts, { title: title, variant: variant, key }]
+    });
+  };
+
+  removeAlert = key => {
+    this.setState({ alerts: [...this.state.alerts.filter(el => el.key !== key)] });
+  };
 
   handlePep = (checked, event) => {
     this.setState({ ["pep"] : event.target.checked });
@@ -132,7 +151,23 @@ class KYCForm extends React.Component<{},IKYCState> {
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit} isHorizontal >
+        <AlertGroup isToast>
+          {this.state.alerts.map(({key, variant, title}) => (
+            <Alert
+              isLiveRegion
+              variant={AlertVariant[variant]}
+              title={title}
+              actionClose={
+                <AlertActionCloseButton
+                  title={title}
+                  variantLabel={`${variant} alert`}
+                  onClose={() => this.removeAlert(key)}
+                />
+              }
+              key={key} />
+          ))}
+        </AlertGroup>
         <FormGroup
           label="URL of Kogito"
           isRequired
