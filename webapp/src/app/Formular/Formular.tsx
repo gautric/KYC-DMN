@@ -30,8 +30,8 @@ interface IKYCState {
   fiscalResidency: string,
   result: object,
   isResultModal: boolean,
-  alerts: array
-}
+  alerts: Array<object>
+};
 
 class KYCForm extends React.Component<{},IKYCState> {
 
@@ -104,8 +104,6 @@ class KYCForm extends React.Component<{},IKYCState> {
   convertLevel = (level,name) => {
     var ret = AlertVariant.default;
     if(level){
-      //console.log(level, name);
-
       if(level[name]){
         switch (level[name]) {
           case "LOW":
