@@ -101,7 +101,7 @@ class KYCForm extends React.Component<{},IKYCState> {
     event.preventDefault();
   }
 
-  convertLevel = (level,name) => {
+  convertLevel = (level, name) => {
     var ret = AlertVariant.default;
     if(level){
       if(level[name]){
@@ -170,7 +170,7 @@ class KYCForm extends React.Component<{},IKYCState> {
           ))}
         </AlertGroup>
         <FormGroup
-          label="URL of Kogito"
+          label="URL of DMN Engine"
           isRequired
           fieldId="url-param">
           <TextInput
@@ -247,7 +247,6 @@ class KYCForm extends React.Component<{},IKYCState> {
     );
   }
 }
-
 
 const Formular: React.FunctionComponent = () => (
   <PageSection>
