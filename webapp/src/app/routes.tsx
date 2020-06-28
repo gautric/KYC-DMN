@@ -4,6 +4,7 @@ import { Alert, PageSection } from '@patternfly/react-core';
 import { DynamicImport } from '@app/DynamicImport';
 import { accessibleRouteChangeHandler } from '@app/utils/utils';
 import { Formular } from '@app/Formular/Formular';
+import { Dynamic } from '@app/Dynamic/Dynamic';
 import { NotFound } from '@app/NotFound/NotFound';
 import { useDocumentTitle } from '@app/utils/useDocumentTitle';
 import { LastLocationProvider, useLastLocation } from 'react-router-last-location';
@@ -55,6 +56,13 @@ const routes: IAppRoute[] = [
     label: 'Formular',
     path: '/',
     title: 'KYC DMN | Formular',
+  },
+  {
+    component: Dynamic,
+    exact: true,
+    label: 'Dynamic',
+    path: '/dyn',
+    title: 'KYC DMN | Dynamic',
   },
   {
     component: Support,
