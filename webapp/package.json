@@ -82,5 +82,5 @@
     "react-router-last-location": "^2.0.1",
     "whatwg-fetch": "^3.0.0"
   },
-  "proxy": "http://localhost:8090"
+  "proxy": "http://localhost:8080"
 }
