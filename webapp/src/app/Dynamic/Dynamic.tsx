@@ -257,7 +257,6 @@ class KYCForm extends React.Component<{},IKYCState> {
                       />
                   </DataListCell>,
                   <DataListCell  key="secondary content fill">
-                    
                     <FormSelect id="fiscalResidency-param" value={this.state.fiscalResidency} onChange={this.handleFiscalResidency} aria-label="FormSelect Input">
                       {this.options.map((option, index) => (
                         <FormSelectOption isDisabled={option.disabled} key={index} value={option.value} label={option.label} />
