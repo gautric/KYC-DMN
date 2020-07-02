@@ -4,14 +4,11 @@ import { Form,
   Card, 
   CardTitle, 
   CardBody,
-  Divider,
   FormGroup,
   TextInput,
   FormSelect,
   FormSelectOption,
   Switch,
-  Modal,
-  ModalVariant,
   ActionGroup,
   Button,
   PageSection, 
@@ -19,14 +16,22 @@ import { Form,
   AlertGroup,
   AlertActionCloseButton,
   AlertVariant,
+  DataList,
+  DataListItem,
+  DataListItemRow,
+  DataListItemCells,
+  DataListCell,
   Title} from '@patternfly/react-core';
 
+const KYC_DMN_URL = process.env.KYC_DMN_URL;
+
 interface IKYCState {
+  url: string,
   pep: boolean,
   amount: number,
   fiscalResidency: string,
   result: object,
-  isResultModal: boolean,
+  isResult: boolean,
   alerts: Array<object>
 };
 
@@ -35,11 +40,12 @@ class KYCForm extends React.Component<{},IKYCState> {
   constructor(props) {
     super(props);
     this.state = {
+      url: KYC_DMN_URL,
       pep: false,
       amount: 10000,
       fiscalResidency: 'FR',
       result: {"KYC" : {"Level":0, "Score":"LOW"}},
-      isResultModal: false,
+      isResult: false,
       alerts: []
     };
      
@@ -55,11 +61,15 @@ class KYCForm extends React.Component<{},IKYCState> {
     { value: 'KP', label: 'North Korea', disabled: false }
   ];
 
+  handleUrl = url => {
+    this.setState({ url });
+  };
+
   getUniqueId = () => (new Date().getTime());
 
   handleSubmit(event) {
 
-    fetch("/KYC", {
+    fetch(this.state.url, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -76,10 +86,8 @@ class KYCForm extends React.Component<{},IKYCState> {
         if(result.ok){
           result.json().then((body) => { 
               this.setState({
-                isResultModal: true,
                 result: body
               });
-              this.setState({isResultModal:true});
             });
           } else {
             this.addAlert('Call Error : ' + result.status + ' ' + result.statusText , 'danger', this.getUniqueId());
@@ -89,7 +97,7 @@ class KYCForm extends React.Component<{},IKYCState> {
         this.addAlert('Network Error : ' + error, 'danger', this.getUniqueId());
       }
     );
-
+    this.setState({isResult : true});
     event.preventDefault();
   }
 
@@ -126,20 +134,17 @@ class KYCForm extends React.Component<{},IKYCState> {
 
   handlePep = (checked, event) => {
     this.setState({ ["pep"] : event.target.checked });
+//    this.handleSubmit("event");
   };
 
   handleAmount = (amount, event) => {
       this.setState({amount : parseInt(amount.replace(/\D/g,''))});
+//      this.handleSubmit("event");
   };
 
   handleFiscalResidency = (fiscalResidency, event) => {
     this.setState({ fiscalResidency });
-  };
-
-  handleResultModal = () => {
-    this.setState(({ isResultModal }) => ({
-      isResultModal: !isResultModal
-    }));
+//    this.handleSubmit("event");
   };
 
   render() {
@@ -161,66 +166,132 @@ class KYCForm extends React.Component<{},IKYCState> {
               key={key} />
           ))}
         </AlertGroup>
-
-        <Divider />
-
         <FormGroup
-          label="Political Exposed Person"
-          fieldId="pep-param">
-          <Switch id="pep-param" 
-            label="Political Exposed Person"
-            labelOff="Anonymous Person"
-            isChecked={this.state.pep}
-            onChange={this.handlePep}/> 
-        </FormGroup>
-
-        <FormGroup
-          label="Amount"
+          label="URL of DMN Engine"
           isRequired
-          fieldId="amount-param">
+          fieldId="url-param">
           <TextInput
             isRequired
             type="text"
-            id="amount-param"
-            name="amount"
-            aria-describedby="amount"
-            value={this.state.amount}
-            onChange={this.handleAmount}
+            id="url-param"
+            name="url-param"
+            aria-describedby="url-param-helper"
+            value={this.state.url}
+            onChange={this.handleUrl}
           />
         </FormGroup>
 
-        <FormGroup
-          label="Fiscal Residency"
-          isRequired
-          fieldId="fiscalResidency-param">
-          <FormSelect id="fiscalResidency-param" value={this.state.fiscalResidency} onChange={this.handleFiscalResidency} aria-label="FormSelect Input">
-            {this.options.map((option, index) => (
-              <FormSelectOption isDisabled={option.disabled} key={index} value={option.value} label={option.label} />
-            ))}
-          </FormSelect>
-        </FormGroup>
+        <DataList aria-label="Simple data list example">
+          <DataListItem aria-labelledby="header">
+            <DataListItemRow>
+              <DataListItemCells
+                dataListCells={[
+                  <DataListCell key="primary content">Criteria</DataListCell>,
+                  <DataListCell key="primary content">Value</DataListCell>,
+                  <DataListCell key="secondary content" hidden={!this.state.isResult}>Score</DataListCell>
+                ]}
+              />
+            </DataListItemRow>
+          </DataListItem>
+          <DataListItem aria-labelledby="simple-item2">
+            <DataListItemRow>
+              <DataListItemCells
+                dataListCells={[
+                  <DataListCell  key="secondary content fill">
+                    <FormGroup
+                      label="Political Exposed Person"
+                      fieldId="pep-param"/>
+                  </DataListCell>,
+                  <DataListCell  key="secondary content fill">
+                    <Switch id="pep-param" 
+                      label="Political Exposed Person"
+                      labelOff="Anonymous Person"
+                      isChecked={this.state.pep}
+                      onChange={this.handlePep}
+                      /> 
+                  </DataListCell>,
+                  <DataListCell   key="secondary content align" hidden={!this.state.isResult}>
+                      <Alert variant={this.convertLevel(this.state.result,"PEP Rule")}  title={this.state.result["PEP Rule"]} /> 
+                  </DataListCell>
+                ]}
+              />
+            </DataListItemRow>
+          </DataListItem>
+          <DataListItem aria-labelledby="simple-item2">
+            <DataListItemRow>
+              <DataListItemCells
+                dataListCells={[
+                  <DataListCell  key="secondary content fill">
+                    <FormGroup
+                      label="Amount"
+                      isRequired
+                      fieldId="amount-param"/>
+                  </DataListCell>,
+                  <DataListCell  key="secondary content fill">
+                    <TextInput
+                      isRequired
+                      type="text"
+                      id="amount-param"
+                      name="amount"
+                      aria-describedby="amount"
+                      value={this.state.amount}
+                      onChange={this.handleAmount}
+                    />
+                  </DataListCell>,
+                  <DataListCell   key="secondary content align" hidden={!this.state.isResult}>
+                      <Alert variant={this.convertLevel(this.state.result,"Amount Rule")}  title={this.state.result["Amount Rule"]} /> 
+                  </DataListCell>
+                ]}
+              />
+            </DataListItemRow>
+          </DataListItem>
+          <DataListItem aria-labelledby="simple-item2">
+            <DataListItemRow>
+              <DataListItemCells
+                dataListCells={[
+                  <DataListCell  key="secondary content fill">
+                    <FormGroup
+                      label="Fiscal Residency"
+                      isRequired
+                      fieldId="fiscalResidency-param"                      
+                      />
+                  </DataListCell>,
+                  <DataListCell  key="secondary content fill">
+                    
+                    <FormSelect id="fiscalResidency-param" value={this.state.fiscalResidency} onChange={this.handleFiscalResidency} aria-label="FormSelect Input">
+                      {this.options.map((option, index) => (
+                        <FormSelectOption isDisabled={option.disabled} key={index} value={option.value} label={option.label} />
+                      ))}
+                    </FormSelect>
+                  </DataListCell>,
+                  <DataListCell   key="secondary content align" hidden={!this.state.isResult}>
+                      <Alert variant={this.convertLevel(this.state.result,"Fiscal Residency Rule")}  title={this.state.result["Fiscal Residency Rule"]} /> 
+                  </DataListCell>
+                ]}
+              />
+            </DataListItemRow>
+          </DataListItem>
+          <DataListItem aria-labelledby="simple-item2">
+            <DataListItemRow>
+              <DataListItemCells
+                dataListCells={[
+                  <DataListCell alignRight key="secondary content fill">
+                    Total Score KYC
+                  </DataListCell>,
+                  <DataListCell />,
+                  <DataListCell   key="secondary content align" hidden={!this.state.isResult}>
+                      <Alert variant={this.convertLevel(this.state.result.KYC,"Level")} isInline title={ this.state.result.KYC.Level + " " +  this.state.result.KYC.Score} />
+                  </DataListCell>
+                ]}
+              />
+            </DataListItemRow>
+          </DataListItem>
+        </DataList>
 
         <ActionGroup>
           <Button variant="primary" type="submit">Envoyer</Button>
         </ActionGroup>
 
-        <Modal
-          title="KYC DMN Result"
-          variant={ModalVariant.small}
-          isOpen={this.state.isResultModal}
-          onClose={this.handleResultModal}
-          actions={[
-            <Button key="confirm" variant="primary" onClick={this.handleResultModal}>
-              Close
-            </Button>
-          ]}
-        >          
-          <Alert variant={this.convertLevel(this.state.result,"PEP Rule")}  title={"PEP Score " + this.state.result["PEP Rule"]} /> 
-          <Alert variant={this.convertLevel(this.state.result,"Amount Rule")}  title={"Amount Score " + this.state.result["Amount Rule"]} /> 
-          <Alert variant={this.convertLevel(this.state.result,"Fiscal Residency Rule")}  title={"Fiscal Residency Score " + this.state.result["Fiscal Residency Rule"]} /> 
-          <Divider />
-          <Alert variant={this.convertLevel(this.state.result.KYC,"Level")} isInline title={"Score KYC " + this.state.result.KYC.Score} />  
-        </Modal>
       </Form>
     );
   }
