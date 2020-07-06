@@ -88,6 +88,7 @@ class KYCForm extends React.Component<{},IKYCState> {
               this.setState({
                 result: body
               });
+              this.setState({isResult : true});
             });
           } else {
             this.addAlert('Call Error : ' + result.status + ' ' + result.statusText , 'danger', this.getUniqueId());
@@ -97,7 +98,6 @@ class KYCForm extends React.Component<{},IKYCState> {
         this.addAlert('Network Error : ' + error, 'danger', this.getUniqueId());
       }
     );
-    this.setState({isResult : true});
     event.preventDefault();
   }
 
