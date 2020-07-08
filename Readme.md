@@ -2,13 +2,14 @@
 
 ## KYC Engine runtime 
 
-> cd engine
-
-> mvn compile quarkus:dev
+```
+cd engine
+mvn compile quarkus:dev
+```
 
 ## KYC Web Application
 
-> cd webapp
-
-> npm run start:dev
-
+```
+cd webapp
+npm run start:dev
+```
