@@ -1,8 +1,8 @@
 import * as React from 'react';
 import 'whatwg-fetch';
 import { Form,
-  Card, 
-  CardTitle, 
+  Card,
+  CardTitle,
   CardBody,
   FormGroup,
   TextInput,
@@ -11,7 +11,7 @@ import { Form,
   Switch,
   ActionGroup,
   Button,
-  PageSection, 
+  PageSection,
   Alert,
   AlertGroup,
   AlertActionCloseButton,
@@ -22,6 +22,10 @@ import { Form,
   DataListItemCells,
   DataListCell,
   Title} from '@patternfly/react-core';
+
+import { Route } from 'react-router-dom';
+import { Display } from '@app/Display/Display';
+
 
 const KYC_DMN_URL = process.env.KYC_DMN_URL;
 
@@ -35,20 +39,20 @@ interface IKYCState {
   alerts: Array<object>
 };
 
-class KYCForm extends React.Component<{},IKYCState> {
+class KYCDynamic extends React.Component<{},IKYCState> {
 
   constructor(props) {
     super(props);
     this.state = {
       url: KYC_DMN_URL,
       pep: false,
-      amount: 10000,
+      amount: 1000,
       fiscalResidency: 'FR',
       result: {"KYC" : {"Level":0, "Score":"LOW"}},
       isResult: false,
       alerts: []
     };
-     
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -67,7 +71,7 @@ class KYCForm extends React.Component<{},IKYCState> {
 
   getUniqueId = () => (new Date().getTime());
 
-  handleSubmit(event) {
+  handleSubmit() {
 
     fetch(this.state.url, {
       method: 'POST',
@@ -84,7 +88,7 @@ class KYCForm extends React.Component<{},IKYCState> {
     .then(
       (result) => {
         if(result.ok){
-          result.json().then((body) => { 
+          result.json().then((body) => {
               this.setState({
                 result: body
               });
@@ -98,27 +102,24 @@ class KYCForm extends React.Component<{},IKYCState> {
         this.addAlert('Network Error : ' + error, 'danger', this.getUniqueId());
       }
     );
-    event.preventDefault();
   }
 
   convertLevel = (level, name) => {
     var ret = AlertVariant.default;
-    if(level){
-      if(level[name]){
+      if(level && level[name]){
         switch (level[name]) {
           case "LOW":
             ret = AlertVariant.success;
             break;
           case "MEDIUM":
             ret = AlertVariant.warning;
-            break;   
+            break;
           case "HIGH":
           case "VERY HIGH":
             ret = AlertVariant.danger;
-            break; 
+            break;
         }
       }
-    }
     return ret;
   }
 
@@ -133,18 +134,21 @@ class KYCForm extends React.Component<{},IKYCState> {
   };
 
   handlePep = (checked, event) => {
-    this.setState({ ["pep"] : event.target.checked });
-//    this.handleSubmit("event");
+    this.setState((state, props) => ({["pep"] : !state.pep}), () => {
+      this.handleSubmit();
+    });
   };
 
   handleAmount = (amount, event) => {
-      this.setState({amount : parseInt(amount.replace(/\D/g,''))});
-//      this.handleSubmit("event");
-  };
+      this.setState((state, props) => ({amount : parseInt(amount.replace(/\D/g,''))}), () => {
+        this.handleSubmit();
+      });
+    };
 
   handleFiscalResidency = (fiscalResidency, event) => {
-    this.setState({ fiscalResidency });
-//    this.handleSubmit("event");
+    this.setState((state, props) => ({fiscalResidency}), () => {
+      this.handleSubmit();
+    });
   };
 
   render() {
@@ -203,15 +207,15 @@ class KYCForm extends React.Component<{},IKYCState> {
                       fieldId="pep-param"/>
                   </DataListCell>,
                   <DataListCell  key="secondary content fill">
-                    <Switch id="pep-param" 
+                    <Switch id="pep-param"
                       label="Political Exposed Person"
                       labelOff="Anonymous Person"
                       isChecked={this.state.pep}
                       onChange={this.handlePep}
-                      /> 
+                      />
                   </DataListCell>,
                   <DataListCell   key="secondary content align" hidden={!this.state.isResult}>
-                      <Alert variant={this.convertLevel(this.state.result,"PEP Rule")}  title={this.state.result["PEP Rule"]} /> 
+                      <Alert variant={this.convertLevel(this.state.result,"PEP Rule")}  title={this.state.result["PEP Rule"]} />
                   </DataListCell>
                 ]}
               />
@@ -239,7 +243,7 @@ class KYCForm extends React.Component<{},IKYCState> {
                     />
                   </DataListCell>,
                   <DataListCell   key="secondary content align" hidden={!this.state.isResult}>
-                      <Alert variant={this.convertLevel(this.state.result,"Amount Rule")}  title={this.state.result["Amount Rule"]} /> 
+                      <Alert variant={this.convertLevel(this.state.result,"Amount Rule")}  title={this.state.result["Amount Rule"]} />
                   </DataListCell>
                 ]}
               />
@@ -253,7 +257,7 @@ class KYCForm extends React.Component<{},IKYCState> {
                     <FormGroup
                       label="Fiscal Residency"
                       isRequired
-                      fieldId="fiscalResidency-param"                      
+                      fieldId="fiscalResidency-param"
                       />
                   </DataListCell>,
                   <DataListCell  key="secondary content fill">
@@ -264,7 +268,7 @@ class KYCForm extends React.Component<{},IKYCState> {
                     </FormSelect>
                   </DataListCell>,
                   <DataListCell   key="secondary content align" hidden={!this.state.isResult}>
-                      <Alert variant={this.convertLevel(this.state.result,"Fiscal Residency Rule")}  title={this.state.result["Fiscal Residency Rule"]} /> 
+                      <Alert variant={this.convertLevel(this.state.result,"Fiscal Residency Rule")}  title={this.state.result["Fiscal Residency Rule"]} />
                   </DataListCell>
                 ]}
               />
@@ -277,7 +281,7 @@ class KYCForm extends React.Component<{},IKYCState> {
                   <DataListCell alignRight key="secondary content fill">
                     Total Score KYC
                   </DataListCell>,
-                  <DataListCell />,
+                  <DataListCell/>,
                   <DataListCell   key="secondary content align" hidden={!this.state.isResult}>
                       <Alert variant={this.convertLevel(this.state.result.KYC,"Level")} isInline title={ this.state.result.KYC.Level + " " +  this.state.result.KYC.Score} />
                   </DataListCell>
@@ -286,11 +290,6 @@ class KYCForm extends React.Component<{},IKYCState> {
             </DataListItemRow>
           </DataListItem>
         </DataList>
-
-        <ActionGroup>
-          <Button variant="primary" type="submit">Envoyer</Button>
-        </ActionGroup>
-
       </Form>
     );
   }
@@ -299,11 +298,11 @@ class KYCForm extends React.Component<{},IKYCState> {
 const Dynamic: React.FunctionComponent = () => (
   <PageSection>
     <Card>
-      <CardTitle>  
-        <Title headingLevel="h1" size="lg">KYC Formular</Title>
+      <CardTitle>
+        <Title headingLevel="h1" size="lg">KYC Dynamic</Title>
       </CardTitle>
-      <CardBody> 
-        <KYCForm/>
+      <CardBody>
+        <KYCDynamic/>
       </CardBody>
     </Card>
   </PageSection>
