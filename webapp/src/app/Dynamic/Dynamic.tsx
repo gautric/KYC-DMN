@@ -134,21 +134,15 @@ class KYCDynamic extends React.Component<{},IKYCState> {
   };
 
   handlePep = (checked, event) => {
-    this.setState((state, props) => ({["pep"] : !state.pep}), () => {
-      this.handleSubmit();
-    });
+    this.setState((state, props) => ({["pep"] : !state.pep}), () => (this.handleSubmit()));
   };
 
   handleAmount = (amount, event) => {
-      this.setState((state, props) => ({amount : parseInt(amount.replace(/\D/g,''))}), () => {
-        this.handleSubmit();
-      });
-    };
+      this.setState((state, props) => ({amount : parseInt(amount.replace(/\D/g,''))}), () => (this.handleSubmit()));
+  };
 
   handleFiscalResidency = (fiscalResidency, event) => {
-    this.setState((state, props) => ({fiscalResidency}), () => {
-      this.handleSubmit();
-    });
+    this.setState((state, props) => ({fiscalResidency}), () => (this.handleSubmit()));
   };
 
   render() {
