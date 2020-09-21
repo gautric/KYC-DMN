@@ -12,17 +12,13 @@ import {
 } from '@patternfly/react-core';
 import { routes } from '@app/routes';
 
-//import logo from '@app/KYC-icon.svg'
+import kycLogo from '../../images/KYC-icon.png';
 
 interface IAppLayout {
   children: React.ReactNode;
 }
 
 const AppLayout: React.FunctionComponent<IAppLayout> = ({children}) => {
-  const logoProps = {
-    href: '/',
-    target: '_blank'
-  };
   const [isNavOpen, setIsNavOpen] = React.useState(true);
   const [isMobileView, setIsMobileView] = React.useState(true);
   const [isNavOpenMobile, setIsNavOpenMobile] = React.useState(false);
@@ -37,9 +33,7 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({children}) => {
   };
   const Header = (
     <PageHeader
-      logo="KYC DMN"
-      logo={<img src={'/KYC-icon.svg'} width="125" height="50"/>}
-      logoProps={logoProps}
+      logo={<Brand src={kycLogo} alt="KYC-DMN" />}      
       showNavToggle
       isNavOpen={isNavOpen}
       onNavToggle={isMobileView ? onNavToggleMobile : onNavToggle}
