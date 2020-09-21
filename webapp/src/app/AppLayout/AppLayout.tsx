@@ -12,7 +12,7 @@ import {
 } from '@patternfly/react-core';
 import { routes } from '@app/routes';
 
-import kycLogo from '../../images/KYC-icon.png';
+import kycLogo from '../../images/KYC-icon-145.svg';
 
 interface IAppLayout {
   children: React.ReactNode;
@@ -33,7 +33,7 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({children}) => {
   };
   const Header = (
     <PageHeader
-      logo={<Brand src={kycLogo} alt="KYC-DMN" />}      
+      logo={<span dangerouslySetInnerHTML={{__html: kycLogo}} />}         
       showNavToggle
       isNavOpen={isNavOpen}
       onNavToggle={isMobileView ? onNavToggleMobile : onNavToggle}
