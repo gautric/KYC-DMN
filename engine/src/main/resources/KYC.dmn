@@ -1,584 +1,636 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<semantic:definitions xmlns:semantic="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:trisodmn="http://www.trisotech.com/2016/triso/dmn" xmlns:feel="https://www.omg.org/spec/DMN/20191111/FEEL/" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:drools="http://www.drools.org/kie/dmn/1.1" xmlns:openapi="https://openapis.org/omg/extension/1.0" xmlns:dmn11="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:rss="http://purl.org/rss/2.0/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:trisofeed="http://trisotech.com/feed" xmlns:ns1="https://kiegroup.org/dmn/_FF75C715-5BF3-41D1-9C6B-616E90E43F19" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.trisotech.com/definitions/_6021b48e-2c56-4991-9c1b-c97fd1a77f26" id="_6021b48e-2c56-4991-9c1b-c97fd1a77f26" name="KYC" namespace="http://www.trisotech.com/definitions/_6021b48e-2c56-4991-9c1b-c97fd1a77f26" exporter="Decision Modeler" exporterVersion="6.11.3" triso:logoChoice="Default">
-    <semantic:extensionElements/>
-    <semantic:decisionService id="_6021b48e-2c56-4991-9c1b-c97fd1a77f26_DS" name="Whole Model Decision Service" triso:dynamicDecisionService="true" triso:wholeModelService="true">
-        <semantic:variable name="Whole Model Decision Service" id="_6021b48e-2c56-4991-9c1b-c97fd1a77f26_DS_VAR" typeRef="Any"/>
-        <semantic:outputDecision href="#_6FA80DD3-75B0-40F4-99DD-FBBF6D542D9F"/>
-        <semantic:encapsulatedDecision href="#_A7CE890C-3C01-4347-89E5-03D7FDDB7945"/>
-        <semantic:encapsulatedDecision href="#_3D8A06CA-F132-4FC0-821F-C57D678187A6"/>
-        <semantic:encapsulatedDecision href="#_3C4B87DF-F1EC-412D-BFB9-4A010C6DB338"/>
-        <semantic:inputData href="#_599AE4D3-68FB-41B0-AC82-5EA2443C4E80"/>
-        <semantic:inputData href="#_E438EDED-313D-4AB5-9375-883A297D9F3F"/>
-        <semantic:inputData href="#_0222DF06-BF10-490D-A542-3BBF1D1C76D9"/>
-    </semantic:decisionService>
-    <semantic:decisionService id="_f6dacbb3-c421-4719-b743-0153df167245_DS" name="Diagram KYC DMN" triso:dynamicDecisionService="true">
-        <semantic:variable name="Diagram KYC DMN" id="_f6dacbb3-c421-4719-b743-0153df167245_DS_VAR" typeRef="Any"/>
-        <semantic:outputDecision href="#_6FA80DD3-75B0-40F4-99DD-FBBF6D542D9F"/>
-        <semantic:encapsulatedDecision href="#_A7CE890C-3C01-4347-89E5-03D7FDDB7945"/>
-        <semantic:encapsulatedDecision href="#_3D8A06CA-F132-4FC0-821F-C57D678187A6"/>
-        <semantic:encapsulatedDecision href="#_3C4B87DF-F1EC-412D-BFB9-4A010C6DB338"/>
-        <semantic:inputData href="#_599AE4D3-68FB-41B0-AC82-5EA2443C4E80"/>
-        <semantic:inputData href="#_E438EDED-313D-4AB5-9375-883A297D9F3F"/>
-        <semantic:inputData href="#_0222DF06-BF10-490D-A542-3BBF1D1C76D9"/>
-    </semantic:decisionService>
-    <semantic:decision id="_A7CE890C-3C01-4347-89E5-03D7FDDB7945" name="PEP Rule" triso:useOutputTypeAsAnswer="false">
-        <semantic:variable name="PEP Rule" id="_4CD03986-B86A-44DD-BD09-C38A9A13BBD8" typeRef="string"/>
-        <semantic:informationRequirement id="_A6C78D2F-6A6F-4AB0-8039-9361C6DC5B95">
-            <semantic:requiredInput href="#_599AE4D3-68FB-41B0-AC82-5EA2443C4E80"/>
-        </semantic:informationRequirement>
-        <semantic:decisionTable id="_DEEDEA4B-CDB0-4BED-8A1E-5132CA3AF78D" hitPolicy="UNIQUE" outputLabel="PEP Rule" typeRef="string" triso:expressionId="_a29ddb74-fa04-4a4b-b355-2f0f2775b2fa">
-            <semantic:input id="_AA4A5BE4-BA61-4ED5-9375-E496EBA37050" label="PEP">
-                <semantic:inputExpression typeRef="boolean">
-                    <semantic:text>PEP</semantic:text>
-                </semantic:inputExpression>
-            </semantic:input>
-            <semantic:output id="_A121FEE5-6FAA-45C9-BE92-9D35C4FF3AF8"/>
-            <semantic:annotation name="annotation-1"/>
-            <semantic:rule id="_CD6AAE67-71B8-435D-9F88-ED5606853CAC">
-                <semantic:inputEntry id="_3E4F7E38-3ED8-4967-968F-5FA4C6FD6712">
-                    <semantic:text>true</semantic:text>
-                </semantic:inputEntry>
-                <semantic:outputEntry id="_7392926E-12FE-460F-B380-76861086F596">
-                    <semantic:text>"HIGH"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:annotationEntry>
-                    <semantic:text/>
-                </semantic:annotationEntry>
-            </semantic:rule>
-            <semantic:rule id="_B9A79FC1-5FB1-4851-B262-D7867DB789F9">
-                <semantic:inputEntry id="_88BAA952-1C43-4DED-85C8-0FE8D7E0CB4E">
-                    <semantic:text>false</semantic:text>
-                </semantic:inputEntry>
-                <semantic:outputEntry id="_D83C27EB-9184-4806-9317-F6164C59B4C4">
-                    <semantic:text>"LOW"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:annotationEntry>
-                    <semantic:text/>
-                </semantic:annotationEntry>
-            </semantic:rule>
-        </semantic:decisionTable>
-    </semantic:decision>
-    <semantic:decision id="_3D8A06CA-F132-4FC0-821F-C57D678187A6" name="Amount Rule" triso:useOutputTypeAsAnswer="false">
-        <semantic:variable name="Amount Rule" id="_D21F9477-A175-4582-BDE4-CEF2A8ED4FDB" typeRef="string"/>
-        <semantic:informationRequirement id="_20058A3F-C2DF-4EA4-9B59-FF9392E705CA">
-            <semantic:requiredInput href="#_E438EDED-313D-4AB5-9375-883A297D9F3F"/>
-        </semantic:informationRequirement>
-        <semantic:decisionTable id="_7BC24291-31AE-4FDF-BDBD-720F048A48A9" hitPolicy="UNIQUE" outputLabel="Amount Rule" typeRef="string" triso:expressionId="_69896c9c-dcf1-46cf-b330-124d1465f877">
-            <semantic:input id="_5741B682-3D41-4EFE-A17A-C9445F6CCA25" label="Amount">
-                <semantic:inputExpression typeRef="number">
-                    <semantic:text>Amount</semantic:text>
-                </semantic:inputExpression>
-            </semantic:input>
-            <semantic:output id="_055A9657-0203-4B23-98BB-40AA1927F987"/>
-            <semantic:annotation name="annotation-1"/>
-            <semantic:rule id="_452B4A4A-CF3E-4A5B-A02F-2D132FA8E42D">
-                <semantic:inputEntry id="_036CFFDD-8F43-4E84-A906-71EB6CB9542F">
-                    <semantic:text>&lt; 100000</semantic:text>
-                </semantic:inputEntry>
-                <semantic:outputEntry id="_1B0E9D55-EFB3-43D4-986C-8E5481FB7646">
-                    <semantic:text>"LOW"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:annotationEntry>
-                    <semantic:text/>
-                </semantic:annotationEntry>
-            </semantic:rule>
-            <semantic:rule id="_97AA0F47-D006-48F3-B328-3AA443C0C4F3">
-                <semantic:inputEntry id="_EBE957E5-0CC0-4996-A5E1-9F77C5490E02" expressionLanguage="https://www.omg.org/spec/DMN/20191111/FEEL/" triso:unparsed="true">
-                    <semantic:text>[100000 ..1000000)</semantic:text>
-                </semantic:inputEntry>
-                <semantic:outputEntry id="_5E4D16AD-2EBD-43DF-AE1F-2E8EAD551CE6">
-                    <semantic:text>"MEDIUM"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:annotationEntry>
-                    <semantic:text/>
-                </semantic:annotationEntry>
-            </semantic:rule>
-            <semantic:rule id="_2C3D6413-22B7-4ADF-87B2-6E65FC3B97EE">
-                <semantic:inputEntry id="_6072274A-E689-4D3E-9443-DC37E062E49A" expressionLanguage="https://www.omg.org/spec/DMN/20191111/FEEL/" triso:unparsed="true">
-                    <semantic:text>[1000000 .. 10000000)</semantic:text>
-                </semantic:inputEntry>
-                <semantic:outputEntry id="_7EE68EFA-9842-4FC0-B6CD-12D9FD51A338">
-                    <semantic:text>"HIGH"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:annotationEntry>
-                    <semantic:text/>
-                </semantic:annotationEntry>
-            </semantic:rule>
-            <semantic:rule id="_2FDA18F4-6ABA-4197-A878-BBB1F3EC241B">
-                <semantic:inputEntry id="_5FACEA9F-9B93-4125-9DAA-8BB9A4887E22">
-                    <semantic:text>&gt;= 10000000</semantic:text>
-                </semantic:inputEntry>
-                <semantic:outputEntry id="_6AD33F07-1BAA-46D3-B4C9-BD30E8A1BF30">
-                    <semantic:text>"VERY HIGH"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:annotationEntry>
-                    <semantic:text/>
-                </semantic:annotationEntry>
-            </semantic:rule>
-        </semantic:decisionTable>
-    </semantic:decision>
-    <semantic:decision id="_3C4B87DF-F1EC-412D-BFB9-4A010C6DB338" name="Fiscal Residency Rule" triso:useOutputTypeAsAnswer="false">
-        <semantic:variable name="Fiscal Residency Rule" id="_48FDDF96-5B5A-465C-BF57-3CAB59AA86A7" typeRef="string"/>
-        <semantic:informationRequirement id="_A211792E-258F-4089-8351-A7F668EAB9F8">
-            <semantic:requiredInput href="#_0222DF06-BF10-490D-A542-3BBF1D1C76D9"/>
-        </semantic:informationRequirement>
-        <semantic:decisionTable id="_ACA8AAB5-E862-4531-AD98-2DDA82A7FD2C" hitPolicy="UNIQUE" outputLabel="Fiscal Residency Rule" typeRef="string" triso:expressionId="_c97cc6b9-88cf-46be-8c39-b1d6ab29aac4">
-            <semantic:input id="_D5BFD119-878F-41C6-8591-EA3C62DA938D" label="Fiscal Residency">
-                <semantic:inputExpression typeRef="string">
-                    <semantic:text>Fiscal Residency</semantic:text>
-                </semantic:inputExpression>
-            </semantic:input>
-            <semantic:output id="_8DCF8FB1-533E-4ADD-808C-52FED5B2F1CF"/>
-            <semantic:annotation name="annotation-1"/>
-            <semantic:rule id="_92BC3EFB-7653-4F67-ABF8-E55DF1D18F8D">
-                <semantic:inputEntry id="_C800159E-4C67-4CAE-8215-D8DB2EA01376">
-                    <semantic:text>"FR"</semantic:text>
-                </semantic:inputEntry>
-                <semantic:outputEntry id="_75F12504-19FF-46BF-8B49-3C38BC2AD810">
-                    <semantic:text>"LOW"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:annotationEntry>
-                    <semantic:text/>
-                </semantic:annotationEntry>
-            </semantic:rule>
-            <semantic:rule id="_A5BB442D-E71E-48AF-908A-9374016584D9">
-                <semantic:inputEntry id="_5A944B6B-3308-49EE-B666-21C3A92D59A1">
-                    <semantic:text>"JP"</semantic:text>
-                </semantic:inputEntry>
-                <semantic:outputEntry id="_F002B201-F987-4E9C-981E-7BE2BC630FC1">
-                    <semantic:text>"LOW"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:annotationEntry>
-                    <semantic:text/>
-                </semantic:annotationEntry>
-            </semantic:rule>
-            <semantic:rule id="_C6B4A1FB-FAC9-4741-8347-F07350CDEC47">
-                <semantic:inputEntry id="_A66F60AC-E02C-42EC-B407-43CF7DBD7304">
-                    <semantic:text>"US"</semantic:text>
-                </semantic:inputEntry>
-                <semantic:outputEntry id="_927223AA-6DF7-4488-900F-23ADB718A3AE">
-                    <semantic:text>"LOW"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:annotationEntry>
-                    <semantic:text/>
-                </semantic:annotationEntry>
-            </semantic:rule>
-            <semantic:rule id="_3CB70B5A-5690-4E5B-B30D-DEDB23394BE2">
-                <semantic:inputEntry id="_29A7D37C-DFEB-4A91-9970-1401DED1F74C">
-                    <semantic:text>"CY"</semantic:text>
-                </semantic:inputEntry>
-                <semantic:outputEntry id="_CBDFD554-07CE-4E45-B5DE-B032FF55D7B5">
-                    <semantic:text>"MEDIUM"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:annotationEntry>
-                    <semantic:text/>
-                </semantic:annotationEntry>
-            </semantic:rule>
-            <semantic:rule id="_A428DF81-82F4-40ED-9F37-617A270A7264">
-                <semantic:inputEntry id="_10D6903B-1A0F-478C-98BA-66AE91952667">
-                    <semantic:text>"RU"</semantic:text>
-                </semantic:inputEntry>
-                <semantic:outputEntry id="_37FC8668-A18F-41C9-BDD0-C2739B49DB68">
-                    <semantic:text>"HIGH"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:annotationEntry>
-                    <semantic:text/>
-                </semantic:annotationEntry>
-            </semantic:rule>
-            <semantic:rule id="_C53854DA-B0DB-4305-9920-8776CC014C54">
-                <semantic:inputEntry id="_BFEF5F27-CF02-488C-850E-17A6322B6694">
-                    <semantic:text>"KP"</semantic:text>
-                </semantic:inputEntry>
-                <semantic:outputEntry id="_4D53BD00-14B7-461D-9865-5FD1A200177E">
-                    <semantic:text>"VERY HIGH"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:annotationEntry>
-                    <semantic:text/>
-                </semantic:annotationEntry>
-            </semantic:rule>
-        </semantic:decisionTable>
-    </semantic:decision>
-    <semantic:decision id="_6FA80DD3-75B0-40F4-99DD-FBBF6D542D9F" name="KYC" triso:useOutputTypeAsAnswer="false">
-        <semantic:variable name="KYC" id="_8684C845-9B8D-4F11-A7E0-BB5A8A51368E" typeRef="Any"/>
-        <semantic:informationRequirement id="_486E1845-3D4A-49C8-8C35-DE57E7A18B9A">
-            <semantic:requiredDecision href="#_A7CE890C-3C01-4347-89E5-03D7FDDB7945"/>
-        </semantic:informationRequirement>
-        <semantic:informationRequirement id="_C91A8B76-14DB-44B7-8F6D-2D02B567F4AF">
-            <semantic:requiredDecision href="#_3D8A06CA-F132-4FC0-821F-C57D678187A6"/>
-        </semantic:informationRequirement>
-        <semantic:informationRequirement id="_549D342E-0F47-4473-A274-A83444BFEB13">
-            <semantic:requiredDecision href="#_3C4B87DF-F1EC-412D-BFB9-4A010C6DB338"/>
-        </semantic:informationRequirement>
-        <semantic:knowledgeRequirement id="_E4AD78C8-9CB0-437D-859B-103564843A5F">
-            <semantic:requiredKnowledge href="#_F622D4A6-6D5D-4A7C-A075-7F92E00CD716"/>
-        </semantic:knowledgeRequirement>
-        <semantic:knowledgeRequirement id="_8075c563-5ef7-467d-bbee-d42b2e57dddd">
-            <semantic:requiredKnowledge href="#_7c656594-c17b-4e49-a196-909f2f8f9a2e"/>
-        </semantic:knowledgeRequirement>
-        <semantic:context id="_F8D3ED5F-CDD6-4EC7-934B-F4C3B3B00A74" typeRef="Any" triso:expressionId="_6bbf6fcb-08ea-4876-be94-11c47ec1ec34">
-            <semantic:contextEntry id="_7ebeeed5-0713-44e1-a715-73d693daed62">
-                <semantic:variable name="Score" id="_50692D1E-288C-47F5-9A8D-BDB3BC8B6A60" typeRef="number"/>
-                <semantic:literalExpression id="_8846BBC5-B5B8-45EF-B70C-9BAFBCE377CA">
-                    <semantic:text>sum([Level to Score(PEP Rule),Level to Score(Amount Rule),Level to Score(Fiscal Residency Rule)])</semantic:text>
-                </semantic:literalExpression>
-            </semantic:contextEntry>
-            <semantic:contextEntry id="_33eff1a0-73a1-45ff-9474-80b3a7a378ed">
-                <semantic:variable name="Level" id="_43186c43-acd2-43b9-b482-2cfe929b69de" typeRef="string"/>
-                <semantic:literalExpression id="_cbb29d1e-b5c5-4ae0-9585-b471cdc97c7d">
-                    <semantic:text>Max Level([PEP Rule,Amount Rule,Fiscal Residency Rule])</semantic:text>
-                </semantic:literalExpression>
-            </semantic:contextEntry>
-        </semantic:context>
-    </semantic:decision>
-    <semantic:inputData id="_599AE4D3-68FB-41B0-AC82-5EA2443C4E80" name="PEP">
-        <semantic:variable name="PEP" id="_1ED25E30-EAE3-46E3-AB72-8CB93904E4C4" typeRef="boolean"/>
-    </semantic:inputData>
-    <semantic:inputData id="_E438EDED-313D-4AB5-9375-883A297D9F3F" name="Amount">
-        <semantic:variable name="Amount" id="_E62B189F-86BB-4525-8737-837E5023C7A0" typeRef="number"/>
-    </semantic:inputData>
-    <semantic:inputData id="_0222DF06-BF10-490D-A542-3BBF1D1C76D9" name="Fiscal Residency">
-        <semantic:variable name="Fiscal Residency" id="_A66F1C03-9C72-4CD1-9134-F0926F334608" typeRef="string"/>
-    </semantic:inputData>
-    <semantic:businessKnowledgeModel id="_F622D4A6-6D5D-4A7C-A075-7F92E00CD716" name="Level to Score">
-        <semantic:variable name="Level to Score" id="_31232C54-7CEC-4360-8E9B-7941CFA0A7BE" typeRef="string"/>
-        <semantic:encapsulatedLogic typeRef="string" triso:expressionId="_c5e8525d-ad0e-46df-a602-53f3af38d8f9">
-            <semantic:formalParameter name="input" typeRef="number"/>
-            <semantic:decisionTable id="_4F7D5364-9746-4480-8A3E-881D06961BB4" hitPolicy="UNIQUE" outputLabel="Level to Score" typeRef="string">
-                <semantic:input id="_54639A5B-B9E7-4602-9ABC-66DA2F9A9E95" label="input">
-                    <semantic:inputExpression typeRef="number">
-                        <semantic:text>input</semantic:text>
-                    </semantic:inputExpression>
-                </semantic:input>
-                <semantic:output id="_A7C52D8D-B959-47A8-89AB-FAD95D840DDE"/>
-                <semantic:annotation name="annotation-1"/>
-                <semantic:rule id="_E2F0F113-18BF-453A-A11A-3048768EB3F1">
-                    <semantic:inputEntry id="_105D554E-7B58-4E69-8BB9-9AC3BD21F5E3">
-                        <semantic:text>"LOW"</semantic:text>
-                    </semantic:inputEntry>
-                    <semantic:outputEntry id="_7B1276B7-4BF2-431E-A8F0-99462D07F83E">
-                        <semantic:text>0</semantic:text>
-                    </semantic:outputEntry>
-                    <semantic:annotationEntry>
-                        <semantic:text/>
-                    </semantic:annotationEntry>
-                </semantic:rule>
-                <semantic:rule id="_3E12FE54-53A9-458E-81A3-8548B69BE7D2">
-                    <semantic:inputEntry id="_FBF4C635-067A-4BB9-864B-BC7E82AB9908">
-                        <semantic:text>"MEDIUM"</semantic:text>
-                    </semantic:inputEntry>
-                    <semantic:outputEntry id="_4D0B2F93-C74E-4178-83ED-2CD2386AACA5">
-                        <semantic:text>25</semantic:text>
-                    </semantic:outputEntry>
-                    <semantic:annotationEntry>
-                        <semantic:text/>
-                    </semantic:annotationEntry>
-                </semantic:rule>
-                <semantic:rule id="_0829c5d6-316b-4efd-a26d-e7ea1c914ada">
-                    <semantic:inputEntry id="_eaa0693f-e79c-4584-a8bb-ff1eb2ee5448">
-                        <semantic:text>"HIGH"</semantic:text>
-                    </semantic:inputEntry>
-                    <semantic:outputEntry id="_391efccc-34ab-462a-99f5-4fc985508f83">
-                        <semantic:text>75</semantic:text>
-                    </semantic:outputEntry>
-                    <semantic:annotationEntry>
-                        <semantic:text/>
-                    </semantic:annotationEntry>
-                </semantic:rule>
-                <semantic:rule id="_eac1bdc2-9263-448b-adac-72938f8c10b1">
-                    <semantic:inputEntry id="_7316a142-9417-4193-9ff6-f9c75c390517">
-                        <semantic:text>"VERY HIGH"</semantic:text>
-                    </semantic:inputEntry>
-                    <semantic:outputEntry id="_45489365-90ef-478e-8f7d-cc6de1890701">
-                        <semantic:text>100</semantic:text>
-                    </semantic:outputEntry>
-                    <semantic:annotationEntry>
-                        <semantic:text/>
-                    </semantic:annotationEntry>
-                </semantic:rule>
-            </semantic:decisionTable>
-        </semantic:encapsulatedLogic>
-    </semantic:businessKnowledgeModel>
-    <semantic:businessKnowledgeModel id="_7c656594-c17b-4e49-a196-909f2f8f9a2e" name="Max Level">
-        <semantic:variable name="Max Level" id="_04a44545-0040-4f1a-b236-791d6292f27a" typeRef="Any"/>
-        <semantic:encapsulatedLogic id="_9d11198e-8c56-4fdb-8f93-8c5d88cade48" kind="FEEL" typeRef="Any" triso:expressionId="_ff197d2f-bd84-4379-af3d-709ace506dc8">
-            <semantic:formalParameter name="list of Level" typeRef="Any" id="_570ca307-ffc4-4648-9f03-ece7ee79761d"/>
-            <semantic:literalExpression id="_7b3f8d2d-6d64-439a-9fcc-ec6762e23e91" typeRef="Any">
-                <semantic:text>Int to Level(max(for l in list of Level return Level to Int(l)))</semantic:text>
-            </semantic:literalExpression>
-        </semantic:encapsulatedLogic>
-        <semantic:knowledgeRequirement id="_9d23e50d-5417-40a2-8ac0-4a25f2644f69">
-            <semantic:requiredKnowledge href="#_e021a760-2121-41b9-b597-eb19bcca8c14"/>
-        </semantic:knowledgeRequirement>
-        <semantic:knowledgeRequirement id="_0c137b5c-91ba-4965-b11c-6dbebe101329">
-            <semantic:requiredKnowledge href="#_0f35a9fe-da0e-40a9-89cc-b0f38966b269"/>
-        </semantic:knowledgeRequirement>
-    </semantic:businessKnowledgeModel>
-    <semantic:businessKnowledgeModel id="_e021a760-2121-41b9-b597-eb19bcca8c14" name="Level to Int">
-        <semantic:variable name="Level to Int" id="_a9ac5885-54ae-4d7b-a6fc-47d6bb5c802f" typeRef="number"/>
-        <semantic:encapsulatedLogic typeRef="number" triso:expressionId="_49263183-1a18-463b-80f0-5e88dbeb86b5">
-            <semantic:formalParameter name="Level to Score" typeRef="string"/>
-            <semantic:decisionTable id="_cc796a93-c61d-47d8-973e-7359429f3ccf" hitPolicy="UNIQUE" outputLabel="Level to Int" typeRef="number">
-                <semantic:input id="_ffd9601f-58ae-40bb-a39e-8d46799d6828" triso:allowNull="false" label="Level to Score">
-                    <semantic:inputExpression typeRef="string">
-                        <semantic:text>Level to Score</semantic:text>
-                    </semantic:inputExpression>
-                    <semantic:inputValues triso:constraintsType="enumeration">
-                        <semantic:text>"LOW","MEDIUM","HIGH","VERY HIGH"</semantic:text>
-                    </semantic:inputValues>
-                </semantic:input>
-                <semantic:output id="_3862bbe4-6f56-4c8f-8702-7642e0369903" triso:allowNull="false">
-                    <semantic:outputValues triso:constraintsType="enumeration">
-                        <semantic:text>1,2,3,4</semantic:text>
-                    </semantic:outputValues>
-                </semantic:output>
-                <semantic:annotation name="Description"/>
-                <semantic:rule id="_a7df8e7b-bd71-432b-815a-37c35e25215e">
-                    <semantic:inputEntry id="_404ddd5d-9071-4b9e-8f59-628608e41600">
-                        <semantic:text>"LOW"</semantic:text>
-                    </semantic:inputEntry>
-                    <semantic:outputEntry id="_8194ee39-f76a-475e-bfef-aabe358e5617">
-                        <semantic:text>1</semantic:text>
-                    </semantic:outputEntry>
-                    <semantic:annotationEntry>
-                        <semantic:text/>
-                    </semantic:annotationEntry>
-                </semantic:rule>
-                <semantic:rule id="_47649238-1870-42f7-90c3-5e52eb911a37">
-                    <semantic:inputEntry id="_076be3c3-27d2-46ee-985e-4ba46923fdac">
-                        <semantic:text>"MEDIUM"</semantic:text>
-                    </semantic:inputEntry>
-                    <semantic:outputEntry id="_8900c6b6-c1e8-45b1-9221-e0df712d61ba">
-                        <semantic:text>2</semantic:text>
-                    </semantic:outputEntry>
-                    <semantic:annotationEntry>
-                        <semantic:text/>
-                    </semantic:annotationEntry>
-                </semantic:rule>
-                <semantic:rule id="_df7ef72b-d5d6-435a-ab2b-bd5c081743a0">
-                    <semantic:inputEntry id="_9c50f0d6-add5-41cc-bf2f-b8ccc079f4eb">
-                        <semantic:text>"HIGH"</semantic:text>
-                    </semantic:inputEntry>
-                    <semantic:outputEntry id="_c6f8ee64-0278-4c4d-a0b3-9a9e3c634d9d">
-                        <semantic:text>3</semantic:text>
-                    </semantic:outputEntry>
-                    <semantic:annotationEntry>
-                        <semantic:text/>
-                    </semantic:annotationEntry>
-                </semantic:rule>
-                <semantic:rule id="_ce5d8283-13a6-4f47-be92-8e1c4e4d75fc">
-                    <semantic:inputEntry id="_75a7805d-834b-4273-a6d2-0189c0da610b">
-                        <semantic:text>"VERY HIGH"</semantic:text>
-                    </semantic:inputEntry>
-                    <semantic:outputEntry id="_af6f2b0c-7131-468e-b418-0a0e78dcf437">
-                        <semantic:text>4</semantic:text>
-                    </semantic:outputEntry>
-                    <semantic:annotationEntry>
-                        <semantic:text/>
-                    </semantic:annotationEntry>
-                </semantic:rule>
-            </semantic:decisionTable>
-        </semantic:encapsulatedLogic>
-    </semantic:businessKnowledgeModel>
-    <semantic:businessKnowledgeModel id="_0f35a9fe-da0e-40a9-89cc-b0f38966b269" name="Int to Level">
-        <semantic:variable name="Int to Level" id="_73ed7dbb-bc3c-4aca-afa2-cf5ab124715a" typeRef="string"/>
-        <semantic:encapsulatedLogic typeRef="string" triso:expressionId="_563d5144-2f9c-4b51-ad61-a6f5c6d2206b">
-            <semantic:formalParameter name="Int" typeRef="number"/>
-            <semantic:decisionTable id="_8fe63c63-32f8-4804-b7b2-0895d27fb559" hitPolicy="UNIQUE" outputLabel="Int to Level" typeRef="string">
-                <semantic:input id="_f6bc2728-5d5b-4fe5-968b-d46a7ac3fd88" triso:allowNull="false" label="Int">
-                    <semantic:inputExpression typeRef="number">
-                        <semantic:text>Int</semantic:text>
-                    </semantic:inputExpression>
-                </semantic:input>
-                <semantic:output id="_848356d3-bbd5-4b15-85db-eef4aad9e17f" triso:allowNull="false"/>
-                <semantic:annotation name="Description"/>
-                <semantic:rule id="_8b37bcfd-cc58-4dbe-93aa-0dd4f41e1a3b">
-                    <semantic:inputEntry id="_f625d340-416a-4fd3-9ea6-ebc889da53f3">
-                        <semantic:text>1</semantic:text>
-                    </semantic:inputEntry>
-                    <semantic:outputEntry id="_e5025e92-2dc9-43e0-89d2-5b4c0af1653f">
-                        <semantic:text>"LOW"</semantic:text>
-                    </semantic:outputEntry>
-                    <semantic:annotationEntry>
-                        <semantic:text/>
-                    </semantic:annotationEntry>
-                </semantic:rule>
-                <semantic:rule id="_57907caf-912e-4ad3-9892-019180c01669">
-                    <semantic:inputEntry id="_42fe8b35-5c96-4c3c-bcb2-7e4155b324ba">
-                        <semantic:text>2</semantic:text>
-                    </semantic:inputEntry>
-                    <semantic:outputEntry id="_6a960b17-fedd-4f50-ad7d-e9a95453cdba">
-                        <semantic:text>"MEDIUM"</semantic:text>
-                    </semantic:outputEntry>
-                    <semantic:annotationEntry>
-                        <semantic:text/>
-                    </semantic:annotationEntry>
-                </semantic:rule>
-                <semantic:rule id="_2a856da0-666e-4fb3-a3ed-4c5d9b65803d">
-                    <semantic:inputEntry id="_26f20f4d-59c3-4e7a-942f-d5489c47d033">
-                        <semantic:text>3</semantic:text>
-                    </semantic:inputEntry>
-                    <semantic:outputEntry id="_247f01d5-b5b9-40f4-a293-df3bf8ab01ff">
-                        <semantic:text>"HIGH"</semantic:text>
-                    </semantic:outputEntry>
-                    <semantic:annotationEntry>
-                        <semantic:text/>
-                    </semantic:annotationEntry>
-                </semantic:rule>
-                <semantic:rule id="_867c9968-79a9-4a0d-9237-0548de8368ed">
-                    <semantic:inputEntry id="_a1dfbc4d-f982-4086-9247-7b9f4f855d84">
-                        <semantic:text>4</semantic:text>
-                    </semantic:inputEntry>
-                    <semantic:outputEntry id="_a5112506-6eab-4afb-83f5-61de13310a59">
-                        <semantic:text>"VERY HIGH"</semantic:text>
-                    </semantic:outputEntry>
-                    <semantic:annotationEntry>
-                        <semantic:text/>
-                    </semantic:annotationEntry>
-                </semantic:rule>
-            </semantic:decisionTable>
-        </semantic:encapsulatedLogic>
-    </semantic:businessKnowledgeModel>
-    <dmndi:DMNDI>
-        <dmndi:DMNDiagram id="_f6dacbb3-c421-4719-b743-0153df167245" triso:modelElementRef="_f35fc8a2-da72-4051-864f-e712db6077a7" name="KYC DMN">
-            <di:extension>
-                <kie:ComponentsWidthsExtension>
-                    <kie:ComponentWidths dmnElementRef="_DEEDEA4B-CDB0-4BED-8A1E-5132CA3AF78D">
-                        <kie:width>50</kie:width>
-                        <kie:width>100</kie:width>
-                        <kie:width>100</kie:width>
-                        <kie:width>100</kie:width>
-                    </kie:ComponentWidths>
-                    <kie:ComponentWidths dmnElementRef="_7BC24291-31AE-4FDF-BDBD-720F048A48A9">
-                        <kie:width>50</kie:width>
-                        <kie:width>159</kie:width>
-                        <kie:width>100</kie:width>
-                        <kie:width>100</kie:width>
-                    </kie:ComponentWidths>
-                    <kie:ComponentWidths dmnElementRef="_ACA8AAB5-E862-4531-AD98-2DDA82A7FD2C">
-                        <kie:width>50</kie:width>
-                        <kie:width>134</kie:width>
-                        <kie:width>161</kie:width>
-                        <kie:width>100</kie:width>
-                    </kie:ComponentWidths>
-                    <kie:ComponentWidths dmnElementRef="_F8D3ED5F-CDD6-4EC7-934B-F4C3B3B00A74">
-                        <kie:width>50</kie:width>
-                        <kie:width>100</kie:width>
-                        <kie:width>672</kie:width>
-                    </kie:ComponentWidths>
-                    <kie:ComponentWidths dmnElementRef="_8846BBC5-B5B8-45EF-B70C-9BAFBCE377CA">
-                        <kie:width>672</kie:width>
-                    </kie:ComponentWidths>
-                    <kie:ComponentWidths dmnElementRef="_E62A8B55-0FA2-4AFA-9CAF-A0DC849B4BD5">
-                        <kie:width>672</kie:width>
-                    </kie:ComponentWidths>
-                    <kie:ComponentWidths dmnElementRef="_4F7D5364-9746-4480-8A3E-881D06961BB4">
-                        <kie:width>50</kie:width>
-                        <kie:width>100</kie:width>
-                        <kie:width>100</kie:width>
-                        <kie:width>100</kie:width>
-                    </kie:ComponentWidths>
-                    <kie:ComponentWidths dmnElementRef="_5EF5E5ED-730A-427C-BDB3-CFA023D697C0">
-                        <kie:width>50</kie:width>
-                        <kie:width>370</kie:width>
-                    </kie:ComponentWidths>
-                </kie:ComponentsWidthsExtension>
-            </di:extension>
-            <dmndi:Size height="1050" width="1485"/>
-            <dmndi:DMNShape id="dmnshape-_A7CE890C-3C01-4347-89E5-03D7FDDB7945" dmnElementRef="_A7CE890C-3C01-4347-89E5-03D7FDDB7945">
-                <dc:Bounds x="183" y="250" width="100" height="50"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNShape>
-            <dmndi:DMNShape id="dmnshape-_3D8A06CA-F132-4FC0-821F-C57D678187A6" dmnElementRef="_3D8A06CA-F132-4FC0-821F-C57D678187A6">
-                <dc:Bounds x="472" y="250" width="100" height="50"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNShape>
-            <dmndi:DMNShape id="dmnshape-_3C4B87DF-F1EC-412D-BFB9-4A010C6DB338" dmnElementRef="_3C4B87DF-F1EC-412D-BFB9-4A010C6DB338">
-                <dc:Bounds x="761" y="250" width="100" height="50"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNShape>
-            <dmndi:DMNShape id="dmnshape-_6FA80DD3-75B0-40F4-99DD-FBBF6D542D9F" dmnElementRef="_6FA80DD3-75B0-40F4-99DD-FBBF6D542D9F">
-                <dc:Bounds x="472" y="99" width="100" height="50"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNShape>
-            <dmndi:DMNShape id="dmnshape-_599AE4D3-68FB-41B0-AC82-5EA2443C4E80" dmnElementRef="_599AE4D3-68FB-41B0-AC82-5EA2443C4E80">
-                <dc:Bounds x="181.59813084112147" y="401" width="100" height="50"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0" trisodmn:defaultBounds="true"/>
-            </dmndi:DMNShape>
-            <dmndi:DMNShape id="dmnshape-_E438EDED-313D-4AB5-9375-883A297D9F3F" dmnElementRef="_E438EDED-313D-4AB5-9375-883A297D9F3F">
-                <dc:Bounds x="471.29906542056074" y="401" width="100" height="50"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNShape>
-            <dmndi:DMNShape id="dmnshape-_0222DF06-BF10-490D-A542-3BBF1D1C76D9" dmnElementRef="_0222DF06-BF10-490D-A542-3BBF1D1C76D9">
-                <dc:Bounds x="761" y="401" width="100" height="50"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNShape>
-            <dmndi:DMNShape id="dmnshape-_F622D4A6-6D5D-4A7C-A075-7F92E00CD716" dmnElementRef="_F622D4A6-6D5D-4A7C-A075-7F92E00CD716">
-                <dc:Bounds x="232" y="99" width="100" height="50"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0" trisodmn:defaultBounds="true"/>
-            </dmndi:DMNShape>
-            <dmndi:DMNShape id="_2b84ebf0-2302-4e79-8b7a-9629355f37e0" dmnElementRef="_7c656594-c17b-4e49-a196-909f2f8f9a2e">
-                <dc:Bounds x="688" y="99.5" width="100" height="49"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0" trisodmn:defaultBounds="true"/>
-            </dmndi:DMNShape>
-            <dmndi:DMNShape id="_19b87043-a3f9-4d2d-a907-809fb78671d0" dmnElementRef="_e021a760-2121-41b9-b597-eb19bcca8c14">
-                <dc:Bounds x="859.5" y="101.5" width="100" height="45"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0" trisodmn:defaultBounds="true"/>
-            </dmndi:DMNShape>
-            <dmndi:DMNShape id="_a0868aee-7e9a-4a15-8ef0-66b26dd81ad8" dmnElementRef="_0f35a9fe-da0e-40a9-89cc-b0f38966b269">
-                <dc:Bounds x="859.5" y="173" width="100" height="45"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0" trisodmn:defaultBounds="true"/>
-            </dmndi:DMNShape>
-            <dmndi:DMNEdge id="dmnedge-_A6C78D2F-6A6F-4AB0-8039-9361C6DC5B95" dmnElementRef="_A6C78D2F-6A6F-4AB0-8039-9361C6DC5B95" sourceElement="dmnshape-_599AE4D3-68FB-41B0-AC82-5EA2443C4E80" targetElement="dmnshape-_A7CE890C-3C01-4347-89E5-03D7FDDB7945">
-                <di:waypoint x="231.59813084112147" y="401"/>
-                <di:waypoint x="233" y="300"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNEdge>
-            <dmndi:DMNEdge id="dmnedge-_20058A3F-C2DF-4EA4-9B59-FF9392E705CA" dmnElementRef="_20058A3F-C2DF-4EA4-9B59-FF9392E705CA" sourceElement="dmnshape-_E438EDED-313D-4AB5-9375-883A297D9F3F" targetElement="dmnshape-_3D8A06CA-F132-4FC0-821F-C57D678187A6">
-                <di:waypoint x="521.2990654205607" y="401"/>
-                <di:waypoint x="522" y="300"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNEdge>
-            <dmndi:DMNEdge id="dmnedge-_A211792E-258F-4089-8351-A7F668EAB9F8" dmnElementRef="_A211792E-258F-4089-8351-A7F668EAB9F8" sourceElement="dmnshape-_0222DF06-BF10-490D-A542-3BBF1D1C76D9" targetElement="dmnshape-_3C4B87DF-F1EC-412D-BFB9-4A010C6DB338">
-                <di:waypoint x="811" y="401"/>
-                <di:waypoint x="811" y="300"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNEdge>
-            <dmndi:DMNEdge id="dmnedge-_486E1845-3D4A-49C8-8C35-DE57E7A18B9A" dmnElementRef="_486E1845-3D4A-49C8-8C35-DE57E7A18B9A" sourceElement="dmnshape-_A7CE890C-3C01-4347-89E5-03D7FDDB7945" targetElement="dmnshape-_6FA80DD3-75B0-40F4-99DD-FBBF6D542D9F">
-                <di:waypoint x="283" y="275"/>
-                <di:waypoint x="522" y="149"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNEdge>
-            <dmndi:DMNEdge id="dmnedge-_C91A8B76-14DB-44B7-8F6D-2D02B567F4AF" dmnElementRef="_C91A8B76-14DB-44B7-8F6D-2D02B567F4AF" sourceElement="dmnshape-_3D8A06CA-F132-4FC0-821F-C57D678187A6" targetElement="dmnshape-_6FA80DD3-75B0-40F4-99DD-FBBF6D542D9F">
-                <di:waypoint x="522" y="250"/>
-                <di:waypoint x="522" y="149"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNEdge>
-            <dmndi:DMNEdge id="dmnedge-_549D342E-0F47-4473-A274-A83444BFEB13" dmnElementRef="_549D342E-0F47-4473-A274-A83444BFEB13" sourceElement="dmnshape-_3C4B87DF-F1EC-412D-BFB9-4A010C6DB338" targetElement="dmnshape-_6FA80DD3-75B0-40F4-99DD-FBBF6D542D9F">
-                <di:waypoint x="761" y="275"/>
-                <di:waypoint x="522" y="149"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNEdge>
-            <dmndi:DMNEdge id="dmnedge-_E4AD78C8-9CB0-437D-859B-103564843A5F" dmnElementRef="_E4AD78C8-9CB0-437D-859B-103564843A5F" sourceElement="dmnshape-_F622D4A6-6D5D-4A7C-A075-7F92E00CD716" targetElement="dmnshape-_6FA80DD3-75B0-40F4-99DD-FBBF6D542D9F">
-                <di:waypoint x="232" y="124"/>
-                <di:waypoint x="572" y="124"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNEdge>
-            <dmndi:DMNEdge id="_6c1cb7ad-b086-4829-88b7-4c3eb19a2a6c" dmnElementRef="_8075c563-5ef7-467d-bbee-d42b2e57dddd" sourceElement="_2b84ebf0-2302-4e79-8b7a-9629355f37e0" targetElement="dmnshape-_6FA80DD3-75B0-40F4-99DD-FBBF6D542D9F">
-                <di:waypoint x="788" y="124"/>
-                <di:waypoint x="472" y="124"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNEdge>
-            <dmndi:DMNEdge id="_babf7324-c93e-4b2d-993a-eadc230e0e1c" dmnElementRef="_9d23e50d-5417-40a2-8ac0-4a25f2644f69" sourceElement="_19b87043-a3f9-4d2d-a907-809fb78671d0" targetElement="_2b84ebf0-2302-4e79-8b7a-9629355f37e0">
-                <di:waypoint x="859.5" y="124"/>
-                <di:waypoint x="788" y="124"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNEdge>
-            <dmndi:DMNEdge id="_0ae78571-89eb-401a-9e8d-6ebcb10f3ec0" dmnElementRef="_0c137b5c-91ba-4965-b11c-6dbebe101329" sourceElement="_a0868aee-7e9a-4a15-8ef0-66b26dd81ad8" targetElement="_2b84ebf0-2302-4e79-8b7a-9629355f37e0">
-                <di:waypoint x="860.5" y="188"/>
-                <di:waypoint x="778.5" y="140"/>
-                <dmndi:DMNLabel sharedStyle="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0"/>
-            </dmndi:DMNEdge>
-        </dmndi:DMNDiagram>
-        <dmndi:DMNStyle id="LS_6021b48e-2c56-4991-9c1b-c97fd1a77f26_0" fontFamily="arial,helvetica,sans-serif" fontSize="11" fontBold="false" fontItalic="false" fontUnderline="false" fontStrikeThrough="false"/>
-    </dmndi:DMNDI>
-</semantic:definitions>
+<?xml version='1.0' encoding='UTF-8'?>
+<dmn11:definitions xmlns:dmn11="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="http://www.trisotech.com/definitions/_69d333ec-7155-4505-be2f-e3562cdcdf40" xmlns:semantic="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:openapi="https://openapis.org/omg/extension/1.0" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:drools="http://www.drools.org/kie/dmn/1.2" xmlns:ns1="https://kiegroup.org/dmn/_3872721B-60F5-4511-B337-8C2CAC6CCD15" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rss="http://purl.org/rss/2.0/" xmlns:trisodmn="http://www.trisotech.com/2016/triso/dmn" xmlns:trisofeed="http://trisotech.com/feed" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_69d333ec-7155-4505-be2f-e3562cdcdf40" name="KYC-full" expressionLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="http://www.trisotech.com/definitions/_69d333ec-7155-4505-be2f-e3562cdcdf40">
+  <dmn11:extensionElements/>
+  <dmn11:itemDefinition id="_0EEA172F-87D4-4C49-A366-EE7C89759341" name="Level" isCollection="false">
+    <dmn11:typeRef>string</dmn11:typeRef>
+    <dmn11:allowedValues kie:constraintType="enumeration" id="_C042D2BE-413B-4316-A5AF-A1590073A2AE">
+      <dmn11:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn11:text>
+    </dmn11:allowedValues>
+  </dmn11:itemDefinition>
+  <dmn11:itemDefinition id="_CC99F910-3102-4389-A17C-1146F2A7B451" name="Country" isCollection="false">
+    <dmn11:typeRef>string</dmn11:typeRef>
+    <dmn11:allowedValues kie:constraintType="enumeration" id="_992DC3A6-EC36-4B3F-BD3E-1CAB3B8A6990">
+      <dmn11:text>"FR", "GB", "CY", "JP", "RU", "KP"</dmn11:text>
+    </dmn11:allowedValues>
+  </dmn11:itemDefinition>
+  <dmn11:itemDefinition id="_05D1E83A-CC49-4D5F-8CC2-A2F8B92E42CD" name="KYC" isCollection="false">
+    <dmn11:itemComponent id="_648FFD05-4B5D-4B0B-9F25-0C8AA87DB763" name="Level" isCollection="false">
+      <dmn11:typeRef>string</dmn11:typeRef>
+    </dmn11:itemComponent>
+    <dmn11:itemComponent id="_4ACD8A89-B8B7-4411-9BC4-BFAAFBE31664" name="Score" isCollection="false">
+      <dmn11:typeRef>number</dmn11:typeRef>
+    </dmn11:itemComponent>
+  </dmn11:itemDefinition>
+  <dmn11:decision id="_4054431E-93D3-40E5-ACEF-8F4D6DA45B5A" name="PEP Rule">
+    <dmn11:extensionElements/>
+    <dmn11:variable id="_D4B524B7-DC1B-48AA-BA80-95173838AD61" name="PEP Rule" typeRef="Level"/>
+    <dmn11:informationRequirement id="_F25C73E9-CB0B-4E08-B039-E3CDD9C53166">
+      <dmn11:requiredInput href="#_E35415D9-48FA-4EC3-B406-F71DB65F6820"/>
+    </dmn11:informationRequirement>
+    <dmn11:decisionTable id="_15B29FDE-CB6D-47F8-9567-D0754A48FF65" typeRef="Level" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row" outputLabel="PEP Rule">
+      <dmn11:input id="_86B9D3BE-F5F2-41B3-9196-1919CA5C5A90">
+        <dmn11:inputExpression id="_0E78E517-0D00-4C9B-B1C9-C019CE0A15C1" typeRef="boolean">
+          <dmn11:text>PEP</dmn11:text>
+        </dmn11:inputExpression>
+      </dmn11:input>
+      <dmn11:output id="_B3B52235-4C37-4DCF-82B6-3289F7707AEE">
+        <dmn11:outputValues id="_444F0DF4-F508-490F-9ED4-1029618CD8A0">
+          <dmn11:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn11:text>
+        </dmn11:outputValues>
+      </dmn11:output>
+      <dmn11:annotation name="annotation-1"/>
+      <dmn11:rule id="_9EBB155F-0B0E-456E-B798-B6FC1E12B967">
+        <dmn11:inputEntry id="_728FF3CA-06D2-4805-8BB6-2DB900A2F1EA">
+          <dmn11:text>false</dmn11:text>
+        </dmn11:inputEntry>
+        <dmn11:outputEntry id="_B3D8FA31-8BFE-4952-B137-368D1CF21D5C">
+          <dmn11:text>"LOW"</dmn11:text>
+        </dmn11:outputEntry>
+        <dmn11:annotationEntry>
+          <dmn11:text></dmn11:text>
+        </dmn11:annotationEntry>
+      </dmn11:rule>
+      <dmn11:rule id="_B0DC7A8D-C154-4FAC-85C0-514285B8915F">
+        <dmn11:inputEntry id="_A108D8A1-7579-44EE-947C-FFD281FAEE87">
+          <dmn11:text>true</dmn11:text>
+        </dmn11:inputEntry>
+        <dmn11:outputEntry id="_E398F824-C54E-45AA-8282-61D772C3FA50">
+          <dmn11:text>"HIGH"</dmn11:text>
+        </dmn11:outputEntry>
+        <dmn11:annotationEntry>
+          <dmn11:text></dmn11:text>
+        </dmn11:annotationEntry>
+      </dmn11:rule>
+    </dmn11:decisionTable>
+  </dmn11:decision>
+  <dmn11:decision id="_B4A96E7B-9A87-470C-9868-391085BA0409" name="Fiscal Residency Rule">
+    <dmn11:extensionElements/>
+    <dmn11:variable id="_13705C2C-051A-40E1-8BF8-053746BEFF83" name="Fiscal Residency Rule" typeRef="Level"/>
+    <dmn11:informationRequirement id="_CA1E4D5C-C86F-4CAB-A533-7797901B549D">
+      <dmn11:requiredInput href="#_2753AA63-F41B-456C-A01A-64BA9C862C92"/>
+    </dmn11:informationRequirement>
+    <dmn11:decisionTable id="_2C289599-8F8E-48EC-ABD3-DD0A39E6886A" typeRef="Level" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row" outputLabel="Fiscal Residency Rule">
+      <dmn11:input id="_927DF80C-3072-4A8D-BBD1-4293B5EBFB8E">
+        <dmn11:inputExpression id="_AD794E53-5F25-4D73-8720-4A2CFAAAEBBD" typeRef="Country">
+          <dmn11:text>Fiscal Residency</dmn11:text>
+        </dmn11:inputExpression>
+        <dmn11:inputValues id="_CB92AA26-0256-4FA4-8465-60C6891E6BA1">
+          <dmn11:text>"FR", "GB", "CY", "JP", "RU", "KP"</dmn11:text>
+        </dmn11:inputValues>
+      </dmn11:input>
+      <dmn11:output id="_04F5A31A-6DC1-4C41-881A-3737701069E3">
+        <dmn11:outputValues id="_752DEDC7-4DC3-486C-862F-FB6EF741AF5B">
+          <dmn11:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn11:text>
+        </dmn11:outputValues>
+      </dmn11:output>
+      <dmn11:annotation name="annotation-2"/>
+      <dmn11:rule id="_CA9A8705-B5B7-44A1-A5BA-65C786FC9870">
+        <dmn11:inputEntry id="_29E60D0F-660E-4383-8495-82065325F09D">
+          <dmn11:text>"FR"</dmn11:text>
+        </dmn11:inputEntry>
+        <dmn11:outputEntry id="_BF59415B-49C9-4A03-A883-176EB6C0E9B0">
+          <dmn11:text>"LOW"</dmn11:text>
+        </dmn11:outputEntry>
+        <dmn11:annotationEntry>
+          <dmn11:text></dmn11:text>
+        </dmn11:annotationEntry>
+      </dmn11:rule>
+      <dmn11:rule id="_2B0B5601-945E-4F17-B417-05EE01C9F0AA">
+        <dmn11:inputEntry id="_C7E46E31-1F3C-4CCC-A34A-BA4E5B5DA578">
+          <dmn11:text>"GB"</dmn11:text>
+        </dmn11:inputEntry>
+        <dmn11:outputEntry id="_2BE4C24E-ECD6-4900-BA30-795ECB00B6F4">
+          <dmn11:text>"LOW"</dmn11:text>
+        </dmn11:outputEntry>
+        <dmn11:annotationEntry>
+          <dmn11:text></dmn11:text>
+        </dmn11:annotationEntry>
+      </dmn11:rule>
+      <dmn11:rule id="_D8AD7A38-2E27-4783-AB64-738B42AFB087">
+        <dmn11:inputEntry id="_A3EC7997-B3D6-4F16-B9A9-A658CC160B04">
+          <dmn11:text>"JP"</dmn11:text>
+        </dmn11:inputEntry>
+        <dmn11:outputEntry id="_8E9743BC-E200-4CAC-82E6-B5BA95B7B214">
+          <dmn11:text>"LOW"</dmn11:text>
+        </dmn11:outputEntry>
+        <dmn11:annotationEntry>
+          <dmn11:text></dmn11:text>
+        </dmn11:annotationEntry>
+      </dmn11:rule>
+      <dmn11:rule id="_8BF961D6-B70B-4A98-A9CC-63D844A0D313">
+        <dmn11:inputEntry id="_AF139BA8-40C2-4B86-8D94-879067D6737D">
+          <dmn11:text>"CY"</dmn11:text>
+        </dmn11:inputEntry>
+        <dmn11:outputEntry id="_38AADD19-30D1-454D-9D22-67A25E1D6CB0">
+          <dmn11:text>"MEDIUM"</dmn11:text>
+        </dmn11:outputEntry>
+        <dmn11:annotationEntry>
+          <dmn11:text></dmn11:text>
+        </dmn11:annotationEntry>
+      </dmn11:rule>
+      <dmn11:rule id="_A52551B2-4B72-4810-8220-C90F74A3696E">
+        <dmn11:inputEntry id="_D5A954A2-C7A2-44C9-81E9-60CBEBBA3B01">
+          <dmn11:text>"RU"</dmn11:text>
+        </dmn11:inputEntry>
+        <dmn11:outputEntry id="_33A248F7-6270-40D9-ACEC-5ADCE3EC24E7">
+          <dmn11:text>"HIGH"</dmn11:text>
+        </dmn11:outputEntry>
+        <dmn11:annotationEntry>
+          <dmn11:text></dmn11:text>
+        </dmn11:annotationEntry>
+      </dmn11:rule>
+      <dmn11:rule id="_1E80E72E-D94A-4A72-B898-689D64D066CD">
+        <dmn11:inputEntry id="_87F629A4-ABD4-483A-B0AA-B42B13809E9B">
+          <dmn11:text>"KP"</dmn11:text>
+        </dmn11:inputEntry>
+        <dmn11:outputEntry id="_1AF30616-BD7F-49FC-8512-27FA8792D7B7">
+          <dmn11:text>"VERY HIGH"</dmn11:text>
+        </dmn11:outputEntry>
+        <dmn11:annotationEntry>
+          <dmn11:text></dmn11:text>
+        </dmn11:annotationEntry>
+      </dmn11:rule>
+    </dmn11:decisionTable>
+  </dmn11:decision>
+  <dmn11:businessKnowledgeModel id="_29D9F875-28A1-49F3-A526-09C32C594972" name="Level to Int">
+    <dmn11:extensionElements/>
+    <dmn11:variable id="_03F8F158-D54D-4242-9550-9704322610A8" name="Level to Int" typeRef="number"/>
+    <dmn11:encapsulatedLogic id="_F15A62FA-04C3-4353-BDE3-5DA993380E8D" typeRef="number" kind="FEEL">
+      <dmn11:formalParameter id="_E6C8BD6F-C4B2-4E8E-A530-3A6BAEC2CF17" name="Level" typeRef="Level"/>
+      <dmn11:decisionTable id="_e7fe9e47-ea44-4e28-84a2-8a1d401d1e47" typeRef="number" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row" outputLabel="Level to Int">
+        <dmn11:input id="_3150c91e-6991-4cc5-a2e5-e8f8a743a334">
+          <dmn11:inputExpression id="_D260CBF7-3507-4F17-8736-D29AC00D1E18" typeRef="Level">
+            <dmn11:text>Level</dmn11:text>
+          </dmn11:inputExpression>
+          <dmn11:inputValues id="_A12801E1-B232-4BED-A6A0-2E06AE07D5A7">
+            <dmn11:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH",null</dmn11:text>
+          </dmn11:inputValues>
+        </dmn11:input>
+        <dmn11:output id="_4022f525-b8f8-472d-96c3-41d8e7f0c00b"/>
+        <dmn11:annotation name="Description"/>
+        <dmn11:rule id="_02e750f2-44a2-45f3-a873-11961c6ce71d">
+          <dmn11:inputEntry id="_478fabcd-a846-4a25-a362-e6d242b003c3">
+            <dmn11:text>"LOW"</dmn11:text>
+          </dmn11:inputEntry>
+          <dmn11:outputEntry id="_df918326-d397-4263-a5b2-8979bccf2142">
+            <dmn11:text>1</dmn11:text>
+          </dmn11:outputEntry>
+          <dmn11:annotationEntry>
+            <dmn11:text></dmn11:text>
+          </dmn11:annotationEntry>
+        </dmn11:rule>
+        <dmn11:rule id="_13b81d93-14aa-4bd0-a922-d1617f115469">
+          <dmn11:inputEntry id="_e96e619a-b4ca-4b01-8d42-5f62479d6188">
+            <dmn11:text>"MEDIUM"</dmn11:text>
+          </dmn11:inputEntry>
+          <dmn11:outputEntry id="_4aa885ae-ea22-4eae-b361-a4e44b2ad8b8">
+            <dmn11:text>2</dmn11:text>
+          </dmn11:outputEntry>
+          <dmn11:annotationEntry>
+            <dmn11:text></dmn11:text>
+          </dmn11:annotationEntry>
+        </dmn11:rule>
+        <dmn11:rule id="_9adb40e6-4afd-4a86-a62c-dedc0a9c631a">
+          <dmn11:inputEntry id="_4d16fb7b-74aa-4c5e-bceb-315b94f9efde">
+            <dmn11:text>"HIGH"</dmn11:text>
+          </dmn11:inputEntry>
+          <dmn11:outputEntry id="_d269b6c5-3065-4238-be6b-31dfbd90e3f5">
+            <dmn11:text>3</dmn11:text>
+          </dmn11:outputEntry>
+          <dmn11:annotationEntry>
+            <dmn11:text></dmn11:text>
+          </dmn11:annotationEntry>
+        </dmn11:rule>
+        <dmn11:rule id="_e2ab9ff4-99da-4e52-8ecb-ec043f6ff574">
+          <dmn11:inputEntry id="_1cfb6c83-0e8c-4109-9720-700cc562a455">
+            <dmn11:text>"VERY HIGH"</dmn11:text>
+          </dmn11:inputEntry>
+          <dmn11:outputEntry id="_628b1abe-6516-46b0-ac6a-21c241090cc0">
+            <dmn11:text>4</dmn11:text>
+          </dmn11:outputEntry>
+          <dmn11:annotationEntry>
+            <dmn11:text></dmn11:text>
+          </dmn11:annotationEntry>
+        </dmn11:rule>
+      </dmn11:decisionTable>
+    </dmn11:encapsulatedLogic>
+  </dmn11:businessKnowledgeModel>
+  <dmn11:businessKnowledgeModel id="_8FE4508B-8FA1-4C49-AB10-7DE5075A9FDB" name="Max Level">
+    <dmn11:extensionElements/>
+    <dmn11:variable id="_71F81A37-8D20-4294-85D0-65BE7D687BA7" name="Max Level" typeRef="Level"/>
+    <dmn11:encapsulatedLogic id="_4451CA16-AC39-4F92-9D60-19C11C2FCA80" typeRef="Level" kind="FEEL">
+      <dmn11:formalParameter id="_a42735a9-05f8-4d14-bd1e-d52cf43ccbea" name="list of Level" typeRef="Any"/>
+      <dmn11:literalExpression id="_5C3A9AF5-7B56-4181-83BF-16439F87D109" typeRef="Level">
+        <dmn11:text>Int to Level(max(for l in list of Level return Level to Int(l)))</dmn11:text>
+      </dmn11:literalExpression>
+    </dmn11:encapsulatedLogic>
+    <dmn11:knowledgeRequirement id="_DA8CDE05-7D8E-4223-B7B3-B8284CF7C29E">
+      <dmn11:requiredKnowledge href="#_29D9F875-28A1-49F3-A526-09C32C594972"/>
+    </dmn11:knowledgeRequirement>
+    <dmn11:knowledgeRequirement id="_2828ee17-6064-4af1-934c-85ca427f5127">
+      <dmn11:requiredKnowledge href="#_0553d044-5013-4985-8c74-0ad4430388f6"/>
+    </dmn11:knowledgeRequirement>
+  </dmn11:businessKnowledgeModel>
+  <dmn11:decision id="_58ECD9FC-1269-446F-8792-D8DD0139D7DD" name="KYC">
+    <dmn11:extensionElements/>
+    <dmn11:variable id="_C1863CBA-D16C-490F-8F56-7485684A9F71" name="KYC" typeRef="KYC"/>
+    <dmn11:informationRequirement id="_7F16E043-589A-4528-95E5-CD7397E2BD4C">
+      <dmn11:requiredDecision href="#_4054431E-93D3-40E5-ACEF-8F4D6DA45B5A"/>
+    </dmn11:informationRequirement>
+    <dmn11:informationRequirement id="_178C36DB-0BFB-47F3-AB33-1AF7D62E8435">
+      <dmn11:requiredDecision href="#_177F55D1-B87A-4C26-A277-BD73C84725D1"/>
+    </dmn11:informationRequirement>
+    <dmn11:informationRequirement id="_515C1ECC-F105-4562-90A6-532FF4AEDF2B">
+      <dmn11:requiredDecision href="#_B4A96E7B-9A87-470C-9868-391085BA0409"/>
+    </dmn11:informationRequirement>
+    <dmn11:knowledgeRequirement id="_B3F4E84C-A55F-436B-AAA6-4D527159F6B4">
+      <dmn11:requiredKnowledge href="#_A9AD47E9-9DF5-49D6-B0FD-D532A4E0ED85"/>
+    </dmn11:knowledgeRequirement>
+    <dmn11:knowledgeRequirement id="_D0A3AC36-8F37-4E1E-9B68-A19E98718A93">
+      <dmn11:requiredKnowledge href="#_8FE4508B-8FA1-4C49-AB10-7DE5075A9FDB"/>
+    </dmn11:knowledgeRequirement>
+    <dmn11:context id="_0448A957-B09D-411C-B869-9751A84CDCA4" typeRef="KYC">
+      <dmn11:contextEntry>
+        <dmn11:variable id="_5E8E0B70-81DF-404E-9B0F-7EA92FB05C93" name="Level" typeRef="string"/>
+        <dmn11:literalExpression id="_C37D32A6-07B7-44F9-9B2E-572FAC4FDBE1">
+          <dmn11:text>sum([Level to Score(PEP Rule),Level to Score(Amount Rule),Level to Score(Fiscal Residency Rule)])</dmn11:text>
+        </dmn11:literalExpression>
+      </dmn11:contextEntry>
+      <dmn11:contextEntry>
+        <dmn11:variable id="_84B65845-0245-4367-87B8-802C053BBC94" name="Score" typeRef="string"/>
+        <dmn11:literalExpression id="_9CBDED88-AF67-460E-A8B1-4F48FB781E93">
+          <dmn11:text>Max Level([PEP Rule, Amount Rule, Fiscal Residency Rule])</dmn11:text>
+        </dmn11:literalExpression>
+      </dmn11:contextEntry>
+    </dmn11:context>
+  </dmn11:decision>
+  <dmn11:inputData id="_4F79C025-CBD8-4D5D-88D3-749231C78471" name="Amount">
+    <dmn11:extensionElements/>
+    <dmn11:variable id="_5AA55784-4333-4145-93A1-340A0A04EFF6" name="Amount" typeRef="number"/>
+  </dmn11:inputData>
+  <dmn11:businessKnowledgeModel id="_A9AD47E9-9DF5-49D6-B0FD-D532A4E0ED85" name="Level to Score">
+    <dmn11:extensionElements/>
+    <dmn11:variable id="_B4CCA1E9-DD9D-4BCA-915C-2E16EA3C6E3C" name="Level to Score" typeRef="number"/>
+    <dmn11:encapsulatedLogic id="_BE8368DB-A63A-487C-89CB-760C87E095D9" typeRef="number" kind="FEEL">
+      <dmn11:formalParameter id="_611E4250-E6AD-4FE8-AD94-42BF59499754" name="Level" typeRef="Level"/>
+      <dmn11:decisionTable id="_E582A2B5-05CB-4836-809B-AB130E43CEBA" typeRef="number" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row" outputLabel="Level to Score">
+        <dmn11:input id="_9B2026A4-2E1B-4553-9262-F8C286075AD1">
+          <dmn11:inputExpression id="_6295BF03-CC4F-4227-B688-6BECE5732709" typeRef="Level">
+            <dmn11:text>Level</dmn11:text>
+          </dmn11:inputExpression>
+          <dmn11:inputValues id="_8A469FF5-613D-43BC-9FAD-E07B4BA7F912">
+            <dmn11:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn11:text>
+          </dmn11:inputValues>
+        </dmn11:input>
+        <dmn11:output id="_3C6C9098-095F-4CFD-AC6E-BA4A1BA8BFF0"/>
+        <dmn11:annotation name="annotation-1"/>
+        <dmn11:rule id="_479244BF-C8F8-4A9C-A5BC-E1D1D1C29FEF">
+          <dmn11:inputEntry id="_CEDAD624-C8B7-4010-9928-5BE3DE44B852">
+            <dmn11:text>"LOW"</dmn11:text>
+          </dmn11:inputEntry>
+          <dmn11:outputEntry id="_A04AB4A6-CD3A-499F-9938-FD078FD0FA8F">
+            <dmn11:text>0</dmn11:text>
+          </dmn11:outputEntry>
+          <dmn11:annotationEntry>
+            <dmn11:text></dmn11:text>
+          </dmn11:annotationEntry>
+        </dmn11:rule>
+        <dmn11:rule id="_A293A2EB-4A8A-4545-BC6D-E1CBF145F0B8">
+          <dmn11:inputEntry id="_DA72F453-7089-41E8-8956-ABE0AD910407">
+            <dmn11:text>"MEDIUM"</dmn11:text>
+          </dmn11:inputEntry>
+          <dmn11:outputEntry id="_8499621F-B7EC-4404-93E9-5B859D831460">
+            <dmn11:text>25</dmn11:text>
+          </dmn11:outputEntry>
+          <dmn11:annotationEntry>
+            <dmn11:text></dmn11:text>
+          </dmn11:annotationEntry>
+        </dmn11:rule>
+        <dmn11:rule id="_703AD01C-3F47-473A-BCC4-2BB0AC064A85">
+          <dmn11:inputEntry id="_FF239228-999B-4AC0-ACAA-E6C0A87CA59A">
+            <dmn11:text>"HIGH"</dmn11:text>
+          </dmn11:inputEntry>
+          <dmn11:outputEntry id="_A34044EB-F09E-4E8D-9E69-DD525CE1AB5F">
+            <dmn11:text>75</dmn11:text>
+          </dmn11:outputEntry>
+          <dmn11:annotationEntry>
+            <dmn11:text></dmn11:text>
+          </dmn11:annotationEntry>
+        </dmn11:rule>
+        <dmn11:rule id="_A937F496-C570-4374-933D-39EF9B13FF97">
+          <dmn11:inputEntry id="_A3D0BCBD-3A05-4893-A388-EA7645C38628">
+            <dmn11:text>"VERY HIGH"</dmn11:text>
+          </dmn11:inputEntry>
+          <dmn11:outputEntry id="_F03A26FC-F3FB-4CAC-A2BD-75B44C99BD81">
+            <dmn11:text>100</dmn11:text>
+          </dmn11:outputEntry>
+          <dmn11:annotationEntry>
+            <dmn11:text></dmn11:text>
+          </dmn11:annotationEntry>
+        </dmn11:rule>
+      </dmn11:decisionTable>
+    </dmn11:encapsulatedLogic>
+  </dmn11:businessKnowledgeModel>
+  <dmn11:businessKnowledgeModel id="_0553d044-5013-4985-8c74-0ad4430388f6" name="Int to Level">
+    <dmn11:extensionElements/>
+    <dmn11:variable id="_aeeb1564-3885-47ad-bc87-85b3d937b80b" name="Int to Level" typeRef="Level"/>
+    <dmn11:encapsulatedLogic id="_AB6E4062-3EBC-455E-B09A-46797E78BEF7" typeRef="Level" kind="FEEL">
+      <dmn11:formalParameter id="_2D131BE8-831D-4357-A6BA-82EDA9701A57" name="Int" typeRef="number"/>
+      <dmn11:decisionTable id="_48bfd822-52c1-4fd4-ab00-bd4a91c67aba" typeRef="Level" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row" outputLabel="Int to Level">
+        <dmn11:input id="_85b7ef6e-a0b5-4dc4-b17b-8ab69f90f157">
+          <dmn11:inputExpression id="_39B535AB-E174-4E9B-A92B-8220244ED54F" typeRef="number">
+            <dmn11:text>Int</dmn11:text>
+          </dmn11:inputExpression>
+        </dmn11:input>
+        <dmn11:output id="_e2164ce3-3afc-4240-ab94-16224ada2ed3">
+          <dmn11:outputValues id="_D7058063-EEF8-4DB2-BFF9-EA82C5B03DDA">
+            <dmn11:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn11:text>
+          </dmn11:outputValues>
+        </dmn11:output>
+        <dmn11:annotation name="Description"/>
+        <dmn11:rule id="_4737c5f1-a3cd-417b-bfe7-4905bb10390b">
+          <dmn11:inputEntry id="_881e8e5f-6f79-438a-928d-9006c00ef135">
+            <dmn11:text>1</dmn11:text>
+          </dmn11:inputEntry>
+          <dmn11:outputEntry id="_e73f5c1c-0de2-4d6e-a4d5-d2f5f05908c9">
+            <dmn11:text>"LOW"</dmn11:text>
+          </dmn11:outputEntry>
+          <dmn11:annotationEntry>
+            <dmn11:text></dmn11:text>
+          </dmn11:annotationEntry>
+        </dmn11:rule>
+        <dmn11:rule id="_78a4835d-1cba-4d39-9083-a40cfa702aff">
+          <dmn11:inputEntry id="_f4cde268-fda4-4c56-8378-22b97edd9e69">
+            <dmn11:text>2</dmn11:text>
+          </dmn11:inputEntry>
+          <dmn11:outputEntry id="_3021b563-b6fb-47e9-8e7b-3f7583846722">
+            <dmn11:text>"MEDIUM"</dmn11:text>
+          </dmn11:outputEntry>
+          <dmn11:annotationEntry>
+            <dmn11:text></dmn11:text>
+          </dmn11:annotationEntry>
+        </dmn11:rule>
+        <dmn11:rule id="_73d4b8b0-6ecf-400e-8da5-44048b853752">
+          <dmn11:inputEntry id="_c1f07e1f-5f24-4950-b2d2-d301c50313fd">
+            <dmn11:text>3</dmn11:text>
+          </dmn11:inputEntry>
+          <dmn11:outputEntry id="_149f50e5-bdcb-4b81-8d49-aab29913df94">
+            <dmn11:text>"HIGH"</dmn11:text>
+          </dmn11:outputEntry>
+          <dmn11:annotationEntry>
+            <dmn11:text></dmn11:text>
+          </dmn11:annotationEntry>
+        </dmn11:rule>
+        <dmn11:rule id="_43048da5-0eb1-4f82-9d0e-214a5f4fcafc">
+          <dmn11:inputEntry id="_b4050f4e-da3e-4c7c-91d4-6dfd70000c5f">
+            <dmn11:text>4</dmn11:text>
+          </dmn11:inputEntry>
+          <dmn11:outputEntry id="_ed977f26-c964-442c-84ff-6d85d0812ff3">
+            <dmn11:text>"VERY HIGH"</dmn11:text>
+          </dmn11:outputEntry>
+          <dmn11:annotationEntry>
+            <dmn11:text></dmn11:text>
+          </dmn11:annotationEntry>
+        </dmn11:rule>
+      </dmn11:decisionTable>
+    </dmn11:encapsulatedLogic>
+  </dmn11:businessKnowledgeModel>
+  <dmn11:inputData id="_2753AA63-F41B-456C-A01A-64BA9C862C92" name="Fiscal Residency">
+    <dmn11:extensionElements/>
+    <dmn11:variable id="_A7BD23B4-1153-42A5-BE8A-DBD5ACCB9F30" name="Fiscal Residency" typeRef="Any"/>
+  </dmn11:inputData>
+  <dmn11:inputData id="_E35415D9-48FA-4EC3-B406-F71DB65F6820" name="PEP">
+    <dmn11:extensionElements/>
+    <dmn11:variable id="_234FED5C-CB32-43A4-AD99-AB37FBC80DC0" name="PEP" typeRef="boolean"/>
+  </dmn11:inputData>
+  <dmn11:decision id="_177F55D1-B87A-4C26-A277-BD73C84725D1" name="Amount Rule">
+    <dmn11:extensionElements/>
+    <dmn11:variable id="_ED6C1976-3B92-416F-BF15-BA33320D71CA" name="Amount Rule" typeRef="Level"/>
+    <dmn11:informationRequirement id="_FAECA778-F504-4A12-93CC-A57B264DF7CF">
+      <dmn11:requiredInput href="#_4F79C025-CBD8-4D5D-88D3-749231C78471"/>
+    </dmn11:informationRequirement>
+    <dmn11:decisionTable id="_6D3CDF95-A9F7-4AAA-95BF-1EFA1FC8503D" typeRef="Level" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row" outputLabel="Amount Rule">
+      <dmn11:input id="_91D002BC-089D-4812-99E9-E4D3F3AD219B">
+        <dmn11:inputExpression id="_FB0C9740-B1C6-4221-897E-22C8C098B518" typeRef="number">
+          <dmn11:text>Amount</dmn11:text>
+        </dmn11:inputExpression>
+      </dmn11:input>
+      <dmn11:output id="_0D766D3E-D2E4-4663-8957-CCDCE1BE9A9C">
+        <dmn11:outputValues id="_19CEF688-4EEA-41C2-8FAF-6781BAD3B4D8">
+          <dmn11:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn11:text>
+        </dmn11:outputValues>
+      </dmn11:output>
+      <dmn11:annotation name="annotation-1"/>
+      <dmn11:rule id="_2a86031b-7dd4-4aaf-9aaf-c5fe8705e310">
+        <dmn11:inputEntry id="_a7bf5d9a-b5e1-4f30-bb43-841e0e1b11ce">
+          <dmn11:text>&lt; 10000</dmn11:text>
+        </dmn11:inputEntry>
+        <dmn11:outputEntry id="_deea1d69-b7b3-4252-b86a-130fb0790047">
+          <dmn11:text>"LOW"</dmn11:text>
+        </dmn11:outputEntry>
+        <dmn11:annotationEntry>
+          <dmn11:text></dmn11:text>
+        </dmn11:annotationEntry>
+      </dmn11:rule>
+      <dmn11:rule id="_807FCDCB-420A-4AA6-8586-896AAD21AC4D">
+        <dmn11:inputEntry id="_AD6CCE53-17F4-4A49-BAC0-2580670DA9CE">
+          <dmn11:text>[10000 .. 100000)</dmn11:text>
+        </dmn11:inputEntry>
+        <dmn11:outputEntry id="_344AC2FD-F091-4F7D-8A7A-853F9DCDF807">
+          <dmn11:text>"MEDIUM"</dmn11:text>
+        </dmn11:outputEntry>
+        <dmn11:annotationEntry>
+          <dmn11:text></dmn11:text>
+        </dmn11:annotationEntry>
+      </dmn11:rule>
+      <dmn11:rule id="_41361854-FD3A-42AB-A008-F276F08A95D4">
+        <dmn11:inputEntry id="_896365B0-4AF8-4614-9CD9-B5E530AED093">
+          <dmn11:text>[100000 .. 1000000)</dmn11:text>
+        </dmn11:inputEntry>
+        <dmn11:outputEntry id="_31447434-EF72-4BF1-922A-80C5E7F32B1B">
+          <dmn11:text>"HIGH"</dmn11:text>
+        </dmn11:outputEntry>
+        <dmn11:annotationEntry>
+          <dmn11:text></dmn11:text>
+        </dmn11:annotationEntry>
+      </dmn11:rule>
+      <dmn11:rule id="_FAF66696-8F8D-4792-8F2B-36BB3FBBD94E">
+        <dmn11:inputEntry id="_20249EE9-64C8-4EC2-8A31-1361AB1DD89B">
+          <dmn11:text>&gt;= 1000000</dmn11:text>
+        </dmn11:inputEntry>
+        <dmn11:outputEntry id="_948E2510-D4E3-46C6-ACBD-0E83D07750D2">
+          <dmn11:text>"VERY HIGH"</dmn11:text>
+        </dmn11:outputEntry>
+        <dmn11:annotationEntry>
+          <dmn11:text></dmn11:text>
+        </dmn11:annotationEntry>
+      </dmn11:rule>
+    </dmn11:decisionTable>
+  </dmn11:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_15B29FDE-CB6D-47F8-9567-D0754A48FF65"/>
+          <kie:ComponentWidths dmnElementRef="_2C289599-8F8E-48EC-ABD3-DD0A39E6886A"/>
+          <kie:ComponentWidths dmnElementRef="_e7fe9e47-ea44-4e28-84a2-8a1d401d1e47"/>
+          <kie:ComponentWidths dmnElementRef="_F15A62FA-04C3-4353-BDE3-5DA993380E8D"/>
+          <kie:ComponentWidths dmnElementRef="_5C3A9AF5-7B56-4181-83BF-16439F87D109"/>
+          <kie:ComponentWidths dmnElementRef="_4451CA16-AC39-4F92-9D60-19C11C2FCA80"/>
+          <kie:ComponentWidths dmnElementRef="_0448A957-B09D-411C-B869-9751A84CDCA4"/>
+          <kie:ComponentWidths dmnElementRef="_C37D32A6-07B7-44F9-9B2E-572FAC4FDBE1"/>
+          <kie:ComponentWidths dmnElementRef="_9CBDED88-AF67-460E-A8B1-4F48FB781E93"/>
+          <kie:ComponentWidths dmnElementRef="_E582A2B5-05CB-4836-809B-AB130E43CEBA"/>
+          <kie:ComponentWidths dmnElementRef="_BE8368DB-A63A-487C-89CB-760C87E095D9"/>
+          <kie:ComponentWidths dmnElementRef="_48bfd822-52c1-4fd4-ab00-bd4a91c67aba"/>
+          <kie:ComponentWidths dmnElementRef="_AB6E4062-3EBC-455E-B09A-46797E78BEF7"/>
+          <kie:ComponentWidths dmnElementRef="_6D3CDF95-A9F7-4AAA-95BF-1EFA1FC8503D">
+            <kie:width>50.0</kie:width>
+            <kie:width>100.0</kie:width>
+            <kie:width>100.0</kie:width>
+            <kie:width>100.0</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-_4054431E-93D3-40E5-ACEF-8F4D6DA45B5A" dmnElementRef="_4054431E-93D3-40E5-ACEF-8F4D6DA45B5A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="50" y="225" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_B4A96E7B-9A87-470C-9868-391085BA0409" dmnElementRef="_B4A96E7B-9A87-470C-9868-391085BA0409" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="400" y="225" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_29D9F875-28A1-49F3-A526-09C32C594972" dmnElementRef="_29D9F875-28A1-49F3-A526-09C32C594972" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="225" y="400" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_8FE4508B-8FA1-4C49-AB10-7DE5075A9FDB" dmnElementRef="_8FE4508B-8FA1-4C49-AB10-7DE5075A9FDB" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="225" y="225" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_58ECD9FC-1269-446F-8792-D8DD0139D7DD" dmnElementRef="_58ECD9FC-1269-446F-8792-D8DD0139D7DD" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="400" y="50" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_4F79C025-CBD8-4D5D-88D3-749231C78471" dmnElementRef="_4F79C025-CBD8-4D5D-88D3-749231C78471" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="750" y="400" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_A9AD47E9-9DF5-49D6-B0FD-D532A4E0ED85" dmnElementRef="_A9AD47E9-9DF5-49D6-B0FD-D532A4E0ED85" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="750" y="225" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_0553d044-5013-4985-8c74-0ad4430388f6" dmnElementRef="_0553d044-5013-4985-8c74-0ad4430388f6" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="400" y="400" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_2753AA63-F41B-456C-A01A-64BA9C862C92" dmnElementRef="_2753AA63-F41B-456C-A01A-64BA9C862C92" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="575" y="400" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_E35415D9-48FA-4EC3-B406-F71DB65F6820" dmnElementRef="_E35415D9-48FA-4EC3-B406-F71DB65F6820" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="50" y="400" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_177F55D1-B87A-4C26-A277-BD73C84725D1" dmnElementRef="_177F55D1-B87A-4C26-A277-BD73C84725D1" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="575" y="225" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-_F25C73E9-CB0B-4E08-B039-E3CDD9C53166" dmnElementRef="_F25C73E9-CB0B-4E08-B039-E3CDD9C53166">
+        <di:waypoint x="100" y="425"/>
+        <di:waypoint x="100" y="250"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_CA1E4D5C-C86F-4CAB-A533-7797901B549D" dmnElementRef="_CA1E4D5C-C86F-4CAB-A533-7797901B549D">
+        <di:waypoint x="625" y="425"/>
+        <di:waypoint x="450" y="250"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_DA8CDE05-7D8E-4223-B7B3-B8284CF7C29E" dmnElementRef="_DA8CDE05-7D8E-4223-B7B3-B8284CF7C29E">
+        <di:waypoint x="275" y="425"/>
+        <di:waypoint x="275" y="250"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_2828ee17-6064-4af1-934c-85ca427f5127" dmnElementRef="_2828ee17-6064-4af1-934c-85ca427f5127">
+        <di:waypoint x="450" y="425"/>
+        <di:waypoint x="275" y="250"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_7F16E043-589A-4528-95E5-CD7397E2BD4C" dmnElementRef="_7F16E043-589A-4528-95E5-CD7397E2BD4C">
+        <di:waypoint x="100" y="250"/>
+        <di:waypoint x="450" y="75"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_178C36DB-0BFB-47F3-AB33-1AF7D62E8435" dmnElementRef="_178C36DB-0BFB-47F3-AB33-1AF7D62E8435">
+        <di:waypoint x="625" y="250"/>
+        <di:waypoint x="450" y="75"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_515C1ECC-F105-4562-90A6-532FF4AEDF2B" dmnElementRef="_515C1ECC-F105-4562-90A6-532FF4AEDF2B">
+        <di:waypoint x="450" y="250"/>
+        <di:waypoint x="450" y="75"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_B3F4E84C-A55F-436B-AAA6-4D527159F6B4" dmnElementRef="_B3F4E84C-A55F-436B-AAA6-4D527159F6B4">
+        <di:waypoint x="800" y="250"/>
+        <di:waypoint x="450" y="75"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_D0A3AC36-8F37-4E1E-9B68-A19E98718A93" dmnElementRef="_D0A3AC36-8F37-4E1E-9B68-A19E98718A93">
+        <di:waypoint x="275" y="250"/>
+        <di:waypoint x="450" y="75"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_FAECA778-F504-4A12-93CC-A57B264DF7CF" dmnElementRef="_FAECA778-F504-4A12-93CC-A57B264DF7CF">
+        <di:waypoint x="800" y="425"/>
+        <di:waypoint x="625" y="250"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn11:definitions>
