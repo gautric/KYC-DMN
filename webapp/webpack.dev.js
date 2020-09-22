@@ -13,13 +13,14 @@ module.exports = merge(common('development'), {
     contentBase: "./dist",
     host: HOST,
     port: PORT,
-    compress: true,
-    inline: true,
+    compress: false,
+    inline: false,
     historyApiFallback: true,
     hot: true,
     overlay: true,
     open: true,
-    liveReload: false,
+    liveReload: true,
+    lazy: true,
     proxy: {
       '/api': {
         target: 'http://localhost:'+API_PORT,
