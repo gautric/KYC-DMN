@@ -28,9 +28,7 @@ const KYC_DMN_URL = process.env.KYC_DMN_URL;
 
 interface IKYCState {
   url: any,
-  pep: boolean,
-  amount: number,
-  fiscalResidency: string,
+  kyc: object,
   result: object,
   isResult: boolean,
   alerts: Array<object>
@@ -42,15 +40,16 @@ class KYCDynamic extends React.Component<{},IKYCState> {
     super(props);
     this.state = {
       url: KYC_DMN_URL,
-      pep: false,
-      amount: 1000,
-      fiscalResidency: 'FR',
+      kyc : {
+        PEP: false,
+        Amount: 1000,
+        "Fiscal Residency": 'FR'
+      },
       result: {"KYC" : {"Level":0, "Score":"LOW"}},
       isResult: false,
       alerts: []
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   options = [
@@ -78,11 +77,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        "PEP": this.state.pep,
-        "Amount": this.state.amount,
-        "Fiscal Residency": this.state.fiscalResidency
-      })
+      body: JSON.stringify(this.state.kyc)
     })
     .then(
       (result) => {
@@ -133,15 +128,15 @@ class KYCDynamic extends React.Component<{},IKYCState> {
   };
 
   handlePep = (checked, event) => {
-    this.setState((state, props) => ({["pep"] : !state.pep}), () => (this.handleSubmit()));
+    this.setState((state, props) => ({kyc : {...this.state.kyc, PEP : !this.state.kyc.PEP}}), () => (this.handleSubmit()));
   };
 
   handleAmount = (amount, event) => {
-      this.setState((state, props) => ({amount : parseInt(amount.replace(/\D/g,''))}), () => (this.handleSubmit()));
+      this.setState((state, props) => ({kyc : {...this.state.kyc, Amount : parseInt(amount.replace(/\D/g,''))}}), () => (this.handleSubmit()));
   };
 
   handleFiscalResidency = (fiscalResidency, event) => {
-    this.setState((state, props) => ({fiscalResidency}), () => (this.handleSubmit()));
+    this.setState((state, props) => ({kyc : {...this.state.kyc, "Fiscal Residency" : fiscalResidency}}), () => (this.handleSubmit()));
   };
 
   render() {
@@ -163,7 +158,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
               key={key} />
           ))}
         </AlertGroup>
-        
+
         <Form isHorizontal>
           <FormGroup
             label="URL of DMN Engine"
@@ -201,7 +196,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
                     <Switch id="pep-param"
                       label="Political Exposed Person"
                       labelOff="Anonymous Person"
-                      isChecked={this.state.pep}
+                      isChecked={this.state.kyc["PEP"]}
                       onChange={this.handlePep}
                       />
                   </DataListCell>,
@@ -229,7 +224,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
                       id="amount-param"
                       name="amount"
                       aria-describedby="amount"
-                      value={this.state.amount}
+                      value={this.state.kyc["Amount"]}
                       onChange={this.handleAmount}
                     />
                   </DataListCell>,
@@ -252,7 +247,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
                       />
                   </DataListCell>,
                   <DataListCell key="FRForm">
-                    <FormSelect id="fiscalResidency-param" value={this.state.fiscalResidency} onChange={this.handleFiscalResidency} aria-label="FormSelect Input">
+                    <FormSelect id="fiscalResidency-param" value={this.state.kyc["Fiscal Residency"]} onChange={this.handleFiscalResidency} aria-label="FormSelect Input">
                       {this.options.map((option, index) => (
                         <FormSelectOption isDisabled={option.disabled} key={option.value.toString()} value={option.value} label={option.label} />
                       ))}
