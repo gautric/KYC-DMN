@@ -22,12 +22,9 @@ import { Form,
   DataListCell,
   Title } from '@patternfly/react-core';
 
-import { URLInput } from '@app/UIComponent/URLInput'
-
 const KYC_DMN_URL = process.env.KYC_DMN_URL;
 
 interface IKYCState {
-  url: any,
   kyc: object,
   result: object,
   isResult: boolean,
@@ -39,7 +36,6 @@ class KYCDynamic extends React.Component<{},IKYCState> {
   constructor(props) {
     super(props);
     this.state = {
-      url: KYC_DMN_URL,
       kyc : {
         PEP: false,
         Amount: 1000,
@@ -49,7 +45,6 @@ class KYCDynamic extends React.Component<{},IKYCState> {
       isResult: false,
       alerts: []
     };
-
   }
 
   options = [
@@ -61,17 +56,11 @@ class KYCDynamic extends React.Component<{},IKYCState> {
     { value: 'KP', label: 'North Korea', disabled: false }
   ];
 
-  handleUrl = url => {
-    this.setState((state) => {
-      return { url }
-    });
-  };
-
   getUniqueId = () => (new Date().getTime());
 
   handleSubmit() {
 
-    fetch(this.state.url, {
+    fetch(KYC_DMN_URL, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -158,18 +147,6 @@ class KYCDynamic extends React.Component<{},IKYCState> {
               key={key} />
           ))}
         </AlertGroup>
-
-        <Form isHorizontal>
-          <FormGroup
-            label="URL of DMN Engine"
-            isRequired
-            fieldId="url-param">
-
-            <URLInput value={this.state.url}
-                onChange={this.handleUrl} />
-
-          </FormGroup>
-        </Form>
 
         <DataList aria-label="Simple data list example">
           <DataListItem aria-labelledby="header">

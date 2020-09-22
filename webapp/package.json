@@ -82,6 +82,5 @@
     "react-dom": "^16.13.1",
     "react-router-last-location": "^2.0.1",
     "whatwg-fetch": "^3.4.1"
-  },
-  "proxy": "http://localhost:8080"
+  }
 }

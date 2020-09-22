@@ -3,6 +3,8 @@ const merge = require("webpack-merge");
 const common = require("./webpack.common.js");
 const HOST = process.env.HOST || "0.0.0.0";
 const PORT = process.env.PORT || "9000";
+const API_PORT = process.env.API_PORT || "8080";
+
 
 module.exports = merge(common('development'), {
   mode: "development",
@@ -16,7 +18,14 @@ module.exports = merge(common('development'), {
     historyApiFallback: true,
     hot: true,
     overlay: true,
-    open: true
+    open: true,
+    liveReload: false,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:'+API_PORT,
+        pathRewrite: {'^/api' : ''}
+      }
+    }
   },
   module: {
     rules: [
