@@ -1,6 +1,7 @@
-import * as React from 'react';
+//import * as React from 'react';
+import React, {useState} from "react";
 import 'whatwg-fetch';
-import { Form,
+import { Form, 
   Card,
   CardTitle,
   CardBody,
@@ -9,8 +10,6 @@ import { Form,
   FormSelect,
   FormSelectOption,
   Switch,
-  ActionGroup,
-  Button,
   PageSection,
   Alert,
   AlertGroup,
@@ -21,16 +20,14 @@ import { Form,
   DataListItemRow,
   DataListItemCells,
   DataListCell,
-  Title} from '@patternfly/react-core';
+  Title } from '@patternfly/react-core';
 
-import { Route } from 'react-router-dom';
-import { Display } from '@app/Display/Display';
-
+import { URLInput } from '@app/UIComponent/URLInput'
 
 const KYC_DMN_URL = process.env.KYC_DMN_URL;
 
 interface IKYCState {
-  url: string,
+  url: any,
   pep: boolean,
   amount: number,
   fiscalResidency: string,
@@ -149,7 +146,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit} isHorizontal >
+      <>
         <AlertGroup isToast>
           {this.state.alerts.map(({key, variant, title}) => (
             <Alert
@@ -166,20 +163,18 @@ class KYCDynamic extends React.Component<{},IKYCState> {
               key={key} />
           ))}
         </AlertGroup>
-        <FormGroup
-          label="URL of DMN Engine"
-          isRequired
-          fieldId="url-param">
-          <TextInput
+        
+        <Form isHorizontal>
+          <FormGroup
+            label="URL of DMN Engine"
             isRequired
-            type="text"
-            id="url-param"
-            name="url-param"
-            aria-describedby="url-param-helper"
-            value={this.state.url}
-            onChange={this.handleUrl}
-          />
-        </FormGroup>
+            fieldId="url-param">
+
+            <URLInput value={this.state.url}
+                onChange={this.handleUrl} />
+
+          </FormGroup>
+        </Form>
 
         <DataList aria-label="Simple data list example">
           <DataListItem aria-labelledby="header">
@@ -286,7 +281,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
             </DataListItemRow>
           </DataListItem>
         </DataList>
-      </Form>
+      </>
     );
   }
 }
