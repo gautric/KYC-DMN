@@ -66,7 +66,9 @@ class KYCDynamic extends React.Component<{},IKYCState> {
   ];
 
   handleUrl = url => {
-    this.setState({ url });
+    this.setState((state) => {
+      return { url }
+    });
   };
 
   getUniqueId = () => (new Date().getTime());
@@ -184,9 +186,9 @@ class KYCDynamic extends React.Component<{},IKYCState> {
             <DataListItemRow>
               <DataListItemCells
                 dataListCells={[
-                  <DataListCell key="primary content">Criteria</DataListCell>,
-                  <DataListCell key="primary content">Value</DataListCell>,
-                  <DataListCell key="secondary content" hidden={!this.state.isResult}>Score</DataListCell>
+                  <DataListCell key="Criteria">Criteria</DataListCell>,
+                  <DataListCell key="Value">Value</DataListCell>,
+                  <DataListCell key="Score" hidden={!this.state.isResult}>Score</DataListCell>
                 ]}
               />
             </DataListItemRow>
@@ -195,12 +197,12 @@ class KYCDynamic extends React.Component<{},IKYCState> {
             <DataListItemRow>
               <DataListItemCells
                 dataListCells={[
-                  <DataListCell  key="secondary content fill">
+                  <DataListCell key="PEPLabel" >
                     <FormGroup
                       label="Political Exposed Person"
                       fieldId="pep-param"/>
                   </DataListCell>,
-                  <DataListCell  key="secondary content fill">
+                  <DataListCell key="PEPform" > 
                     <Switch id="pep-param"
                       label="Political Exposed Person"
                       labelOff="Anonymous Person"
@@ -208,7 +210,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
                       onChange={this.handlePep}
                       />
                   </DataListCell>,
-                  <DataListCell   key="secondary content align" hidden={!this.state.isResult}>
+                  <DataListCell key="PEPResult" hidden={!this.state.isResult}>
                       <Alert variant={this.convertLevel(this.state.result,"PEP Rule")}  title={this.state.result["PEP Rule"]} />
                   </DataListCell>
                 ]}
@@ -219,13 +221,13 @@ class KYCDynamic extends React.Component<{},IKYCState> {
             <DataListItemRow>
               <DataListItemCells
                 dataListCells={[
-                  <DataListCell  key="secondary content fill">
+                  <DataListCell key="AmountLabel" >
                     <FormGroup
                       label="Amount"
                       isRequired
                       fieldId="amount-param"/>
                   </DataListCell>,
-                  <DataListCell  key="secondary content fill">
+                  <DataListCell key="AmountForm">
                     <TextInput
                       isRequired
                       type="text"
@@ -236,7 +238,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
                       onChange={this.handleAmount}
                     />
                   </DataListCell>,
-                  <DataListCell   key="secondary content align" hidden={!this.state.isResult}>
+                  <DataListCell key="AmountValue"  hidden={!this.state.isResult}>
                       <Alert variant={this.convertLevel(this.state.result,"Amount Rule")}  title={this.state.result["Amount Rule"]} />
                   </DataListCell>
                 ]}
@@ -247,21 +249,21 @@ class KYCDynamic extends React.Component<{},IKYCState> {
             <DataListItemRow>
               <DataListItemCells
                 dataListCells={[
-                  <DataListCell  key="secondary content fill">
+                  <DataListCell key="FRLabel">
                     <FormGroup
                       label="Fiscal Residency"
                       isRequired
                       fieldId="fiscalResidency-param"
                       />
                   </DataListCell>,
-                  <DataListCell  key="secondary content fill">
+                  <DataListCell key="FRForm">
                     <FormSelect id="fiscalResidency-param" value={this.state.fiscalResidency} onChange={this.handleFiscalResidency} aria-label="FormSelect Input">
                       {this.options.map((option, index) => (
-                        <FormSelectOption isDisabled={option.disabled} key={index} value={option.value} label={option.label} />
+                        <FormSelectOption isDisabled={option.disabled} key={option.value.toString()} value={option.value} label={option.label} />
                       ))}
                     </FormSelect>
                   </DataListCell>,
-                  <DataListCell   key="secondary content align" hidden={!this.state.isResult}>
+                  <DataListCell key="FRValue" hidden={!this.state.isResult}>
                       <Alert variant={this.convertLevel(this.state.result,"Fiscal Residency Rule")}  title={this.state.result["Fiscal Residency Rule"]} />
                   </DataListCell>
                 ]}
@@ -272,11 +274,11 @@ class KYCDynamic extends React.Component<{},IKYCState> {
             <DataListItemRow>
               <DataListItemCells
                 dataListCells={[
-                  <DataListCell alignRight key="secondary content fill">
+                  <DataListCell key="TotalLabel" alignRight>
                     Total Score KYC
                   </DataListCell>,
-                  <DataListCell/>,
-                  <DataListCell   key="secondary content align" hidden={!this.state.isResult}>
+                  <DataListCell key="TotalForm"/>,
+                  <DataListCell key="TotalValue" hidden={!this.state.isResult}>
                       <Alert variant={this.convertLevel(this.state.result.KYC,"Level")} isInline title={ this.state.result.KYC.Level + " " +  this.state.result.KYC.Score} />
                   </DataListCell>
                 ]}
