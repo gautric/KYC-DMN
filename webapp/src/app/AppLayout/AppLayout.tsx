@@ -8,9 +8,12 @@ import {
   Page,
   PageHeader,
   PageSidebar,
+  PageHeaderTools,
   SkipToContent
 } from '@patternfly/react-core';
 import { routes } from '@app/routes';
+
+import { KYCAppLauncher } from '@app/UIComponent/KYCAppLauncher';
 
 import kycLogo from '../../images/KYC-icon-145.svg';
 
@@ -37,6 +40,7 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({children}) => {
       showNavToggle
       isNavOpen={isNavOpen}
       onNavToggle={isMobileView ? onNavToggleMobile : onNavToggle}
+      headerTools={<KYCAppLauncher/>}
     />
   );
 
