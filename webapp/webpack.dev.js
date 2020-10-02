@@ -1,7 +1,7 @@
 const path = require('path');
 const merge = require("webpack-merge");
 const common = require("./webpack.common.js");
-const HOST = process.env.HOST || "0.0.0.0";
+const HOST = process.env.HOST || "localhost";
 const PORT = process.env.PORT || "9000";
 const API_PORT = process.env.API_PORT || "8080";
 
