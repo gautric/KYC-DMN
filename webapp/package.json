@@ -34,6 +34,7 @@
     "@types/victory": "^33.1.4",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
+    "copy-webpack-plugin": "^6.2.1",
     "css-loader": "^3.6.0",
     "dotenv-webpack": "^1.8.0",
     "enzyme": "^3.7.0",

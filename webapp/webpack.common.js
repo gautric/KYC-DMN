@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const CopyPlugin = require('copy-webpack-plugin');
+
 const BG_IMAGES_DIRNAME = 'bgimages';
 
 module.exports = env => {
@@ -88,6 +90,7 @@ module.exports = env => {
           test: /\.(jpg|jpeg|png|gif)$/i,
           include: [
             path.resolve(__dirname, 'src'),
+            path.resolve(__dirname, 'src/images'),
             path.resolve(__dirname, 'node_modules/patternfly'),
             path.resolve(__dirname, 'node_modules/@patternfly/patternfly/assets/images'),
             path.resolve(__dirname, 'node_modules/@patternfly/react-styles/css/assets/images'),
@@ -100,7 +103,7 @@ module.exports = env => {
             {
               loader: 'url-loader',
               options: {
-                limit: 5000,
+                limit: 500,
                 outputPath: 'images',
                 name: '[name].[ext]',
               }
@@ -120,6 +123,11 @@ module.exports = env => {
       new Dotenv({
         systemvars: true,
         silent: true
+      }),
+      new CopyPlugin({
+        patterns: [
+          { from: 'src/images', to: 'images' }
+        ],
       })
     ],
     resolve: {
