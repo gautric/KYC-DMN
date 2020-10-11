@@ -6,6 +6,10 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 const BG_IMAGES_DIRNAME = 'bgimages';
 
+const webpack = require('webpack');
+
+
+
 module.exports = env => {
 
   return {
@@ -126,7 +130,9 @@ module.exports = env => {
       }),
       new CopyPlugin({
         patterns: [
-          { from: 'src/images', to: 'images' }
+          { from: 'src/images', to: 'images', filter: async (resourcePath) => {
+            return (resourcePath.match(/.(png|jpg)$/))
+          }, }
         ],
       })
     ],
