@@ -67,7 +67,7 @@ class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
         <DescriptionList columnModifier={{ lg: '2Col' }}>
           <DescriptionListGroup  >
             <DescriptionListTerm># KYC call</DescriptionListTerm>
-            <DescriptionListDescription>{parseFloat(JSONPath({path: "$..[?(@.name=='api_http_response_code')].metrics[?(@.labels.endpoint=='KYC-full')][value]", json:this.state.result})[0])}</DescriptionListDescription>
+            <DescriptionListDescription>{parseFloat(JSONPath({path: "$..[?(@.name=='api_http_response_code')].metrics[?(@.labels.endpoint=='KYC')][value]", json:this.state.result})[0])}</DescriptionListDescription>
           </DescriptionListGroup>
           <DescriptionListGroup>
             <DescriptionListTerm>Response time (&lt; 3')</DescriptionListTerm>
