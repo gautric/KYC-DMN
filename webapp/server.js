@@ -2,14 +2,15 @@ const path = require('path');
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const app = express();
-const port = 9000;
+const port = process.env.PORT || "9000";
+const KYC_DMN_PROXY = process.env.KYC_DMN_PROXY || "http://localhost:8080";
 
 app.use(express.static(path.join(__dirname, '/dist')));
 
 app.use(
   '/api',
   createProxyMiddleware({
-    target: 'http://localhost:8080',
+    target: KYC_DMN_PROXY,
     changeOrigin: true,
     pathRewrite: {
       '^/api': '/'

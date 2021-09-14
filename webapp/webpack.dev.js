@@ -3,7 +3,7 @@ const merge = require("webpack-merge");
 const common = require("./webpack.common.js");
 const HOST = process.env.HOST || "localhost";
 const PORT = process.env.PORT || "9000";
-const API_PORT = process.env.API_PORT || "8080";
+const KYC_DMN_PROXY = process.env.KYC_DMN_PROXY || "http://localhost:8080";
 
 
 module.exports = merge(common('development'), {
@@ -23,7 +23,7 @@ module.exports = merge(common('development'), {
     lazy: false,
     proxy: {
       '/api': {
-        target: 'http://localhost:'+API_PORT,
+        target: KYC_DMN_PROXY,
         pathRewrite: {'^/api' : ''}
       }
     }
