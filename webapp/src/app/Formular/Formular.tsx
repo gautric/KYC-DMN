@@ -21,10 +21,9 @@ import { Form,
   AlertVariant,
   Title} from '@patternfly/react-core';
 
-const KYC_DMN_URL = process.env.KYC_DMN_URL;
+import { KYCContext } from '@app/KYCContext';
 
 interface IKYCState {
-  url: string,
   pep: boolean,
   amount: number,
   fiscalResidency: string,
@@ -34,11 +33,11 @@ interface IKYCState {
 };
 
 class KYCForm extends React.Component<{},IKYCState> {
+  static contextType = KYCContext;
 
   constructor(props) {
     super(props);
     this.state = {
-      url: KYC_DMN_URL,
       pep: false,
       amount: 10000,
       fiscalResidency: 'FR',
@@ -59,15 +58,15 @@ class KYCForm extends React.Component<{},IKYCState> {
     { value: 'KP', label: 'North Korea', disabled: false }
   ];
 
-  handleUrl = url => {
-    this.setState({ url });
-  };
+  // handleUrl = url => {
+  //   this.setState({ url });
+  // };
 
   getUniqueId = () => (new Date().getTime());
 
   handleSubmit(event) {
 
-    fetch(this.state.url, {
+    fetch(this.context.url, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -169,7 +168,7 @@ class KYCForm extends React.Component<{},IKYCState> {
               key={key} />
           ))}
         </AlertGroup>
-        <FormGroup
+        {/* <FormGroup
           label="URL of DMN Engine"
           isRequired
           fieldId="url-param">
@@ -182,7 +181,7 @@ class KYCForm extends React.Component<{},IKYCState> {
             value={this.state.url}
             onChange={this.handleUrl}
           />
-        </FormGroup>
+        </FormGroup> */}
 
         <Divider />
 

@@ -22,7 +22,7 @@ import { Form,
   DataListCell,
   Title } from '@patternfly/react-core';
 
-const KYC_DMN_URL = process.env.KYC_DMN_URL;
+import { KYCContext } from '@app/KYCContext';
 
 interface IKYCState {
   kyc: object,
@@ -32,7 +32,7 @@ interface IKYCState {
 };
 
 class KYCDynamic extends React.Component<{},IKYCState> {
-
+  static contextType = KYCContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -60,7 +60,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
 
   handleSubmit() {
 
-    fetch(KYC_DMN_URL, {
+    fetch(this.context.url, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
