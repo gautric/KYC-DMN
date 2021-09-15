@@ -1,42 +1,88 @@
-import * as React from 'react';
-import { CubesIcon } from '@patternfly/react-icons';
-import {
+//import * as React from 'react';
+import React, {useState} from "react";
+import 'whatwg-fetch';
+import { 
+  Card,
+  CardTitle,
+  CardBody,
   PageSection,
-  Title,
-  Button,
-  EmptyState,
-  EmptyStateVariant,
-  EmptyStateIcon,
-  EmptyStateBody,
-  EmptyStateSecondaryActions
-} from '@patternfly/react-core';
+  DescriptionList,
+  DescriptionListTerm,
+  DescriptionListGroup,
+  DescriptionListDescription,
+  Title } from '@patternfly/react-core';
 
-export interface ISupportProps {
-  sampleProp?: string;
+interface IKYCMonitoringState {
+  count: number,
+  elapsedTime: number
+};
+
+class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+      elapsedTime: 0
+    };
+    this.fetchData();
+  }
+
+  fetchData() {
+
+    fetch("/api/q/metrics", {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(
+      (result) => {
+        if(result.ok){
+          result.json().then((body) => {
+            this.setState({
+              count:body['http.server.requests']['count;method=POST;outcome=SUCCESS;status=200;uri=/KYC'],
+              elapsedTime:body['http.server.requests']['elapsedTime;method=POST;outcome=SUCCESS;status=200;uri=/KYC']
+            });
+          });
+        } else {
+        }
+      },
+      (error) => {
+      }
+    );
+  }
+
+  render() {
+
+    return (
+      <>
+        <DescriptionList columnModifier={{ lg: '2Col' }}>
+          <DescriptionListGroup>
+            <DescriptionListTerm># KYC call</DescriptionListTerm>
+            <DescriptionListDescription>{this.state.count}</DescriptionListDescription>
+          </DescriptionListGroup>
+          <DescriptionListGroup>
+            <DescriptionListTerm>Response time</DescriptionListTerm>
+            <DescriptionListDescription>{this.state.elapsedTime} ms</DescriptionListDescription>
+          </DescriptionListGroup>
+        </DescriptionList>
+      </>
+    );
+  }
 }
 
-const Monitoring: React.FunctionComponent<ISupportProps> = () => (
-    <PageSection>
-      <EmptyState variant={EmptyStateVariant.full}>
-        <EmptyStateIcon icon={CubesIcon} />
-        <Title headingLevel="h1" size="lg">
-          Empty State (Stub Support Module)
-        </Title>
-        <EmptyStateBody>
-          This represents an the empty state pattern in Patternfly 4. Hopefully it&apos;s simple enough to use but flexible
-          enough to meet a variety of needs.
-        </EmptyStateBody>
-        <Button variant="primary">Primary Action</Button>
-        <EmptyStateSecondaryActions>
-          <Button variant="link">Multiple</Button>
-          <Button variant="link">Action Buttons</Button>
-          <Button variant="link">Can</Button>
-          <Button variant="link">Go here</Button>
-          <Button variant="link">In the secondary</Button>
-          <Button variant="link">Action area</Button>
-        </EmptyStateSecondaryActions>
-      </EmptyState>
-    </PageSection>
-  )
+const Monitoring: React.FunctionComponent = () => (
+  <PageSection>
+    <Card>
+      <CardTitle>
+        <Title headingLevel="h1" size="lg">KYC Monitoring</Title>
+      </CardTitle>
+      <CardBody>
+        <KYCMonitoring/>
+      </CardBody>
+    </Card>
+  </PageSection>
+)
 
 export { Monitoring };
