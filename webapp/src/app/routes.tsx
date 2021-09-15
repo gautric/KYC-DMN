@@ -5,6 +5,7 @@ import { DynamicImport } from '@app/DynamicImport';
 import { accessibleRouteChangeHandler } from '@app/utils/utils';
 import { Formular } from '@app/Formular/Formular';
 import { Dynamic } from '@app/Dynamic/Dynamic';
+import { Config } from '@app/Config/Config';
 import { NotFound } from '@app/NotFound/NotFound';
 import { useDocumentTitle } from '@app/utils/useDocumentTitle';
 import { LastLocationProvider, useLastLocation } from 'react-router-last-location';
@@ -61,7 +62,7 @@ const routes: IAppRoute[] = [
     component: Dynamic,
     exact: true,
     label: 'Dynamic',
-    path: '/dyn',
+    path: '/dynamic',
     title: 'KYC DMN | Dynamic',
   },
   {
@@ -72,6 +73,13 @@ const routes: IAppRoute[] = [
     path: '/monitoring',
     title: 'KYC DMN | Monitoring',
   },
+  {
+    component: Config,
+    exact: true,
+    label: 'Config',
+    path: '/config',
+    title: 'KYC DMN | Config',
+  }
 ];
 
 // a custom hook for sending focus to the primary content container
