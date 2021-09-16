@@ -1,4 +1,3 @@
-//import * as React from 'react';
 import React, {useState} from "react";
 import 'whatwg-fetch';
 import { Form, 
