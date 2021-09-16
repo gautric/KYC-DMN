@@ -15,7 +15,7 @@ import {
 interface IKYCMonitoringState {
   count: number,
   elapsedTime: number
-};
+}
 
 class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
 

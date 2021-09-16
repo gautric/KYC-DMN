@@ -101,7 +101,7 @@ class KYCForm extends React.Component<{},IKYCState> {
   }
 
   convertLevel = (level, name) => {
-    var ret = AlertVariant.default;
+    let ret = AlertVariant.default;
     if(level){
       if(level[name]){
         switch (level[name]) {

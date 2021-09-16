@@ -26,7 +26,7 @@ class UIKYCResult extends React.Component<{score : number, level : string, pep :
     };
 
     convertLevel = (level,name) => {
-      var ret = AlertVariant.default;
+      let ret = AlertVariant.default;
       if(level){
         //console.log(level, name);
   

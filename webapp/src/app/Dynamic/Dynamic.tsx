@@ -86,7 +86,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
   }
 
   convertLevel = (level, name) => {
-    var ret = AlertVariant.default;
+    let ret = AlertVariant.default;
       if(level && level[name]){
         switch (level[name]) {
           case "LOW":
