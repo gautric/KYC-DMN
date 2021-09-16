@@ -51,6 +51,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-last-location": "^2.0.1",
-    "ts-config": "^20.10.0"
+    "ts-config": "^20.10.0",
+    "ts-loader": "^9.2.5"
   }
 }
