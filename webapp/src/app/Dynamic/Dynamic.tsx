@@ -58,7 +58,6 @@ class KYCDynamic extends React.Component<{},IKYCState> {
   getUniqueId = () => (new Date().getTime());
 
   handleSubmit() {
-
     fetch(this.context.url, {
       method: 'POST',
       headers: {
