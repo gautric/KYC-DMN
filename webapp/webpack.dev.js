@@ -1,5 +1,5 @@
 const path = require('path');
-const merge = require("webpack-merge");
+const {merge} = require("webpack-merge");
 const common = require("./webpack.common.js");
 const HOST = process.env.HOST || "localhost";
 const PORT = process.env.PORT || "9000";
@@ -10,17 +10,13 @@ module.exports = merge(common('development'), {
   mode: "development",
   devtool: "eval-source-map",
   devServer: {
-    contentBase: "./dist",
     host: HOST,
     port: PORT,
-    compress: true,
-    inline: true,
+    compress: false,
     historyApiFallback: true,
     hot: true,
-    overlay: false,
     open: true,
-    liveReload: false,
-    lazy: false,
+    liveReload: true,
     proxy: {
       '/api': {
         target: KYC_DMN_PROXY,
