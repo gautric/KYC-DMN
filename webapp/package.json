@@ -48,10 +48,18 @@
     "@patternfly/react-core": "^4.128.2",
     "@patternfly/react-icons": "^4.10.11",
     "@patternfly/react-styles": "^4.10.11",
+    "@react-keycloak/web": "^3.4.0",
     "@storybook/builder-webpack5": "^6.2.9",
+    "file-loader": "^6.2.0",
+    "keycloak-js": "^15.0.2",
+    "raw-loader": "^4.0.2",
     "react": "^16.14.0",
+    "react-axe": "^3.5.4",
     "react-dom": "^16.14.0",
     "react-router-last-location": "^2.0.1",
-    "ts-config": "^20.10.0"
+    "style-loader": "^3.2.1",
+    "ts-config": "^20.10.0",
+    "url-loader": "^4.1.1",
+    "whatwg-fetch": "^3.6.2"
   }
 }
