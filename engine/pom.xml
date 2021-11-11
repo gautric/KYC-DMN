@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.g.a.kogito</groupId>
   <artifactId>kyc-dmn</artifactId>
   <version>1.0.0</version>
   <properties>
-    <quarkus-plugin.version>2.1.0.Final</quarkus-plugin.version>
+    <quarkus-plugin.version>2.4.1.Final</quarkus-plugin.version>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-    <quarkus.platform.version>2.1.0.Final</quarkus.platform.version>
-    <version.org.kogito>1.11.0.Final</version.org.kogito>
-    <version.org.testcontainers>1.15.3</version.org.testcontainers>
+    <quarkus.platform.version>2.4.1.Final</quarkus.platform.version>
+    <version.org.kogito>1.13.0.Final</version.org.kogito>
   </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>org.kie.kogito</groupId>
         <artifactId>kogito-bom</artifactId>
-        <version>1.11.0.Final</version>
+        <version>${version.org.kogito}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -68,13 +69,11 @@
     <dependency>
       <groupId>org.kie.kogito</groupId>
       <artifactId>kogito-test-utils</artifactId>
-      <version>${version.org.kogito}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.testcontainers</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>${version.org.testcontainers}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
