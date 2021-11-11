@@ -16,13 +16,13 @@ module.exports = merge(common('development'), {
     historyApiFallback: true,
     hot: true,
     open: true,
-    liveReload: true,
-    proxy: {
-      '/api': {
-        target: KYC_DMN_PROXY,
-        pathRewrite: {'^/api' : ''}
-      }
-    }
+    liveReload: true//,
+    // proxy: {
+    //   '/api': {
+    //     target: KYC_DMN_PROXY,
+    //     pathRewrite: {'^/api' : ''}
+    //   }
+    // }
   },
   module: {
     rules: [
