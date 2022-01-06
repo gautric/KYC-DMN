@@ -34,7 +34,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
   static contextType = KYCContext;
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = JSON.parse(window.localStorage.getItem('state')) || {
       kyc : {
         PEP: false,
         Amount: 1000,
@@ -58,7 +58,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
   getUniqueId = () => (new Date().getTime());
 
   handleSubmit() {
-    fetch(this.context.urlApi, {
+    fetch(this.context.url, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -74,6 +74,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
                 result: body
               });
               this.setState({isResult : true});
+              window.localStorage.setItem('state', JSON.stringify(this.state));
             });
           } else {
             this.addAlert('Call Error : ' + result.status + ' ' + result.statusText , 'danger', this.getUniqueId());
