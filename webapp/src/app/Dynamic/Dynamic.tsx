@@ -159,7 +159,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
               />
             </DataListItemRow>
           </DataListItem>
-          <DataListItem aria-labelledby="simple-item2">
+          <DataListItem>
             <DataListItemRow>
               <DataListItemCells
                 dataListCells={[
@@ -183,7 +183,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
               />
             </DataListItemRow>
           </DataListItem>
-          <DataListItem aria-labelledby="simple-item2">
+          <DataListItem>
             <DataListItemRow>
               <DataListItemCells
                 dataListCells={[
@@ -211,7 +211,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
               />
             </DataListItemRow>
           </DataListItem>
-          <DataListItem aria-labelledby="simple-item2">
+          <DataListItem>
             <DataListItemRow>
               <DataListItemCells
                 dataListCells={[
@@ -236,7 +236,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
               />
             </DataListItemRow>
           </DataListItem>
-          <DataListItem aria-labelledby="simple-item2">
+          <DataListItem>
             <DataListItemRow>
               <DataListItemCells
                 dataListCells={[
