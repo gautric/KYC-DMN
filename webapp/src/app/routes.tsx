@@ -3,7 +3,7 @@ import { Route, RouteComponentProps, Switch } from 'react-router-dom';
 import { Alert, PageSection } from '@patternfly/react-core';
 import { DynamicImport } from '@app/DynamicImport';
 import { accessibleRouteChangeHandler } from '@app/utils/utils';
-import { Formular } from '@app/Formular/Formular';
+// import { Formular } from '@app/Formular/Formular';
 import { Dynamic } from '@app/Dynamic/Dynamic';
 import { Config } from '@app/Config/Config';
 import { NotFound } from '@app/NotFound/NotFound';
@@ -51,18 +51,18 @@ export interface IAppRoute {
 }
 
 const routes: IAppRoute[] = [
-  {
-    component: Formular,
-    exact: true,
-    label: 'Formular',
-    path: '/',
-    title: 'KYC DMN | Formular',
-  },
+  // {
+  //   component: Formular,
+  //   exact: true,
+  //   label: 'Formular',
+  //   path: '/',
+  //   title: 'KYC DMN | Formular',
+  // },
   {
     component: Dynamic,
     exact: true,
-    label: 'Dynamic',
-    path: '/dynamic',
+    label: 'KYC',
+    path: '/kyc',
     title: 'KYC DMN | Dynamic',
   },
   {
