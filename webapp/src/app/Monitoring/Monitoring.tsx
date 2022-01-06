@@ -9,6 +9,11 @@ import {
   DescriptionListTerm,
   DescriptionListGroup,
   DescriptionListDescription,
+  DataList,
+  DataListItem,
+  DataListItemRow,
+  DataListItemCells,
+  DataListCell,
   Title } from '@patternfly/react-core';
 
 import { KYCContext } from '@app/KYCContext';
@@ -55,17 +60,29 @@ class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
 
   render() {
     return (
-      <>
-        <DescriptionList columnModifier={{ lg: '2Col' }}>
-          <DescriptionListGroup>
-            <DescriptionListTerm># KYC call</DescriptionListTerm>
-            <DescriptionListDescription>{this.state.count}</DescriptionListDescription>
-          </DescriptionListGroup>
-          <DescriptionListGroup>
-            <DescriptionListTerm>Response time</DescriptionListTerm>
-            <DescriptionListDescription>{this.state.elapsedTime} ms</DescriptionListDescription>
-          </DescriptionListGroup>
-        </DescriptionList>
+      <>        
+        <DataList aria-label="Simple data list example">
+          <DataListItem aria-labelledby="header">
+            <DataListItemRow>
+              <DataListItemCells 
+                dataListCells={[
+                  <DataListCell># KYC call</DataListCell>,
+                  <DataListCell>{this.state.count}</DataListCell>
+                ]}
+              />
+            </DataListItemRow>
+          </DataListItem>
+          <DataListItem aria-labelledby="header">
+            <DataListItemRow>
+              <DataListItemCells 
+                dataListCells={[
+                  <DataListCell>Response time</DataListCell>,
+                  <DataListCell>{this.state.elapsedTime} ms </DataListCell>
+                ]}
+              />
+            </DataListItemRow>
+          </DataListItem>
+        </DataList>
       </>
     );
   }
