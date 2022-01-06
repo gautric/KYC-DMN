@@ -8,11 +8,11 @@
   <artifactId>kyc-dmn</artifactId>
   <version>1.0.0</version>
   <properties>
-    <quarkus-plugin.version>2.4.1.Final</quarkus-plugin.version>
+    <quarkus-plugin.version>2.6.1.Final</quarkus-plugin.version>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-    <quarkus.platform.version>2.4.1.Final</quarkus.platform.version>
-    <version.org.kogito>1.13.0.Final</version.org.kogito>
+    <quarkus.platform.version>2.6.1.Final</quarkus.platform.version>
+    <version.org.kogito>1.14.1.Final</version.org.kogito>
   </properties>
   <dependencyManagement>
     <dependencies>
