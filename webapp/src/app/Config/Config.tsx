@@ -8,6 +8,11 @@ import { Form,
   FormGroup,
   TextInput,
   PageSection,
+  DataList,
+  DataListItem,
+  DataListItemRow,
+  DataListItemCells,
+  DataListCell,
   Title } from '@patternfly/react-core';
 
 import { KYCContext } from '@app/KYCContext';
@@ -41,7 +46,7 @@ export class  URLInputBase extends React.Component<URLInputProps>  {
             ...props
         } = this.props;
         return (
-            <TextInput value={this.context.url} type="url" onChange={onChange} aria-label="text input example" />
+            <TextInput value={this.context.apiUrl} type="url" onChange={onChange} aria-label="text input example" />
         );
     }
 }
@@ -69,18 +74,20 @@ const Config: React.FunctionComponent = () => (
         <Title headingLevel="h1" size="lg">KYC Config</Title>
       </CardTitle>
       <CardBody>
-
-        <Form isHorizontal >
-        
-            <FormGroup
-                label="URL of DMN Engine"
-                isRequired
-                fieldId="url-param">
-          
-              <URLInput onChange={(e) => console.log(e)}/> 
-
-            </FormGroup>
-        </Form>
+        <>
+          <DataList aria-label="Simple data list example">
+            <DataListItem aria-labelledby="header">
+              <DataListItemRow>
+                <DataListItemCells 
+                  dataListCells={[
+                    <DataListCell key="URL Field">URL</DataListCell>,
+                    <DataListCell key="URL Value"><URLInput onChange={(e) => console.log(e)}/> </DataListCell>
+                  ]}
+                />
+              </DataListItemRow>
+            </DataListItem>
+          </DataList>
+        </>
       </CardBody>
     </Card>
   </PageSection>
