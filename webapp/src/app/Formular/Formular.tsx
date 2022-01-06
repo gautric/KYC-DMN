@@ -58,15 +58,11 @@ class KYCForm extends React.Component<{},IKYCState> {
     { value: 'KP', label: 'North Korea', disabled: false }
   ];
 
-  // handleUrl = url => {
-  //   this.setState({ url });
-  // };
-
   getUniqueId = () => (new Date().getTime());
 
   handleSubmit(event) {
 
-    fetch(this.context.url, {
+    fetch(this.context.urlApi, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

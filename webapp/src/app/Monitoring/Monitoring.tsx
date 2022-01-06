@@ -1,4 +1,3 @@
-//import * as React from 'react';
 import React, {useState} from "react";
 import 'whatwg-fetch';
 import { 
@@ -12,25 +11,26 @@ import {
   DescriptionListDescription,
   Title } from '@patternfly/react-core';
 
+import { KYCContext } from '@app/KYCContext';
+
 interface IKYCMonitoringState {
   count: number,
   elapsedTime: number
 }
 
 class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
-
+  static contextType = KYCContext;
   constructor(props) {
     super(props);
     this.state = {
       count: 0,
       elapsedTime: 0
     };
-    this.fetchData();
   }
 
-  fetchData() {
+  componentDidMount() {
 
-    fetch("/api/q/metrics", {
+    fetch(this.context.metricsUrl, {
       method: 'GET',
       headers: {
         'Accept': 'application/json'
@@ -54,7 +54,6 @@ class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
   }
 
   render() {
-
     return (
       <>
         <DescriptionList columnModifier={{ lg: '2Col' }}>
