@@ -62,7 +62,7 @@ const routes: IAppRoute[] = [
     component: Dynamic,
     exact: true,
     label: 'KYC',
-    path: '/kyc',
+    path: '/',
     title: 'KYC DMN | Dynamic',
   },
   {
