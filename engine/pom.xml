@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.g.a.kogito</groupId>
   <artifactId>kyc-dmn</artifactId>
   <version>1.0.0</version>
   <properties>
-    <quarkus-plugin.version>2.6.1.Final</quarkus-plugin.version>
+    <quarkus-plugin.version>2.6.0.Final</quarkus-plugin.version>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-    <quarkus.platform.version>2.6.1.Final</quarkus.platform.version>
-    <version.org.kogito>1.14.1.Final</version.org.kogito>
+    <quarkus.platform.version>2.6.0.Final</quarkus.platform.version>
+    <version.org.kogito>1.15.0.Final</version.org.kogito>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -176,4 +173,21 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>native</id>
+      <properties>
+        <failsafe.include>**/Native*IT.java</failsafe.include>
+        <failsafe.exclude></failsafe.exclude>
+        <quarkus.package.type>native</quarkus.package.type>
+        <!-- Native building needs a fixed port for tests -->
+        <tests.quarkus.http.port>8080</tests.quarkus.http.port>
+      </properties>
+      <activation>
+        <property>
+          <name>native</name>
+        </property>
+      </activation>
+    </profile>
+  </profiles>
 </project>
