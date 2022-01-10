@@ -6,7 +6,6 @@ const HOST = process.env.HOST || "0.0.0.0";
 const PORT = process.env.PORT || "9000";
 const KYC_DMN_PROXY = process.env.KYC_DMN_PROXY || "http://localhost:8080";
 
-
 module.exports = merge(common('development'), {
   mode: "development",
   devtool: "eval-source-map",
@@ -17,13 +16,13 @@ module.exports = merge(common('development'), {
     historyApiFallback: true,
     hot: true,
     open: true,
-    liveReload: true//,
-    // proxy: {
-    //   '/api': {
-    //     target: KYC_DMN_PROXY,
-    //     pathRewrite: {'^/api' : ''}
-    //   }
-    // }
+    liveReload: true,
+    proxy: {
+      '/api': {
+        target: KYC_DMN_PROXY,
+        pathRewrite: {'^/api' : ''}
+      }
+    }
   },
   module: {
     rules: [

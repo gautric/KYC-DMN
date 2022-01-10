@@ -5,10 +5,6 @@ import {
   CardTitle,
   CardBody,
   PageSection,
-  DescriptionList,
-  DescriptionListTerm,
-  DescriptionListGroup,
-  DescriptionListDescription,
   DataList,
   DataListItem,
   DataListItemRow,
@@ -35,7 +31,7 @@ class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
 
   componentDidMount() {
 
-    fetch(this.context.metricsUrl, {
+    fetch("/api"+"/q/metrics", {
       method: 'GET',
       headers: {
         'Accept': 'application/json'
