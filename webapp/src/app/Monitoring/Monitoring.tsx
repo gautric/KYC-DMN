@@ -31,7 +31,7 @@ class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
 
   componentDidMount() {
 
-    fetch("/api"+"/q/metrics", {
+    fetch(this.context.apiUrl + "/q/metrics", {
       method: 'GET',
       headers: {
         'Accept': 'application/json'
