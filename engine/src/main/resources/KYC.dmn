@@ -5,6 +5,7 @@
 	typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/"
 	id="kyc_api_2022_impl_v1_2"
 	namespace="urn://kyc.g.a.net/api/2022">
+	<dmn:description>KYC for FIS domain</dmn:description>
 	<dmn:extensionElements />
 	<dmn:itemDefinition
 		id="_0EEA172F-87D4-4C49-A366-EE7C89759341" name="Level"
