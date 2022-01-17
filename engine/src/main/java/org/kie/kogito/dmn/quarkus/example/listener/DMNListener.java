@@ -133,7 +133,7 @@ public class DMNListener implements DMNRuntimeEventListener {
 	}
 
 	private void log(String type, DMNEvent event) {
-		LOG.error("{} received by {}    {} ", type, event);
+		LOG.info("{} received by {}    {} ", type, event);
 	}
 
 }
