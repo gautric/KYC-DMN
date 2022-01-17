@@ -1,2 +1,918 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" id="_69d333ec-7155-4505-be2f-e3562cdcdf40" name="KYC" expressionLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="http://www.trisotech.com/definitions/_69d333ec-7155-4505-be2f-e3562cdcdf40"><dmn:extensionElements/><dmn:itemDefinition id="_0EEA172F-87D4-4C49-A366-EE7C89759341" name="Level" isCollection="false"><dmn:typeRef>string</dmn:typeRef><dmn:allowedValues drools:constraintType="enumeration" xmlns:drools="http://www.drools.org/kie/dmn/1.2" id="_C042D2BE-413B-4316-A5AF-A1590073A2AE"><dmn:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn:text></dmn:allowedValues></dmn:itemDefinition><dmn:itemDefinition id="_CC99F910-3102-4389-A17C-1146F2A7B451" name="Country" isCollection="false"><dmn:typeRef>string</dmn:typeRef><dmn:allowedValues drools:constraintType="enumeration" xmlns:drools="http://www.drools.org/kie/dmn/1.2" id="_992DC3A6-EC36-4B3F-BD3E-1CAB3B8A6990"><dmn:text>"FR", "GB", "CY", "JP", "RU", "KP"</dmn:text></dmn:allowedValues></dmn:itemDefinition><dmn:itemDefinition id="_05D1E83A-CC49-4D5F-8CC2-A2F8B92E42CD" name="KYC" isCollection="false"><dmn:itemComponent id="_648FFD05-4B5D-4B0B-9F25-0C8AA87DB763" name="Level" isCollection="false"><dmn:typeRef>string</dmn:typeRef></dmn:itemComponent><dmn:itemComponent id="_4ACD8A89-B8B7-4411-9BC4-BFAAFBE31664" name="Score" isCollection="false"><dmn:typeRef>number</dmn:typeRef></dmn:itemComponent></dmn:itemDefinition><dmn:decision id="_4054431E-93D3-40E5-ACEF-8F4D6DA45B5A" name="PEP Rule"><dmn:extensionElements/><dmn:variable id="_D4B524B7-DC1B-48AA-BA80-95173838AD61" name="PEP Rule" typeRef="Level"/><dmn:informationRequirement id="_F25C73E9-CB0B-4E08-B039-E3CDD9C53166"><dmn:requiredInput href="#_E35415D9-48FA-4EC3-B406-F71DB65F6820"/></dmn:informationRequirement><dmn:decisionTable id="_15B29FDE-CB6D-47F8-9567-D0754A48FF65" typeRef="Level" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row" outputLabel="PEP Rule"><dmn:input id="_86B9D3BE-F5F2-41B3-9196-1919CA5C5A90"><dmn:inputExpression id="_0E78E517-0D00-4C9B-B1C9-C019CE0A15C1" typeRef="boolean"><dmn:text>PEP</dmn:text></dmn:inputExpression></dmn:input><dmn:output id="_B3B52235-4C37-4DCF-82B6-3289F7707AEE"><dmn:outputValues id="_444F0DF4-F508-490F-9ED4-1029618CD8A0"><dmn:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn:text></dmn:outputValues></dmn:output><dmn:annotation name="annotation-1"/><dmn:rule id="_9EBB155F-0B0E-456E-B798-B6FC1E12B967"><dmn:inputEntry id="_728FF3CA-06D2-4805-8BB6-2DB900A2F1EA"><dmn:text>false</dmn:text></dmn:inputEntry><dmn:outputEntry id="_B3D8FA31-8BFE-4952-B137-368D1CF21D5C"><dmn:text>"LOW"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_B0DC7A8D-C154-4FAC-85C0-514285B8915F"><dmn:inputEntry id="_A108D8A1-7579-44EE-947C-FFD281FAEE87"><dmn:text>true</dmn:text></dmn:inputEntry><dmn:outputEntry id="_E398F824-C54E-45AA-8282-61D772C3FA50"><dmn:text>"HIGH"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule></dmn:decisionTable></dmn:decision><dmn:decision id="_B4A96E7B-9A87-470C-9868-391085BA0409" name="Fiscal Residency Rule"><dmn:extensionElements/><dmn:variable id="_13705C2C-051A-40E1-8BF8-053746BEFF83" name="Fiscal Residency Rule" typeRef="Level"/><dmn:informationRequirement id="_CA1E4D5C-C86F-4CAB-A533-7797901B549D"><dmn:requiredInput href="#_2753AA63-F41B-456C-A01A-64BA9C862C92"/></dmn:informationRequirement><dmn:decisionTable id="_2C289599-8F8E-48EC-ABD3-DD0A39E6886A" typeRef="Level" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row" outputLabel="Fiscal Residency Rule"><dmn:input id="_927DF80C-3072-4A8D-BBD1-4293B5EBFB8E"><dmn:inputExpression id="_AD794E53-5F25-4D73-8720-4A2CFAAAEBBD" typeRef="Country"><dmn:text>Fiscal Residency</dmn:text></dmn:inputExpression><dmn:inputValues id="_CB92AA26-0256-4FA4-8465-60C6891E6BA1"><dmn:text>"FR", "GB", "CY", "JP", "RU", "KP"</dmn:text></dmn:inputValues></dmn:input><dmn:output id="_04F5A31A-6DC1-4C41-881A-3737701069E3"><dmn:outputValues id="_752DEDC7-4DC3-486C-862F-FB6EF741AF5B"><dmn:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn:text></dmn:outputValues></dmn:output><dmn:annotation name="annotation-2"/><dmn:rule id="_CA9A8705-B5B7-44A1-A5BA-65C786FC9870"><dmn:inputEntry id="_29E60D0F-660E-4383-8495-82065325F09D"><dmn:text>"FR"</dmn:text></dmn:inputEntry><dmn:outputEntry id="_BF59415B-49C9-4A03-A883-176EB6C0E9B0"><dmn:text>"LOW"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_2B0B5601-945E-4F17-B417-05EE01C9F0AA"><dmn:inputEntry id="_C7E46E31-1F3C-4CCC-A34A-BA4E5B5DA578"><dmn:text>"GB"</dmn:text></dmn:inputEntry><dmn:outputEntry id="_2BE4C24E-ECD6-4900-BA30-795ECB00B6F4"><dmn:text>"LOW"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_D8AD7A38-2E27-4783-AB64-738B42AFB087"><dmn:inputEntry id="_A3EC7997-B3D6-4F16-B9A9-A658CC160B04"><dmn:text>"JP"</dmn:text></dmn:inputEntry><dmn:outputEntry id="_8E9743BC-E200-4CAC-82E6-B5BA95B7B214"><dmn:text>"LOW"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_8BF961D6-B70B-4A98-A9CC-63D844A0D313"><dmn:inputEntry id="_AF139BA8-40C2-4B86-8D94-879067D6737D"><dmn:text>"CY"</dmn:text></dmn:inputEntry><dmn:outputEntry id="_38AADD19-30D1-454D-9D22-67A25E1D6CB0"><dmn:text>"MEDIUM"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_A52551B2-4B72-4810-8220-C90F74A3696E"><dmn:inputEntry id="_D5A954A2-C7A2-44C9-81E9-60CBEBBA3B01"><dmn:text>"RU"</dmn:text></dmn:inputEntry><dmn:outputEntry id="_33A248F7-6270-40D9-ACEC-5ADCE3EC24E7"><dmn:text>"HIGH"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_1E80E72E-D94A-4A72-B898-689D64D066CD"><dmn:inputEntry id="_87F629A4-ABD4-483A-B0AA-B42B13809E9B"><dmn:text>"KP"</dmn:text></dmn:inputEntry><dmn:outputEntry id="_1AF30616-BD7F-49FC-8512-27FA8792D7B7"><dmn:text>"VERY HIGH"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule></dmn:decisionTable></dmn:decision><dmn:businessKnowledgeModel id="_29D9F875-28A1-49F3-A526-09C32C594972" name="Level to Int"><dmn:extensionElements/><dmn:variable id="_03F8F158-D54D-4242-9550-9704322610A8" name="Level to Int" typeRef="number"/><dmn:encapsulatedLogic id="_F15A62FA-04C3-4353-BDE3-5DA993380E8D" typeRef="number" kind="FEEL"><dmn:formalParameter id="_E6C8BD6F-C4B2-4E8E-A530-3A6BAEC2CF17" name="Level" typeRef="Level"/><dmn:decisionTable id="_e7fe9e47-ea44-4e28-84a2-8a1d401d1e47" typeRef="number" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row" outputLabel="Level to Int"><dmn:input id="_3150c91e-6991-4cc5-a2e5-e8f8a743a334"><dmn:inputExpression id="_D260CBF7-3507-4F17-8736-D29AC00D1E18" typeRef="Level"><dmn:text>Level</dmn:text></dmn:inputExpression><dmn:inputValues id="_A12801E1-B232-4BED-A6A0-2E06AE07D5A7"><dmn:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH",null</dmn:text></dmn:inputValues></dmn:input><dmn:output id="_4022f525-b8f8-472d-96c3-41d8e7f0c00b"/><dmn:annotation name="Description"/><dmn:rule id="_02e750f2-44a2-45f3-a873-11961c6ce71d"><dmn:inputEntry id="_478fabcd-a846-4a25-a362-e6d242b003c3"><dmn:text>"LOW"</dmn:text></dmn:inputEntry><dmn:outputEntry id="_df918326-d397-4263-a5b2-8979bccf2142"><dmn:text>1</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_13b81d93-14aa-4bd0-a922-d1617f115469"><dmn:inputEntry id="_e96e619a-b4ca-4b01-8d42-5f62479d6188"><dmn:text>"MEDIUM"</dmn:text></dmn:inputEntry><dmn:outputEntry id="_4aa885ae-ea22-4eae-b361-a4e44b2ad8b8"><dmn:text>2</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_9adb40e6-4afd-4a86-a62c-dedc0a9c631a"><dmn:inputEntry id="_4d16fb7b-74aa-4c5e-bceb-315b94f9efde"><dmn:text>"HIGH"</dmn:text></dmn:inputEntry><dmn:outputEntry id="_d269b6c5-3065-4238-be6b-31dfbd90e3f5"><dmn:text>3</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_e2ab9ff4-99da-4e52-8ecb-ec043f6ff574"><dmn:inputEntry id="_1cfb6c83-0e8c-4109-9720-700cc562a455"><dmn:text>"VERY HIGH"</dmn:text></dmn:inputEntry><dmn:outputEntry id="_628b1abe-6516-46b0-ac6a-21c241090cc0"><dmn:text>4</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule></dmn:decisionTable></dmn:encapsulatedLogic></dmn:businessKnowledgeModel><dmn:businessKnowledgeModel id="_8FE4508B-8FA1-4C49-AB10-7DE5075A9FDB" name="Max Level"><dmn:extensionElements/><dmn:variable id="_71F81A37-8D20-4294-85D0-65BE7D687BA7" name="Max Level" typeRef="Level"/><dmn:encapsulatedLogic id="_4451CA16-AC39-4F92-9D60-19C11C2FCA80" typeRef="Level" kind="FEEL"><dmn:formalParameter id="_a42735a9-05f8-4d14-bd1e-d52cf43ccbea" name="list of Level" typeRef="Any"/><dmn:literalExpression id="_5C3A9AF5-7B56-4181-83BF-16439F87D109" typeRef="Level"><dmn:text>Int to Level(max(for l in list of Level return Level to Int(l)))</dmn:text></dmn:literalExpression></dmn:encapsulatedLogic><dmn:knowledgeRequirement id="_DA8CDE05-7D8E-4223-B7B3-B8284CF7C29E"><dmn:requiredKnowledge href="#_29D9F875-28A1-49F3-A526-09C32C594972"/></dmn:knowledgeRequirement><dmn:knowledgeRequirement id="_2828ee17-6064-4af1-934c-85ca427f5127"><dmn:requiredKnowledge href="#_0553d044-5013-4985-8c74-0ad4430388f6"/></dmn:knowledgeRequirement></dmn:businessKnowledgeModel><dmn:decision id="_58ECD9FC-1269-446F-8792-D8DD0139D7DD" name="KYC"><dmn:extensionElements/><dmn:variable id="_C1863CBA-D16C-490F-8F56-7485684A9F71" name="KYC" typeRef="KYC"/><dmn:informationRequirement id="_7F16E043-589A-4528-95E5-CD7397E2BD4C"><dmn:requiredDecision href="#_4054431E-93D3-40E5-ACEF-8F4D6DA45B5A"/></dmn:informationRequirement><dmn:informationRequirement id="_178C36DB-0BFB-47F3-AB33-1AF7D62E8435"><dmn:requiredDecision href="#_177F55D1-B87A-4C26-A277-BD73C84725D1"/></dmn:informationRequirement><dmn:informationRequirement id="_515C1ECC-F105-4562-90A6-532FF4AEDF2B"><dmn:requiredDecision href="#_B4A96E7B-9A87-470C-9868-391085BA0409"/></dmn:informationRequirement><dmn:knowledgeRequirement id="_B3F4E84C-A55F-436B-AAA6-4D527159F6B4"><dmn:requiredKnowledge href="#_A9AD47E9-9DF5-49D6-B0FD-D532A4E0ED85"/></dmn:knowledgeRequirement><dmn:knowledgeRequirement id="_D0A3AC36-8F37-4E1E-9B68-A19E98718A93"><dmn:requiredKnowledge href="#_8FE4508B-8FA1-4C49-AB10-7DE5075A9FDB"/></dmn:knowledgeRequirement><dmn:context id="_0448A957-B09D-411C-B869-9751A84CDCA4" typeRef="KYC"><dmn:contextEntry><dmn:variable id="_5E8E0B70-81DF-404E-9B0F-7EA92FB05C93" name="Level" typeRef="string"/><dmn:literalExpression id="_C37D32A6-07B7-44F9-9B2E-572FAC4FDBE1"><dmn:text>sum([Level to Score(PEP Rule),Level to Score(Amount Rule),Level to Score(Fiscal Residency Rule)])</dmn:text></dmn:literalExpression></dmn:contextEntry><dmn:contextEntry><dmn:variable id="_84B65845-0245-4367-87B8-802C053BBC94" name="Score" typeRef="string"/><dmn:literalExpression id="_9CBDED88-AF67-460E-A8B1-4F48FB781E93"><dmn:text>Max Level([PEP Rule, Amount Rule, Fiscal Residency Rule])</dmn:text></dmn:literalExpression></dmn:contextEntry></dmn:context></dmn:decision><dmn:inputData id="_4F79C025-CBD8-4D5D-88D3-749231C78471" name="Amount"><dmn:extensionElements/><dmn:variable id="_5AA55784-4333-4145-93A1-340A0A04EFF6" name="Amount" typeRef="number"/></dmn:inputData><dmn:businessKnowledgeModel id="_A9AD47E9-9DF5-49D6-B0FD-D532A4E0ED85" name="Level to Score"><dmn:extensionElements/><dmn:variable id="_B4CCA1E9-DD9D-4BCA-915C-2E16EA3C6E3C" name="Level to Score" typeRef="number"/><dmn:encapsulatedLogic id="_BE8368DB-A63A-487C-89CB-760C87E095D9" typeRef="number" kind="FEEL"><dmn:formalParameter id="_611E4250-E6AD-4FE8-AD94-42BF59499754" name="Level" typeRef="Level"/><dmn:decisionTable id="_E582A2B5-05CB-4836-809B-AB130E43CEBA" typeRef="number" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row" outputLabel="Level to Score"><dmn:input id="_9B2026A4-2E1B-4553-9262-F8C286075AD1"><dmn:inputExpression id="_6295BF03-CC4F-4227-B688-6BECE5732709" typeRef="Level"><dmn:text>Level</dmn:text></dmn:inputExpression><dmn:inputValues id="_8A469FF5-613D-43BC-9FAD-E07B4BA7F912"><dmn:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn:text></dmn:inputValues></dmn:input><dmn:output id="_3C6C9098-095F-4CFD-AC6E-BA4A1BA8BFF0"/><dmn:annotation name="annotation-1"/><dmn:rule id="_479244BF-C8F8-4A9C-A5BC-E1D1D1C29FEF"><dmn:inputEntry id="_CEDAD624-C8B7-4010-9928-5BE3DE44B852"><dmn:text>"LOW"</dmn:text></dmn:inputEntry><dmn:outputEntry id="_A04AB4A6-CD3A-499F-9938-FD078FD0FA8F"><dmn:text>0</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_A293A2EB-4A8A-4545-BC6D-E1CBF145F0B8"><dmn:inputEntry id="_DA72F453-7089-41E8-8956-ABE0AD910407"><dmn:text>"MEDIUM"</dmn:text></dmn:inputEntry><dmn:outputEntry id="_8499621F-B7EC-4404-93E9-5B859D831460"><dmn:text>25</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_703AD01C-3F47-473A-BCC4-2BB0AC064A85"><dmn:inputEntry id="_FF239228-999B-4AC0-ACAA-E6C0A87CA59A"><dmn:text>"HIGH"</dmn:text></dmn:inputEntry><dmn:outputEntry id="_A34044EB-F09E-4E8D-9E69-DD525CE1AB5F"><dmn:text>75</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_A937F496-C570-4374-933D-39EF9B13FF97"><dmn:inputEntry id="_A3D0BCBD-3A05-4893-A388-EA7645C38628"><dmn:text>"VERY HIGH"</dmn:text></dmn:inputEntry><dmn:outputEntry id="_F03A26FC-F3FB-4CAC-A2BD-75B44C99BD81"><dmn:text>100</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule></dmn:decisionTable></dmn:encapsulatedLogic></dmn:businessKnowledgeModel><dmn:businessKnowledgeModel id="_0553d044-5013-4985-8c74-0ad4430388f6" name="Int to Level"><dmn:extensionElements/><dmn:variable id="_aeeb1564-3885-47ad-bc87-85b3d937b80b" name="Int to Level" typeRef="Level"/><dmn:encapsulatedLogic id="_AB6E4062-3EBC-455E-B09A-46797E78BEF7" typeRef="Level" kind="FEEL"><dmn:formalParameter id="_2D131BE8-831D-4357-A6BA-82EDA9701A57" name="Int" typeRef="number"/><dmn:decisionTable id="_48bfd822-52c1-4fd4-ab00-bd4a91c67aba" typeRef="Level" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row" outputLabel="Int to Level"><dmn:input id="_85b7ef6e-a0b5-4dc4-b17b-8ab69f90f157"><dmn:inputExpression id="_39B535AB-E174-4E9B-A92B-8220244ED54F" typeRef="number"><dmn:text>Int</dmn:text></dmn:inputExpression></dmn:input><dmn:output id="_e2164ce3-3afc-4240-ab94-16224ada2ed3"><dmn:outputValues id="_D7058063-EEF8-4DB2-BFF9-EA82C5B03DDA"><dmn:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn:text></dmn:outputValues></dmn:output><dmn:annotation name="Description"/><dmn:rule id="_4737c5f1-a3cd-417b-bfe7-4905bb10390b"><dmn:inputEntry id="_881e8e5f-6f79-438a-928d-9006c00ef135"><dmn:text>1</dmn:text></dmn:inputEntry><dmn:outputEntry id="_e73f5c1c-0de2-4d6e-a4d5-d2f5f05908c9"><dmn:text>"LOW"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_78a4835d-1cba-4d39-9083-a40cfa702aff"><dmn:inputEntry id="_f4cde268-fda4-4c56-8378-22b97edd9e69"><dmn:text>2</dmn:text></dmn:inputEntry><dmn:outputEntry id="_3021b563-b6fb-47e9-8e7b-3f7583846722"><dmn:text>"MEDIUM"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_73d4b8b0-6ecf-400e-8da5-44048b853752"><dmn:inputEntry id="_c1f07e1f-5f24-4950-b2d2-d301c50313fd"><dmn:text>3</dmn:text></dmn:inputEntry><dmn:outputEntry id="_149f50e5-bdcb-4b81-8d49-aab29913df94"><dmn:text>"HIGH"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_43048da5-0eb1-4f82-9d0e-214a5f4fcafc"><dmn:inputEntry id="_b4050f4e-da3e-4c7c-91d4-6dfd70000c5f"><dmn:text>4</dmn:text></dmn:inputEntry><dmn:outputEntry id="_ed977f26-c964-442c-84ff-6d85d0812ff3"><dmn:text>"VERY HIGH"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule></dmn:decisionTable></dmn:encapsulatedLogic></dmn:businessKnowledgeModel><dmn:inputData id="_2753AA63-F41B-456C-A01A-64BA9C862C92" name="Fiscal Residency"><dmn:extensionElements/><dmn:variable id="_A7BD23B4-1153-42A5-BE8A-DBD5ACCB9F30" name="Fiscal Residency" typeRef="Any"/></dmn:inputData><dmn:inputData id="_E35415D9-48FA-4EC3-B406-F71DB65F6820" name="PEP"><dmn:extensionElements/><dmn:variable id="_234FED5C-CB32-43A4-AD99-AB37FBC80DC0" name="PEP" typeRef="boolean"/></dmn:inputData><dmn:decision id="_177F55D1-B87A-4C26-A277-BD73C84725D1" name="Amount Rule"><dmn:extensionElements/><dmn:variable id="_ED6C1976-3B92-416F-BF15-BA33320D71CA" name="Amount Rule" typeRef="Level"/><dmn:informationRequirement id="_FAECA778-F504-4A12-93CC-A57B264DF7CF"><dmn:requiredInput href="#_4F79C025-CBD8-4D5D-88D3-749231C78471"/></dmn:informationRequirement><dmn:decisionTable id="_6D3CDF95-A9F7-4AAA-95BF-1EFA1FC8503D" typeRef="Level" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row" outputLabel="Amount Rule"><dmn:input id="_91D002BC-089D-4812-99E9-E4D3F3AD219B"><dmn:inputExpression id="_FB0C9740-B1C6-4221-897E-22C8C098B518" typeRef="number"><dmn:text>Amount</dmn:text></dmn:inputExpression></dmn:input><dmn:output id="_0D766D3E-D2E4-4663-8957-CCDCE1BE9A9C"><dmn:outputValues id="_19CEF688-4EEA-41C2-8FAF-6781BAD3B4D8"><dmn:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn:text></dmn:outputValues></dmn:output><dmn:annotation name="annotation-1"/><dmn:rule id="_2a86031b-7dd4-4aaf-9aaf-c5fe8705e310"><dmn:inputEntry id="_a7bf5d9a-b5e1-4f30-bb43-841e0e1b11ce"><dmn:text>&lt; 10000</dmn:text></dmn:inputEntry><dmn:outputEntry id="_deea1d69-b7b3-4252-b86a-130fb0790047"><dmn:text>"LOW"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_807FCDCB-420A-4AA6-8586-896AAD21AC4D"><dmn:inputEntry id="_AD6CCE53-17F4-4A49-BAC0-2580670DA9CE"><dmn:text>[10000 .. 100000)</dmn:text></dmn:inputEntry><dmn:outputEntry id="_344AC2FD-F091-4F7D-8A7A-853F9DCDF807"><dmn:text>"MEDIUM"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_41361854-FD3A-42AB-A008-F276F08A95D4"><dmn:inputEntry id="_896365B0-4AF8-4614-9CD9-B5E530AED093"><dmn:text>[100000 .. 1000000)</dmn:text></dmn:inputEntry><dmn:outputEntry id="_31447434-EF72-4BF1-922A-80C5E7F32B1B"><dmn:text>"HIGH"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule><dmn:rule id="_FAF66696-8F8D-4792-8F2B-36BB3FBBD94E"><dmn:inputEntry id="_20249EE9-64C8-4EC2-8A31-1361AB1DD89B"><dmn:text>&gt;= 1000000</dmn:text></dmn:inputEntry><dmn:outputEntry id="_948E2510-D4E3-46C6-ACBD-0E83D07750D2"><dmn:text>"VERY HIGH"</dmn:text></dmn:outputEntry><dmn:annotationEntry><dmn:text/></dmn:annotationEntry></dmn:rule></dmn:decisionTable></dmn:decision><dmndi:DMNDI xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/"><dmndi:DMNDiagram id="_76B0F3ED-9C84-45C3-A545-FD75384E8C5F" name="DRG"><di:extension xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/"><kie:ComponentsWidthsExtension xmlns:kie="http://www.drools.org/kie/dmn/1.2"><kie:ComponentWidths dmnElementRef="_15B29FDE-CB6D-47F8-9567-D0754A48FF65"/><kie:ComponentWidths dmnElementRef="_2C289599-8F8E-48EC-ABD3-DD0A39E6886A"/><kie:ComponentWidths dmnElementRef="_e7fe9e47-ea44-4e28-84a2-8a1d401d1e47"/><kie:ComponentWidths dmnElementRef="_F15A62FA-04C3-4353-BDE3-5DA993380E8D"/><kie:ComponentWidths dmnElementRef="_5C3A9AF5-7B56-4181-83BF-16439F87D109"/><kie:ComponentWidths dmnElementRef="_4451CA16-AC39-4F92-9D60-19C11C2FCA80"/><kie:ComponentWidths dmnElementRef="_0448A957-B09D-411C-B869-9751A84CDCA4"/><kie:ComponentWidths dmnElementRef="_C37D32A6-07B7-44F9-9B2E-572FAC4FDBE1"/><kie:ComponentWidths dmnElementRef="_9CBDED88-AF67-460E-A8B1-4F48FB781E93"/><kie:ComponentWidths dmnElementRef="_E582A2B5-05CB-4836-809B-AB130E43CEBA"/><kie:ComponentWidths dmnElementRef="_BE8368DB-A63A-487C-89CB-760C87E095D9"/><kie:ComponentWidths dmnElementRef="_48bfd822-52c1-4fd4-ab00-bd4a91c67aba"/><kie:ComponentWidths dmnElementRef="_AB6E4062-3EBC-455E-B09A-46797E78BEF7"/><kie:ComponentWidths dmnElementRef="_6D3CDF95-A9F7-4AAA-95BF-1EFA1FC8503D"><kie:width>50</kie:width><kie:width>100</kie:width><kie:width>100</kie:width><kie:width>100</kie:width></kie:ComponentWidths></kie:ComponentsWidthsExtension></di:extension><dmndi:DMNShape id="dmnshape-drg-_4054431E-93D3-40E5-ACEF-8F4D6DA45B5A" dmnElementRef="_4054431E-93D3-40E5-ACEF-8F4D6DA45B5A" isCollapsed="false"><dmndi:DMNStyle><dmndi:FillColor red="255" green="255" blue="255"/><dmndi:StrokeColor red="0" green="0" blue="0"/><dmndi:FontColor red="0" green="0" blue="0"/></dmndi:DMNStyle><dc:Bounds xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="50" y="225" width="100" height="50"/><dmndi:DMNLabel/></dmndi:DMNShape><dmndi:DMNShape id="dmnshape-drg-_B4A96E7B-9A87-470C-9868-391085BA0409" dmnElementRef="_B4A96E7B-9A87-470C-9868-391085BA0409" isCollapsed="false"><dmndi:DMNStyle><dmndi:FillColor red="255" green="255" blue="255"/><dmndi:StrokeColor red="0" green="0" blue="0"/><dmndi:FontColor red="0" green="0" blue="0"/></dmndi:DMNStyle><dc:Bounds xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="400" y="225" width="100" height="50"/><dmndi:DMNLabel/></dmndi:DMNShape><dmndi:DMNShape id="dmnshape-drg-_29D9F875-28A1-49F3-A526-09C32C594972" dmnElementRef="_29D9F875-28A1-49F3-A526-09C32C594972" isCollapsed="false"><dmndi:DMNStyle><dmndi:FillColor red="255" green="255" blue="255"/><dmndi:StrokeColor red="0" green="0" blue="0"/><dmndi:FontColor red="0" green="0" blue="0"/></dmndi:DMNStyle><dc:Bounds xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="225" y="400" width="100" height="50"/><dmndi:DMNLabel/></dmndi:DMNShape><dmndi:DMNShape id="dmnshape-drg-_8FE4508B-8FA1-4C49-AB10-7DE5075A9FDB" dmnElementRef="_8FE4508B-8FA1-4C49-AB10-7DE5075A9FDB" isCollapsed="false"><dmndi:DMNStyle><dmndi:FillColor red="255" green="255" blue="255"/><dmndi:StrokeColor red="0" green="0" blue="0"/><dmndi:FontColor red="0" green="0" blue="0"/></dmndi:DMNStyle><dc:Bounds xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="225" y="225" width="100" height="50"/><dmndi:DMNLabel/></dmndi:DMNShape><dmndi:DMNShape id="dmnshape-drg-_58ECD9FC-1269-446F-8792-D8DD0139D7DD" dmnElementRef="_58ECD9FC-1269-446F-8792-D8DD0139D7DD" isCollapsed="false"><dmndi:DMNStyle><dmndi:FillColor red="255" green="255" blue="255"/><dmndi:StrokeColor red="0" green="0" blue="0"/><dmndi:FontColor red="0" green="0" blue="0"/></dmndi:DMNStyle><dc:Bounds xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="400" y="50" width="100" height="50"/><dmndi:DMNLabel/></dmndi:DMNShape><dmndi:DMNShape id="dmnshape-drg-_4F79C025-CBD8-4D5D-88D3-749231C78471" dmnElementRef="_4F79C025-CBD8-4D5D-88D3-749231C78471" isCollapsed="false"><dmndi:DMNStyle><dmndi:FillColor red="255" green="255" blue="255"/><dmndi:StrokeColor red="0" green="0" blue="0"/><dmndi:FontColor red="0" green="0" blue="0"/></dmndi:DMNStyle><dc:Bounds xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="750" y="400" width="100" height="50"/><dmndi:DMNLabel/></dmndi:DMNShape><dmndi:DMNShape id="dmnshape-drg-_A9AD47E9-9DF5-49D6-B0FD-D532A4E0ED85" dmnElementRef="_A9AD47E9-9DF5-49D6-B0FD-D532A4E0ED85" isCollapsed="false"><dmndi:DMNStyle><dmndi:FillColor red="255" green="255" blue="255"/><dmndi:StrokeColor red="0" green="0" blue="0"/><dmndi:FontColor red="0" green="0" blue="0"/></dmndi:DMNStyle><dc:Bounds xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="750" y="225" width="100" height="50"/><dmndi:DMNLabel/></dmndi:DMNShape><dmndi:DMNShape id="dmnshape-drg-_0553d044-5013-4985-8c74-0ad4430388f6" dmnElementRef="_0553d044-5013-4985-8c74-0ad4430388f6" isCollapsed="false"><dmndi:DMNStyle><dmndi:FillColor red="255" green="255" blue="255"/><dmndi:StrokeColor red="0" green="0" blue="0"/><dmndi:FontColor red="0" green="0" blue="0"/></dmndi:DMNStyle><dc:Bounds xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="400" y="400" width="100" height="50"/><dmndi:DMNLabel/></dmndi:DMNShape><dmndi:DMNShape id="dmnshape-drg-_2753AA63-F41B-456C-A01A-64BA9C862C92" dmnElementRef="_2753AA63-F41B-456C-A01A-64BA9C862C92" isCollapsed="false"><dmndi:DMNStyle><dmndi:FillColor red="255" green="255" blue="255"/><dmndi:StrokeColor red="0" green="0" blue="0"/><dmndi:FontColor red="0" green="0" blue="0"/></dmndi:DMNStyle><dc:Bounds xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="575" y="400" width="100" height="50"/><dmndi:DMNLabel/></dmndi:DMNShape><dmndi:DMNShape id="dmnshape-drg-_E35415D9-48FA-4EC3-B406-F71DB65F6820" dmnElementRef="_E35415D9-48FA-4EC3-B406-F71DB65F6820" isCollapsed="false"><dmndi:DMNStyle><dmndi:FillColor red="255" green="255" blue="255"/><dmndi:StrokeColor red="0" green="0" blue="0"/><dmndi:FontColor red="0" green="0" blue="0"/></dmndi:DMNStyle><dc:Bounds xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="50" y="400" width="100" height="50"/><dmndi:DMNLabel/></dmndi:DMNShape><dmndi:DMNShape id="dmnshape-drg-_177F55D1-B87A-4C26-A277-BD73C84725D1" dmnElementRef="_177F55D1-B87A-4C26-A277-BD73C84725D1" isCollapsed="false"><dmndi:DMNStyle><dmndi:FillColor red="255" green="255" blue="255"/><dmndi:StrokeColor red="0" green="0" blue="0"/><dmndi:FontColor red="0" green="0" blue="0"/></dmndi:DMNStyle><dc:Bounds xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="575" y="225" width="100" height="50"/><dmndi:DMNLabel/></dmndi:DMNShape><dmndi:DMNEdge id="dmnedge-drg-_F25C73E9-CB0B-4E08-B039-E3CDD9C53166" dmnElementRef="_F25C73E9-CB0B-4E08-B039-E3CDD9C53166"><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="100" y="425"/><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="100" y="250"/></dmndi:DMNEdge><dmndi:DMNEdge id="dmnedge-drg-_CA1E4D5C-C86F-4CAB-A533-7797901B549D" dmnElementRef="_CA1E4D5C-C86F-4CAB-A533-7797901B549D"><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="625" y="425"/><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="250"/></dmndi:DMNEdge><dmndi:DMNEdge id="dmnedge-drg-_DA8CDE05-7D8E-4223-B7B3-B8284CF7C29E" dmnElementRef="_DA8CDE05-7D8E-4223-B7B3-B8284CF7C29E"><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="275" y="425"/><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="275" y="250"/></dmndi:DMNEdge><dmndi:DMNEdge id="dmnedge-drg-_2828ee17-6064-4af1-934c-85ca427f5127" dmnElementRef="_2828ee17-6064-4af1-934c-85ca427f5127"><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="425"/><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="275" y="250"/></dmndi:DMNEdge><dmndi:DMNEdge id="dmnedge-drg-_7F16E043-589A-4528-95E5-CD7397E2BD4C" dmnElementRef="_7F16E043-589A-4528-95E5-CD7397E2BD4C"><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="100" y="250"/><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="75"/></dmndi:DMNEdge><dmndi:DMNEdge id="dmnedge-drg-_178C36DB-0BFB-47F3-AB33-1AF7D62E8435" dmnElementRef="_178C36DB-0BFB-47F3-AB33-1AF7D62E8435"><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="625" y="250"/><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="75"/></dmndi:DMNEdge><dmndi:DMNEdge id="dmnedge-drg-_515C1ECC-F105-4562-90A6-532FF4AEDF2B" dmnElementRef="_515C1ECC-F105-4562-90A6-532FF4AEDF2B"><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="250"/><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="75"/></dmndi:DMNEdge><dmndi:DMNEdge id="dmnedge-drg-_B3F4E84C-A55F-436B-AAA6-4D527159F6B4" dmnElementRef="_B3F4E84C-A55F-436B-AAA6-4D527159F6B4"><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="800" y="250"/><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="75"/></dmndi:DMNEdge><dmndi:DMNEdge id="dmnedge-drg-_D0A3AC36-8F37-4E1E-9B68-A19E98718A93" dmnElementRef="_D0A3AC36-8F37-4E1E-9B68-A19E98718A93"><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="275" y="250"/><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="75"/></dmndi:DMNEdge><dmndi:DMNEdge id="dmnedge-drg-_FAECA778-F504-4A12-93CC-A57B264DF7CF" dmnElementRef="_FAECA778-F504-4A12-93CC-A57B264DF7CF"><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="800" y="425"/><di:waypoint xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="625" y="250"/></dmndi:DMNEdge></dmndi:DMNDiagram></dmndi:DMNDI></dmn:definitions>
+<dmn:definitions
+	xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" name="KYC"
+	expressionLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/"
+	typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/"
+	id="kyc_api_2022_impl_v1_2"
+	namespace="urn://kyc.g.a.net/api/2022">
+	<dmn:extensionElements />
+	<dmn:itemDefinition
+		id="_0EEA172F-87D4-4C49-A366-EE7C89759341" name="Level"
+		isCollection="false">
+		<dmn:typeRef>string</dmn:typeRef>
+		<dmn:allowedValues
+			drools:constraintType="enumeration"
+			xmlns:drools="http://www.drools.org/kie/dmn/1.2"
+			id="_C042D2BE-413B-4316-A5AF-A1590073A2AE">
+			<dmn:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn:text>
+		</dmn:allowedValues>
+	</dmn:itemDefinition>
+	<dmn:itemDefinition
+		id="_CC99F910-3102-4389-A17C-1146F2A7B451" name="Country"
+		isCollection="false">
+		<dmn:typeRef>string</dmn:typeRef>
+		<dmn:allowedValues
+			drools:constraintType="enumeration"
+			xmlns:drools="http://www.drools.org/kie/dmn/1.2"
+			id="_992DC3A6-EC36-4B3F-BD3E-1CAB3B8A6990">
+			<dmn:text>"FR", "GB", "CY", "JP", "RU", "KP"</dmn:text>
+		</dmn:allowedValues>
+	</dmn:itemDefinition>
+	<dmn:itemDefinition
+		id="_05D1E83A-CC49-4D5F-8CC2-A2F8B92E42CD" name="KYC"
+		isCollection="false">
+		<dmn:itemComponent
+			id="_648FFD05-4B5D-4B0B-9F25-0C8AA87DB763" name="Level"
+			isCollection="false">
+			<dmn:typeRef>string</dmn:typeRef>
+		</dmn:itemComponent>
+		<dmn:itemComponent
+			id="_4ACD8A89-B8B7-4411-9BC4-BFAAFBE31664" name="Score"
+			isCollection="false">
+			<dmn:typeRef>number</dmn:typeRef>
+		</dmn:itemComponent>
+	</dmn:itemDefinition>
+	<dmn:decision id="_4054431E-93D3-40E5-ACEF-8F4D6DA45B5A"
+		name="PEP Rule">
+		<dmn:extensionElements />
+		<dmn:variable id="_D4B524B7-DC1B-48AA-BA80-95173838AD61"
+			name="PEP Rule" typeRef="Level" />
+		<dmn:informationRequirement
+			id="_F25C73E9-CB0B-4E08-B039-E3CDD9C53166">
+			<dmn:requiredInput
+				href="#_E35415D9-48FA-4EC3-B406-F71DB65F6820" />
+		</dmn:informationRequirement>
+		<dmn:decisionTable
+			id="_15B29FDE-CB6D-47F8-9567-D0754A48FF65" typeRef="Level"
+			hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row"
+			outputLabel="PEP Rule">
+			<dmn:input id="_86B9D3BE-F5F2-41B3-9196-1919CA5C5A90">
+				<dmn:inputExpression
+					id="_0E78E517-0D00-4C9B-B1C9-C019CE0A15C1" typeRef="boolean">
+					<dmn:text>PEP</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:output id="_B3B52235-4C37-4DCF-82B6-3289F7707AEE">
+				<dmn:outputValues
+					id="_444F0DF4-F508-490F-9ED4-1029618CD8A0">
+					<dmn:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn:text>
+				</dmn:outputValues>
+			</dmn:output>
+			<dmn:annotation name="annotation-1" />
+			<dmn:rule id="_9EBB155F-0B0E-456E-B798-B6FC1E12B967">
+				<dmn:inputEntry
+					id="_728FF3CA-06D2-4805-8BB6-2DB900A2F1EA">
+					<dmn:text>false</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry
+					id="_B3D8FA31-8BFE-4952-B137-368D1CF21D5C">
+					<dmn:text>"LOW"</dmn:text>
+				</dmn:outputEntry>
+				<dmn:annotationEntry>
+					<dmn:text />
+				</dmn:annotationEntry>
+			</dmn:rule>
+			<dmn:rule id="_B0DC7A8D-C154-4FAC-85C0-514285B8915F">
+				<dmn:inputEntry
+					id="_A108D8A1-7579-44EE-947C-FFD281FAEE87">
+					<dmn:text>true</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry
+					id="_E398F824-C54E-45AA-8282-61D772C3FA50">
+					<dmn:text>"HIGH"</dmn:text>
+				</dmn:outputEntry>
+				<dmn:annotationEntry>
+					<dmn:text />
+				</dmn:annotationEntry>
+			</dmn:rule>
+		</dmn:decisionTable>
+	</dmn:decision>
+	<dmn:decision id="_B4A96E7B-9A87-470C-9868-391085BA0409"
+		name="Fiscal Residency Rule">
+		<dmn:extensionElements />
+		<dmn:variable id="_13705C2C-051A-40E1-8BF8-053746BEFF83"
+			name="Fiscal Residency Rule" typeRef="Level" />
+		<dmn:informationRequirement
+			id="_CA1E4D5C-C86F-4CAB-A533-7797901B549D">
+			<dmn:requiredInput
+				href="#_2753AA63-F41B-456C-A01A-64BA9C862C92" />
+		</dmn:informationRequirement>
+		<dmn:decisionTable
+			id="_2C289599-8F8E-48EC-ABD3-DD0A39E6886A" typeRef="Level"
+			hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row"
+			outputLabel="Fiscal Residency Rule">
+			<dmn:input id="_927DF80C-3072-4A8D-BBD1-4293B5EBFB8E">
+				<dmn:inputExpression
+					id="_AD794E53-5F25-4D73-8720-4A2CFAAAEBBD" typeRef="Country">
+					<dmn:text>Fiscal Residency</dmn:text>
+				</dmn:inputExpression>
+				<dmn:inputValues
+					id="_CB92AA26-0256-4FA4-8465-60C6891E6BA1">
+					<dmn:text>"FR", "GB", "CY", "JP", "RU", "KP"</dmn:text>
+				</dmn:inputValues>
+			</dmn:input>
+			<dmn:output id="_04F5A31A-6DC1-4C41-881A-3737701069E3">
+				<dmn:outputValues
+					id="_752DEDC7-4DC3-486C-862F-FB6EF741AF5B">
+					<dmn:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn:text>
+				</dmn:outputValues>
+			</dmn:output>
+			<dmn:annotation name="annotation-2" />
+			<dmn:rule id="_CA9A8705-B5B7-44A1-A5BA-65C786FC9870">
+				<dmn:inputEntry
+					id="_29E60D0F-660E-4383-8495-82065325F09D">
+					<dmn:text>"FR"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry
+					id="_BF59415B-49C9-4A03-A883-176EB6C0E9B0">
+					<dmn:text>"LOW"</dmn:text>
+				</dmn:outputEntry>
+				<dmn:annotationEntry>
+					<dmn:text />
+				</dmn:annotationEntry>
+			</dmn:rule>
+			<dmn:rule id="_2B0B5601-945E-4F17-B417-05EE01C9F0AA">
+				<dmn:inputEntry
+					id="_C7E46E31-1F3C-4CCC-A34A-BA4E5B5DA578">
+					<dmn:text>"GB"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry
+					id="_2BE4C24E-ECD6-4900-BA30-795ECB00B6F4">
+					<dmn:text>"LOW"</dmn:text>
+				</dmn:outputEntry>
+				<dmn:annotationEntry>
+					<dmn:text />
+				</dmn:annotationEntry>
+			</dmn:rule>
+			<dmn:rule id="_D8AD7A38-2E27-4783-AB64-738B42AFB087">
+				<dmn:inputEntry
+					id="_A3EC7997-B3D6-4F16-B9A9-A658CC160B04">
+					<dmn:text>"JP"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry
+					id="_8E9743BC-E200-4CAC-82E6-B5BA95B7B214">
+					<dmn:text>"LOW"</dmn:text>
+				</dmn:outputEntry>
+				<dmn:annotationEntry>
+					<dmn:text />
+				</dmn:annotationEntry>
+			</dmn:rule>
+			<dmn:rule id="_8BF961D6-B70B-4A98-A9CC-63D844A0D313">
+				<dmn:inputEntry
+					id="_AF139BA8-40C2-4B86-8D94-879067D6737D">
+					<dmn:text>"CY"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry
+					id="_38AADD19-30D1-454D-9D22-67A25E1D6CB0">
+					<dmn:text>"MEDIUM"</dmn:text>
+				</dmn:outputEntry>
+				<dmn:annotationEntry>
+					<dmn:text />
+				</dmn:annotationEntry>
+			</dmn:rule>
+			<dmn:rule id="_A52551B2-4B72-4810-8220-C90F74A3696E">
+				<dmn:inputEntry
+					id="_D5A954A2-C7A2-44C9-81E9-60CBEBBA3B01">
+					<dmn:text>"RU"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry
+					id="_33A248F7-6270-40D9-ACEC-5ADCE3EC24E7">
+					<dmn:text>"HIGH"</dmn:text>
+				</dmn:outputEntry>
+				<dmn:annotationEntry>
+					<dmn:text />
+				</dmn:annotationEntry>
+			</dmn:rule>
+			<dmn:rule id="_1E80E72E-D94A-4A72-B898-689D64D066CD">
+				<dmn:inputEntry
+					id="_87F629A4-ABD4-483A-B0AA-B42B13809E9B">
+					<dmn:text>"KP"</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry
+					id="_1AF30616-BD7F-49FC-8512-27FA8792D7B7">
+					<dmn:text>"VERY HIGH"</dmn:text>
+				</dmn:outputEntry>
+				<dmn:annotationEntry>
+					<dmn:text />
+				</dmn:annotationEntry>
+			</dmn:rule>
+		</dmn:decisionTable>
+	</dmn:decision>
+	<dmn:businessKnowledgeModel
+		id="_29D9F875-28A1-49F3-A526-09C32C594972" name="Level to Int">
+		<dmn:extensionElements />
+		<dmn:variable id="_03F8F158-D54D-4242-9550-9704322610A8"
+			name="Level to Int" typeRef="number" />
+		<dmn:encapsulatedLogic
+			id="_F15A62FA-04C3-4353-BDE3-5DA993380E8D" typeRef="number"
+			kind="FEEL">
+			<dmn:formalParameter
+				id="_E6C8BD6F-C4B2-4E8E-A530-3A6BAEC2CF17" name="Level"
+				typeRef="Level" />
+			<dmn:decisionTable
+				id="_e7fe9e47-ea44-4e28-84a2-8a1d401d1e47" typeRef="number"
+				hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row"
+				outputLabel="Level to Int">
+				<dmn:input id="_3150c91e-6991-4cc5-a2e5-e8f8a743a334">
+					<dmn:inputExpression
+						id="_D260CBF7-3507-4F17-8736-D29AC00D1E18" typeRef="Level">
+						<dmn:text>Level</dmn:text>
+					</dmn:inputExpression>
+					<dmn:inputValues
+						id="_A12801E1-B232-4BED-A6A0-2E06AE07D5A7">
+						<dmn:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH",null</dmn:text>
+					</dmn:inputValues>
+				</dmn:input>
+				<dmn:output id="_4022f525-b8f8-472d-96c3-41d8e7f0c00b" />
+				<dmn:annotation name="Description" />
+				<dmn:rule id="_02e750f2-44a2-45f3-a873-11961c6ce71d">
+					<dmn:inputEntry
+						id="_478fabcd-a846-4a25-a362-e6d242b003c3">
+						<dmn:text>"LOW"</dmn:text>
+					</dmn:inputEntry>
+					<dmn:outputEntry
+						id="_df918326-d397-4263-a5b2-8979bccf2142">
+						<dmn:text>1</dmn:text>
+					</dmn:outputEntry>
+					<dmn:annotationEntry>
+						<dmn:text />
+					</dmn:annotationEntry>
+				</dmn:rule>
+				<dmn:rule id="_13b81d93-14aa-4bd0-a922-d1617f115469">
+					<dmn:inputEntry
+						id="_e96e619a-b4ca-4b01-8d42-5f62479d6188">
+						<dmn:text>"MEDIUM"</dmn:text>
+					</dmn:inputEntry>
+					<dmn:outputEntry
+						id="_4aa885ae-ea22-4eae-b361-a4e44b2ad8b8">
+						<dmn:text>2</dmn:text>
+					</dmn:outputEntry>
+					<dmn:annotationEntry>
+						<dmn:text />
+					</dmn:annotationEntry>
+				</dmn:rule>
+				<dmn:rule id="_9adb40e6-4afd-4a86-a62c-dedc0a9c631a">
+					<dmn:inputEntry
+						id="_4d16fb7b-74aa-4c5e-bceb-315b94f9efde">
+						<dmn:text>"HIGH"</dmn:text>
+					</dmn:inputEntry>
+					<dmn:outputEntry
+						id="_d269b6c5-3065-4238-be6b-31dfbd90e3f5">
+						<dmn:text>3</dmn:text>
+					</dmn:outputEntry>
+					<dmn:annotationEntry>
+						<dmn:text />
+					</dmn:annotationEntry>
+				</dmn:rule>
+				<dmn:rule id="_e2ab9ff4-99da-4e52-8ecb-ec043f6ff574">
+					<dmn:inputEntry
+						id="_1cfb6c83-0e8c-4109-9720-700cc562a455">
+						<dmn:text>"VERY HIGH"</dmn:text>
+					</dmn:inputEntry>
+					<dmn:outputEntry
+						id="_628b1abe-6516-46b0-ac6a-21c241090cc0">
+						<dmn:text>4</dmn:text>
+					</dmn:outputEntry>
+					<dmn:annotationEntry>
+						<dmn:text />
+					</dmn:annotationEntry>
+				</dmn:rule>
+			</dmn:decisionTable>
+		</dmn:encapsulatedLogic>
+	</dmn:businessKnowledgeModel>
+	<dmn:businessKnowledgeModel
+		id="_8FE4508B-8FA1-4C49-AB10-7DE5075A9FDB" name="Max Level">
+		<dmn:extensionElements />
+		<dmn:variable id="_71F81A37-8D20-4294-85D0-65BE7D687BA7"
+			name="Max Level" typeRef="Level" />
+		<dmn:encapsulatedLogic
+			id="_4451CA16-AC39-4F92-9D60-19C11C2FCA80" typeRef="Level"
+			kind="FEEL">
+			<dmn:formalParameter
+				id="_a42735a9-05f8-4d14-bd1e-d52cf43ccbea" name="list of Level"
+				typeRef="Any" />
+			<dmn:literalExpression
+				id="_5C3A9AF5-7B56-4181-83BF-16439F87D109" typeRef="Level">
+				<dmn:text>Int to Level(max(for l in list of Level return Level to
+					Int(l)))</dmn:text>
+			</dmn:literalExpression>
+		</dmn:encapsulatedLogic>
+		<dmn:knowledgeRequirement
+			id="_DA8CDE05-7D8E-4223-B7B3-B8284CF7C29E">
+			<dmn:requiredKnowledge
+				href="#_29D9F875-28A1-49F3-A526-09C32C594972" />
+		</dmn:knowledgeRequirement>
+		<dmn:knowledgeRequirement
+			id="_2828ee17-6064-4af1-934c-85ca427f5127">
+			<dmn:requiredKnowledge
+				href="#_0553d044-5013-4985-8c74-0ad4430388f6" />
+		</dmn:knowledgeRequirement>
+	</dmn:businessKnowledgeModel>
+	<dmn:decision id="_58ECD9FC-1269-446F-8792-D8DD0139D7DD"
+		name="KYC">
+		<dmn:extensionElements />
+		<dmn:variable id="_C1863CBA-D16C-490F-8F56-7485684A9F71"
+			name="KYC" typeRef="KYC" />
+		<dmn:informationRequirement
+			id="_7F16E043-589A-4528-95E5-CD7397E2BD4C">
+			<dmn:requiredDecision
+				href="#_4054431E-93D3-40E5-ACEF-8F4D6DA45B5A" />
+		</dmn:informationRequirement>
+		<dmn:informationRequirement
+			id="_178C36DB-0BFB-47F3-AB33-1AF7D62E8435">
+			<dmn:requiredDecision
+				href="#_177F55D1-B87A-4C26-A277-BD73C84725D1" />
+		</dmn:informationRequirement>
+		<dmn:informationRequirement
+			id="_515C1ECC-F105-4562-90A6-532FF4AEDF2B">
+			<dmn:requiredDecision
+				href="#_B4A96E7B-9A87-470C-9868-391085BA0409" />
+		</dmn:informationRequirement>
+		<dmn:knowledgeRequirement
+			id="_B3F4E84C-A55F-436B-AAA6-4D527159F6B4">
+			<dmn:requiredKnowledge
+				href="#_A9AD47E9-9DF5-49D6-B0FD-D532A4E0ED85" />
+		</dmn:knowledgeRequirement>
+		<dmn:knowledgeRequirement
+			id="_D0A3AC36-8F37-4E1E-9B68-A19E98718A93">
+			<dmn:requiredKnowledge
+				href="#_8FE4508B-8FA1-4C49-AB10-7DE5075A9FDB" />
+		</dmn:knowledgeRequirement>
+		<dmn:context id="_0448A957-B09D-411C-B869-9751A84CDCA4"
+			typeRef="KYC">
+			<dmn:contextEntry>
+				<dmn:variable
+					id="_5E8E0B70-81DF-404E-9B0F-7EA92FB05C93" name="Level"
+					typeRef="string" />
+				<dmn:literalExpression
+					id="_C37D32A6-07B7-44F9-9B2E-572FAC4FDBE1">
+					<dmn:text>sum([Level to Score(PEP Rule),Level to Score(Amount
+						Rule),Level to Score(Fiscal Residency Rule)])</dmn:text>
+				</dmn:literalExpression>
+			</dmn:contextEntry>
+			<dmn:contextEntry>
+				<dmn:variable
+					id="_84B65845-0245-4367-87B8-802C053BBC94" name="Score"
+					typeRef="string" />
+				<dmn:literalExpression
+					id="_9CBDED88-AF67-460E-A8B1-4F48FB781E93">
+					<dmn:text>Max Level([PEP Rule, Amount Rule, Fiscal Residency Rule])
+					</dmn:text>
+				</dmn:literalExpression>
+			</dmn:contextEntry>
+		</dmn:context>
+	</dmn:decision>
+	<dmn:inputData id="_4F79C025-CBD8-4D5D-88D3-749231C78471"
+		name="Amount">
+		<dmn:extensionElements />
+		<dmn:variable id="_5AA55784-4333-4145-93A1-340A0A04EFF6"
+			name="Amount" typeRef="number" />
+	</dmn:inputData>
+	<dmn:businessKnowledgeModel
+		id="_A9AD47E9-9DF5-49D6-B0FD-D532A4E0ED85" name="Level to Score">
+		<dmn:extensionElements />
+		<dmn:variable id="_B4CCA1E9-DD9D-4BCA-915C-2E16EA3C6E3C"
+			name="Level to Score" typeRef="number" />
+		<dmn:encapsulatedLogic
+			id="_BE8368DB-A63A-487C-89CB-760C87E095D9" typeRef="number"
+			kind="FEEL">
+			<dmn:formalParameter
+				id="_611E4250-E6AD-4FE8-AD94-42BF59499754" name="Level"
+				typeRef="Level" />
+			<dmn:decisionTable
+				id="_E582A2B5-05CB-4836-809B-AB130E43CEBA" typeRef="number"
+				hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row"
+				outputLabel="Level to Score">
+				<dmn:input id="_9B2026A4-2E1B-4553-9262-F8C286075AD1">
+					<dmn:inputExpression
+						id="_6295BF03-CC4F-4227-B688-6BECE5732709" typeRef="Level">
+						<dmn:text>Level</dmn:text>
+					</dmn:inputExpression>
+					<dmn:inputValues
+						id="_8A469FF5-613D-43BC-9FAD-E07B4BA7F912">
+						<dmn:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn:text>
+					</dmn:inputValues>
+				</dmn:input>
+				<dmn:output id="_3C6C9098-095F-4CFD-AC6E-BA4A1BA8BFF0" />
+				<dmn:annotation name="annotation-1" />
+				<dmn:rule id="_479244BF-C8F8-4A9C-A5BC-E1D1D1C29FEF">
+					<dmn:inputEntry
+						id="_CEDAD624-C8B7-4010-9928-5BE3DE44B852">
+						<dmn:text>"LOW"</dmn:text>
+					</dmn:inputEntry>
+					<dmn:outputEntry
+						id="_A04AB4A6-CD3A-499F-9938-FD078FD0FA8F">
+						<dmn:text>0</dmn:text>
+					</dmn:outputEntry>
+					<dmn:annotationEntry>
+						<dmn:text />
+					</dmn:annotationEntry>
+				</dmn:rule>
+				<dmn:rule id="_A293A2EB-4A8A-4545-BC6D-E1CBF145F0B8">
+					<dmn:inputEntry
+						id="_DA72F453-7089-41E8-8956-ABE0AD910407">
+						<dmn:text>"MEDIUM"</dmn:text>
+					</dmn:inputEntry>
+					<dmn:outputEntry
+						id="_8499621F-B7EC-4404-93E9-5B859D831460">
+						<dmn:text>25</dmn:text>
+					</dmn:outputEntry>
+					<dmn:annotationEntry>
+						<dmn:text />
+					</dmn:annotationEntry>
+				</dmn:rule>
+				<dmn:rule id="_703AD01C-3F47-473A-BCC4-2BB0AC064A85">
+					<dmn:inputEntry
+						id="_FF239228-999B-4AC0-ACAA-E6C0A87CA59A">
+						<dmn:text>"HIGH"</dmn:text>
+					</dmn:inputEntry>
+					<dmn:outputEntry
+						id="_A34044EB-F09E-4E8D-9E69-DD525CE1AB5F">
+						<dmn:text>75</dmn:text>
+					</dmn:outputEntry>
+					<dmn:annotationEntry>
+						<dmn:text />
+					</dmn:annotationEntry>
+				</dmn:rule>
+				<dmn:rule id="_A937F496-C570-4374-933D-39EF9B13FF97">
+					<dmn:inputEntry
+						id="_A3D0BCBD-3A05-4893-A388-EA7645C38628">
+						<dmn:text>"VERY HIGH"</dmn:text>
+					</dmn:inputEntry>
+					<dmn:outputEntry
+						id="_F03A26FC-F3FB-4CAC-A2BD-75B44C99BD81">
+						<dmn:text>100</dmn:text>
+					</dmn:outputEntry>
+					<dmn:annotationEntry>
+						<dmn:text />
+					</dmn:annotationEntry>
+				</dmn:rule>
+			</dmn:decisionTable>
+		</dmn:encapsulatedLogic>
+	</dmn:businessKnowledgeModel>
+	<dmn:businessKnowledgeModel
+		id="_0553d044-5013-4985-8c74-0ad4430388f6" name="Int to Level">
+		<dmn:extensionElements />
+		<dmn:variable id="_aeeb1564-3885-47ad-bc87-85b3d937b80b"
+			name="Int to Level" typeRef="Level" />
+		<dmn:encapsulatedLogic
+			id="_AB6E4062-3EBC-455E-B09A-46797E78BEF7" typeRef="Level"
+			kind="FEEL">
+			<dmn:formalParameter
+				id="_2D131BE8-831D-4357-A6BA-82EDA9701A57" name="Int"
+				typeRef="number" />
+			<dmn:decisionTable
+				id="_48bfd822-52c1-4fd4-ab00-bd4a91c67aba" typeRef="Level"
+				hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row"
+				outputLabel="Int to Level">
+				<dmn:input id="_85b7ef6e-a0b5-4dc4-b17b-8ab69f90f157">
+					<dmn:inputExpression
+						id="_39B535AB-E174-4E9B-A92B-8220244ED54F" typeRef="number">
+						<dmn:text>Int</dmn:text>
+					</dmn:inputExpression>
+				</dmn:input>
+				<dmn:output id="_e2164ce3-3afc-4240-ab94-16224ada2ed3">
+					<dmn:outputValues
+						id="_D7058063-EEF8-4DB2-BFF9-EA82C5B03DDA">
+						<dmn:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn:text>
+					</dmn:outputValues>
+				</dmn:output>
+				<dmn:annotation name="Description" />
+				<dmn:rule id="_4737c5f1-a3cd-417b-bfe7-4905bb10390b">
+					<dmn:inputEntry
+						id="_881e8e5f-6f79-438a-928d-9006c00ef135">
+						<dmn:text>1</dmn:text>
+					</dmn:inputEntry>
+					<dmn:outputEntry
+						id="_e73f5c1c-0de2-4d6e-a4d5-d2f5f05908c9">
+						<dmn:text>"LOW"</dmn:text>
+					</dmn:outputEntry>
+					<dmn:annotationEntry>
+						<dmn:text />
+					</dmn:annotationEntry>
+				</dmn:rule>
+				<dmn:rule id="_78a4835d-1cba-4d39-9083-a40cfa702aff">
+					<dmn:inputEntry
+						id="_f4cde268-fda4-4c56-8378-22b97edd9e69">
+						<dmn:text>2</dmn:text>
+					</dmn:inputEntry>
+					<dmn:outputEntry
+						id="_3021b563-b6fb-47e9-8e7b-3f7583846722">
+						<dmn:text>"MEDIUM"</dmn:text>
+					</dmn:outputEntry>
+					<dmn:annotationEntry>
+						<dmn:text />
+					</dmn:annotationEntry>
+				</dmn:rule>
+				<dmn:rule id="_73d4b8b0-6ecf-400e-8da5-44048b853752">
+					<dmn:inputEntry
+						id="_c1f07e1f-5f24-4950-b2d2-d301c50313fd">
+						<dmn:text>3</dmn:text>
+					</dmn:inputEntry>
+					<dmn:outputEntry
+						id="_149f50e5-bdcb-4b81-8d49-aab29913df94">
+						<dmn:text>"HIGH"</dmn:text>
+					</dmn:outputEntry>
+					<dmn:annotationEntry>
+						<dmn:text />
+					</dmn:annotationEntry>
+				</dmn:rule>
+				<dmn:rule id="_43048da5-0eb1-4f82-9d0e-214a5f4fcafc">
+					<dmn:inputEntry
+						id="_b4050f4e-da3e-4c7c-91d4-6dfd70000c5f">
+						<dmn:text>4</dmn:text>
+					</dmn:inputEntry>
+					<dmn:outputEntry
+						id="_ed977f26-c964-442c-84ff-6d85d0812ff3">
+						<dmn:text>"VERY HIGH"</dmn:text>
+					</dmn:outputEntry>
+					<dmn:annotationEntry>
+						<dmn:text />
+					</dmn:annotationEntry>
+				</dmn:rule>
+			</dmn:decisionTable>
+		</dmn:encapsulatedLogic>
+	</dmn:businessKnowledgeModel>
+	<dmn:inputData id="_2753AA63-F41B-456C-A01A-64BA9C862C92"
+		name="Fiscal Residency">
+		<dmn:extensionElements />
+		<dmn:variable id="_A7BD23B4-1153-42A5-BE8A-DBD5ACCB9F30"
+			name="Fiscal Residency" typeRef="Any" />
+	</dmn:inputData>
+	<dmn:inputData id="_E35415D9-48FA-4EC3-B406-F71DB65F6820"
+		name="PEP">
+		<dmn:extensionElements />
+		<dmn:variable id="_234FED5C-CB32-43A4-AD99-AB37FBC80DC0"
+			name="PEP" typeRef="boolean" />
+	</dmn:inputData>
+	<dmn:decision id="_177F55D1-B87A-4C26-A277-BD73C84725D1"
+		name="Amount Rule">
+		<dmn:extensionElements />
+		<dmn:variable id="_ED6C1976-3B92-416F-BF15-BA33320D71CA"
+			name="Amount Rule" typeRef="Level" />
+		<dmn:informationRequirement
+			id="_FAECA778-F504-4A12-93CC-A57B264DF7CF">
+			<dmn:requiredInput
+				href="#_4F79C025-CBD8-4D5D-88D3-749231C78471" />
+		</dmn:informationRequirement>
+		<dmn:decisionTable
+			id="_6D3CDF95-A9F7-4AAA-95BF-1EFA1FC8503D" typeRef="Level"
+			hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row"
+			outputLabel="Amount Rule">
+			<dmn:input id="_91D002BC-089D-4812-99E9-E4D3F3AD219B">
+				<dmn:inputExpression
+					id="_FB0C9740-B1C6-4221-897E-22C8C098B518" typeRef="number">
+					<dmn:text>Amount</dmn:text>
+				</dmn:inputExpression>
+			</dmn:input>
+			<dmn:output id="_0D766D3E-D2E4-4663-8957-CCDCE1BE9A9C">
+				<dmn:outputValues
+					id="_19CEF688-4EEA-41C2-8FAF-6781BAD3B4D8">
+					<dmn:text>"LOW", "MEDIUM", "HIGH", "VERY HIGH"</dmn:text>
+				</dmn:outputValues>
+			</dmn:output>
+			<dmn:annotation name="annotation-1" />
+			<dmn:rule id="_2a86031b-7dd4-4aaf-9aaf-c5fe8705e310">
+				<dmn:inputEntry
+					id="_a7bf5d9a-b5e1-4f30-bb43-841e0e1b11ce">
+					<dmn:text>&lt; 10000</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry
+					id="_deea1d69-b7b3-4252-b86a-130fb0790047">
+					<dmn:text>"LOW"</dmn:text>
+				</dmn:outputEntry>
+				<dmn:annotationEntry>
+					<dmn:text />
+				</dmn:annotationEntry>
+			</dmn:rule>
+			<dmn:rule id="_807FCDCB-420A-4AA6-8586-896AAD21AC4D">
+				<dmn:inputEntry
+					id="_AD6CCE53-17F4-4A49-BAC0-2580670DA9CE">
+					<dmn:text>[10000 .. 100000)</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry
+					id="_344AC2FD-F091-4F7D-8A7A-853F9DCDF807">
+					<dmn:text>"MEDIUM"</dmn:text>
+				</dmn:outputEntry>
+				<dmn:annotationEntry>
+					<dmn:text />
+				</dmn:annotationEntry>
+			</dmn:rule>
+			<dmn:rule id="_41361854-FD3A-42AB-A008-F276F08A95D4">
+				<dmn:inputEntry
+					id="_896365B0-4AF8-4614-9CD9-B5E530AED093">
+					<dmn:text>[100000 .. 1000000)</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry
+					id="_31447434-EF72-4BF1-922A-80C5E7F32B1B">
+					<dmn:text>"HIGH"</dmn:text>
+				</dmn:outputEntry>
+				<dmn:annotationEntry>
+					<dmn:text />
+				</dmn:annotationEntry>
+			</dmn:rule>
+			<dmn:rule id="_FAF66696-8F8D-4792-8F2B-36BB3FBBD94E">
+				<dmn:inputEntry
+					id="_20249EE9-64C8-4EC2-8A31-1361AB1DD89B">
+					<dmn:text>&gt;= 1000000</dmn:text>
+				</dmn:inputEntry>
+				<dmn:outputEntry
+					id="_948E2510-D4E3-46C6-ACBD-0E83D07750D2">
+					<dmn:text>"VERY HIGH"</dmn:text>
+				</dmn:outputEntry>
+				<dmn:annotationEntry>
+					<dmn:text />
+				</dmn:annotationEntry>
+			</dmn:rule>
+		</dmn:decisionTable>
+	</dmn:decision>
+	<dmndi:DMNDI
+		xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/">
+		<dmndi:DMNDiagram
+			id="_76B0F3ED-9C84-45C3-A545-FD75384E8C5F" name="DRG">
+			<di:extension
+				xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/">
+				<kie:ComponentsWidthsExtension
+					xmlns:kie="http://www.drools.org/kie/dmn/1.2">
+					<kie:ComponentWidths
+						dmnElementRef="_15B29FDE-CB6D-47F8-9567-D0754A48FF65" />
+					<kie:ComponentWidths
+						dmnElementRef="_2C289599-8F8E-48EC-ABD3-DD0A39E6886A" />
+					<kie:ComponentWidths
+						dmnElementRef="_e7fe9e47-ea44-4e28-84a2-8a1d401d1e47" />
+					<kie:ComponentWidths
+						dmnElementRef="_F15A62FA-04C3-4353-BDE3-5DA993380E8D" />
+					<kie:ComponentWidths
+						dmnElementRef="_5C3A9AF5-7B56-4181-83BF-16439F87D109" />
+					<kie:ComponentWidths
+						dmnElementRef="_4451CA16-AC39-4F92-9D60-19C11C2FCA80" />
+					<kie:ComponentWidths
+						dmnElementRef="_0448A957-B09D-411C-B869-9751A84CDCA4" />
+					<kie:ComponentWidths
+						dmnElementRef="_C37D32A6-07B7-44F9-9B2E-572FAC4FDBE1" />
+					<kie:ComponentWidths
+						dmnElementRef="_9CBDED88-AF67-460E-A8B1-4F48FB781E93" />
+					<kie:ComponentWidths
+						dmnElementRef="_E582A2B5-05CB-4836-809B-AB130E43CEBA" />
+					<kie:ComponentWidths
+						dmnElementRef="_BE8368DB-A63A-487C-89CB-760C87E095D9" />
+					<kie:ComponentWidths
+						dmnElementRef="_48bfd822-52c1-4fd4-ab00-bd4a91c67aba" />
+					<kie:ComponentWidths
+						dmnElementRef="_AB6E4062-3EBC-455E-B09A-46797E78BEF7" />
+					<kie:ComponentWidths
+						dmnElementRef="_6D3CDF95-A9F7-4AAA-95BF-1EFA1FC8503D">
+						<kie:width>50</kie:width>
+						<kie:width>100</kie:width>
+						<kie:width>100</kie:width>
+						<kie:width>100</kie:width>
+					</kie:ComponentWidths>
+				</kie:ComponentsWidthsExtension>
+			</di:extension>
+			<dmndi:DMNShape
+				id="dmnshape-drg-_4054431E-93D3-40E5-ACEF-8F4D6DA45B5A"
+				dmnElementRef="_4054431E-93D3-40E5-ACEF-8F4D6DA45B5A"
+				isCollapsed="false">
+				<dmndi:DMNStyle>
+					<dmndi:FillColor red="255" green="255" blue="255" />
+					<dmndi:StrokeColor red="0" green="0" blue="0" />
+					<dmndi:FontColor red="0" green="0" blue="0" />
+				</dmndi:DMNStyle>
+				<dc:Bounds
+					xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="50" y="225"
+					width="100" height="50" />
+				<dmndi:DMNLabel />
+			</dmndi:DMNShape>
+			<dmndi:DMNShape
+				id="dmnshape-drg-_B4A96E7B-9A87-470C-9868-391085BA0409"
+				dmnElementRef="_B4A96E7B-9A87-470C-9868-391085BA0409"
+				isCollapsed="false">
+				<dmndi:DMNStyle>
+					<dmndi:FillColor red="255" green="255" blue="255" />
+					<dmndi:StrokeColor red="0" green="0" blue="0" />
+					<dmndi:FontColor red="0" green="0" blue="0" />
+				</dmndi:DMNStyle>
+				<dc:Bounds
+					xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="400" y="225"
+					width="100" height="50" />
+				<dmndi:DMNLabel />
+			</dmndi:DMNShape>
+			<dmndi:DMNShape
+				id="dmnshape-drg-_29D9F875-28A1-49F3-A526-09C32C594972"
+				dmnElementRef="_29D9F875-28A1-49F3-A526-09C32C594972"
+				isCollapsed="false">
+				<dmndi:DMNStyle>
+					<dmndi:FillColor red="255" green="255" blue="255" />
+					<dmndi:StrokeColor red="0" green="0" blue="0" />
+					<dmndi:FontColor red="0" green="0" blue="0" />
+				</dmndi:DMNStyle>
+				<dc:Bounds
+					xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="225" y="400"
+					width="100" height="50" />
+				<dmndi:DMNLabel />
+			</dmndi:DMNShape>
+			<dmndi:DMNShape
+				id="dmnshape-drg-_8FE4508B-8FA1-4C49-AB10-7DE5075A9FDB"
+				dmnElementRef="_8FE4508B-8FA1-4C49-AB10-7DE5075A9FDB"
+				isCollapsed="false">
+				<dmndi:DMNStyle>
+					<dmndi:FillColor red="255" green="255" blue="255" />
+					<dmndi:StrokeColor red="0" green="0" blue="0" />
+					<dmndi:FontColor red="0" green="0" blue="0" />
+				</dmndi:DMNStyle>
+				<dc:Bounds
+					xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="225" y="225"
+					width="100" height="50" />
+				<dmndi:DMNLabel />
+			</dmndi:DMNShape>
+			<dmndi:DMNShape
+				id="dmnshape-drg-_58ECD9FC-1269-446F-8792-D8DD0139D7DD"
+				dmnElementRef="_58ECD9FC-1269-446F-8792-D8DD0139D7DD"
+				isCollapsed="false">
+				<dmndi:DMNStyle>
+					<dmndi:FillColor red="255" green="255" blue="255" />
+					<dmndi:StrokeColor red="0" green="0" blue="0" />
+					<dmndi:FontColor red="0" green="0" blue="0" />
+				</dmndi:DMNStyle>
+				<dc:Bounds
+					xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="400" y="50"
+					width="100" height="50" />
+				<dmndi:DMNLabel />
+			</dmndi:DMNShape>
+			<dmndi:DMNShape
+				id="dmnshape-drg-_4F79C025-CBD8-4D5D-88D3-749231C78471"
+				dmnElementRef="_4F79C025-CBD8-4D5D-88D3-749231C78471"
+				isCollapsed="false">
+				<dmndi:DMNStyle>
+					<dmndi:FillColor red="255" green="255" blue="255" />
+					<dmndi:StrokeColor red="0" green="0" blue="0" />
+					<dmndi:FontColor red="0" green="0" blue="0" />
+				</dmndi:DMNStyle>
+				<dc:Bounds
+					xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="750" y="400"
+					width="100" height="50" />
+				<dmndi:DMNLabel />
+			</dmndi:DMNShape>
+			<dmndi:DMNShape
+				id="dmnshape-drg-_A9AD47E9-9DF5-49D6-B0FD-D532A4E0ED85"
+				dmnElementRef="_A9AD47E9-9DF5-49D6-B0FD-D532A4E0ED85"
+				isCollapsed="false">
+				<dmndi:DMNStyle>
+					<dmndi:FillColor red="255" green="255" blue="255" />
+					<dmndi:StrokeColor red="0" green="0" blue="0" />
+					<dmndi:FontColor red="0" green="0" blue="0" />
+				</dmndi:DMNStyle>
+				<dc:Bounds
+					xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="750" y="225"
+					width="100" height="50" />
+				<dmndi:DMNLabel />
+			</dmndi:DMNShape>
+			<dmndi:DMNShape
+				id="dmnshape-drg-_0553d044-5013-4985-8c74-0ad4430388f6"
+				dmnElementRef="_0553d044-5013-4985-8c74-0ad4430388f6"
+				isCollapsed="false">
+				<dmndi:DMNStyle>
+					<dmndi:FillColor red="255" green="255" blue="255" />
+					<dmndi:StrokeColor red="0" green="0" blue="0" />
+					<dmndi:FontColor red="0" green="0" blue="0" />
+				</dmndi:DMNStyle>
+				<dc:Bounds
+					xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="400" y="400"
+					width="100" height="50" />
+				<dmndi:DMNLabel />
+			</dmndi:DMNShape>
+			<dmndi:DMNShape
+				id="dmnshape-drg-_2753AA63-F41B-456C-A01A-64BA9C862C92"
+				dmnElementRef="_2753AA63-F41B-456C-A01A-64BA9C862C92"
+				isCollapsed="false">
+				<dmndi:DMNStyle>
+					<dmndi:FillColor red="255" green="255" blue="255" />
+					<dmndi:StrokeColor red="0" green="0" blue="0" />
+					<dmndi:FontColor red="0" green="0" blue="0" />
+				</dmndi:DMNStyle>
+				<dc:Bounds
+					xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="575" y="400"
+					width="100" height="50" />
+				<dmndi:DMNLabel />
+			</dmndi:DMNShape>
+			<dmndi:DMNShape
+				id="dmnshape-drg-_E35415D9-48FA-4EC3-B406-F71DB65F6820"
+				dmnElementRef="_E35415D9-48FA-4EC3-B406-F71DB65F6820"
+				isCollapsed="false">
+				<dmndi:DMNStyle>
+					<dmndi:FillColor red="255" green="255" blue="255" />
+					<dmndi:StrokeColor red="0" green="0" blue="0" />
+					<dmndi:FontColor red="0" green="0" blue="0" />
+				</dmndi:DMNStyle>
+				<dc:Bounds
+					xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="50" y="400"
+					width="100" height="50" />
+				<dmndi:DMNLabel />
+			</dmndi:DMNShape>
+			<dmndi:DMNShape
+				id="dmnshape-drg-_177F55D1-B87A-4C26-A277-BD73C84725D1"
+				dmnElementRef="_177F55D1-B87A-4C26-A277-BD73C84725D1"
+				isCollapsed="false">
+				<dmndi:DMNStyle>
+					<dmndi:FillColor red="255" green="255" blue="255" />
+					<dmndi:StrokeColor red="0" green="0" blue="0" />
+					<dmndi:FontColor red="0" green="0" blue="0" />
+				</dmndi:DMNStyle>
+				<dc:Bounds
+					xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" x="575" y="225"
+					width="100" height="50" />
+				<dmndi:DMNLabel />
+			</dmndi:DMNShape>
+			<dmndi:DMNEdge
+				id="dmnedge-drg-_F25C73E9-CB0B-4E08-B039-E3CDD9C53166"
+				dmnElementRef="_F25C73E9-CB0B-4E08-B039-E3CDD9C53166">
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="100" y="425" />
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="100" y="250" />
+			</dmndi:DMNEdge>
+			<dmndi:DMNEdge
+				id="dmnedge-drg-_CA1E4D5C-C86F-4CAB-A533-7797901B549D"
+				dmnElementRef="_CA1E4D5C-C86F-4CAB-A533-7797901B549D">
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="625" y="425" />
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="250" />
+			</dmndi:DMNEdge>
+			<dmndi:DMNEdge
+				id="dmnedge-drg-_DA8CDE05-7D8E-4223-B7B3-B8284CF7C29E"
+				dmnElementRef="_DA8CDE05-7D8E-4223-B7B3-B8284CF7C29E">
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="275" y="425" />
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="275" y="250" />
+			</dmndi:DMNEdge>
+			<dmndi:DMNEdge
+				id="dmnedge-drg-_2828ee17-6064-4af1-934c-85ca427f5127"
+				dmnElementRef="_2828ee17-6064-4af1-934c-85ca427f5127">
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="425" />
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="275" y="250" />
+			</dmndi:DMNEdge>
+			<dmndi:DMNEdge
+				id="dmnedge-drg-_7F16E043-589A-4528-95E5-CD7397E2BD4C"
+				dmnElementRef="_7F16E043-589A-4528-95E5-CD7397E2BD4C">
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="100" y="250" />
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="75" />
+			</dmndi:DMNEdge>
+			<dmndi:DMNEdge
+				id="dmnedge-drg-_178C36DB-0BFB-47F3-AB33-1AF7D62E8435"
+				dmnElementRef="_178C36DB-0BFB-47F3-AB33-1AF7D62E8435">
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="625" y="250" />
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="75" />
+			</dmndi:DMNEdge>
+			<dmndi:DMNEdge
+				id="dmnedge-drg-_515C1ECC-F105-4562-90A6-532FF4AEDF2B"
+				dmnElementRef="_515C1ECC-F105-4562-90A6-532FF4AEDF2B">
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="250" />
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="75" />
+			</dmndi:DMNEdge>
+			<dmndi:DMNEdge
+				id="dmnedge-drg-_B3F4E84C-A55F-436B-AAA6-4D527159F6B4"
+				dmnElementRef="_B3F4E84C-A55F-436B-AAA6-4D527159F6B4">
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="800" y="250" />
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="75" />
+			</dmndi:DMNEdge>
+			<dmndi:DMNEdge
+				id="dmnedge-drg-_D0A3AC36-8F37-4E1E-9B68-A19E98718A93"
+				dmnElementRef="_D0A3AC36-8F37-4E1E-9B68-A19E98718A93">
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="275" y="250" />
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="450" y="75" />
+			</dmndi:DMNEdge>
+			<dmndi:DMNEdge
+				id="dmnedge-drg-_FAECA778-F504-4A12-93CC-A57B264DF7CF"
+				dmnElementRef="_FAECA778-F504-4A12-93CC-A57B264DF7CF">
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="800" y="425" />
+				<di:waypoint
+					xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" x="625" y="250" />
+			</dmndi:DMNEdge>
+		</dmndi:DMNDiagram>
+	</dmndi:DMNDI>
+</dmn:definitions>
