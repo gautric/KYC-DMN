@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.kie.kogito.dmn.quarkus.example.listener;
+package net.g.a.dmn.kyc.listener;
 
 import javax.enterprise.context.ApplicationScoped;
 
 import org.kie.dmn.api.core.DMNContext;
 import org.kie.dmn.api.core.DMNMessage.Severity;
+import org.kie.dmn.api.core.DMNMessageType;
 import org.kie.dmn.api.core.DMNModel;
 import org.kie.dmn.api.core.event.AfterEvaluateAllEvent;
 import org.kie.dmn.api.core.event.AfterEvaluateBKMEvent;
@@ -36,7 +37,6 @@ import org.kie.dmn.api.core.event.BeforeEvaluateDecisionTableEvent;
 import org.kie.dmn.api.core.event.BeforeInvokeBKMEvent;
 import org.kie.dmn.api.core.event.DMNEvent;
 import org.kie.dmn.api.core.event.DMNRuntimeEventListener;
-import org.kie.dmn.core.impl.DMNContextImpl;
 import org.kie.dmn.core.impl.DMNMessageImpl;
 import org.kie.dmn.core.impl.DMNResultImpl;
 import org.slf4j.Logger;
@@ -128,7 +128,7 @@ public class DMNListener implements DMNRuntimeEventListener {
 		event.getResult().getMessages()
 				.add(new DMNMessageImpl(Severity.INFO, "NS : " + model.getDefinitions().getNamespace(), null, null));
 		event.getResult().getMessages()
-				.add(new DMNMessageImpl(Severity.INFO, "Description : " + model.getDefinitions().getDescription(), null, null));
+				.add(new DMNMessageImpl(Severity.INFO, "Description : " + model.getDefinitions().getDescription(), DMNMessageType.KIE_API, null));
 
 	}
 
