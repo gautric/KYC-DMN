@@ -2,7 +2,7 @@ image: maven:latest
 
 stages:
   - build
-#  - test
+  - test
 #  - run
 
 variables:
@@ -15,7 +15,7 @@ cache:
     - target/
 
 engine:
-  stage: build
+  stage: .pre
   script:
     - cd engine/
 
@@ -29,7 +29,7 @@ build:
 #    - mvn $MAVEN_CLI_OPTS test
 
 package:
-  stage: build
+  stage: test
   script:
     - mvn $MAVEN_CLI_OPTS package
 
