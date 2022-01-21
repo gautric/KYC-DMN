@@ -15,7 +15,7 @@ cache:
     - target/
 
 engine:
-  stage: engine
+  stage: build
   script:
     - cd engine/
 
@@ -23,14 +23,13 @@ build:
   stage: build
   script:
     - mvn $MAVEN_CLI_OPTS compile
-
 #test:
 #  stage: test
 #  script:
 #    - mvn $MAVEN_CLI_OPTS test
 
 package:
-  stage: package
+  stage: build
   script:
     - mvn $MAVEN_CLI_OPTS package
 
