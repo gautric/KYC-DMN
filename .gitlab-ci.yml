@@ -14,10 +14,14 @@ cache:
     - .m2/repository/
     - target/
 
+engine:
+  stage: engine
+  script:
+    - cd engine/
+
 build:
   stage: build
   script:
-    - cd engine/
     - mvn $MAVEN_CLI_OPTS compile
 
 #test:
@@ -26,9 +30,8 @@ build:
 #    - mvn $MAVEN_CLI_OPTS test
 
 package:
-  stage: build
+  stage: package
   script:
-    - cd engine/
     - mvn $MAVEN_CLI_OPTS package
 
 #run:
