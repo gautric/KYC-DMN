@@ -25,6 +25,12 @@ build:
 #  script:
 #    - mvn $MAVEN_CLI_OPTS test
 
+package:
+  stage: build
+  script:
+    - cd engine/
+    - mvn $MAVEN_CLI_OPTS package
+
 #run:
 #  stage: run
 #  script:
