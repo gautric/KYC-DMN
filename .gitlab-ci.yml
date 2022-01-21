@@ -18,6 +18,7 @@ build:
   stage: build
   script:
     - cd engine/
+    - echo $MY_VARIABLE
     - mvn $MAVEN_CLI_OPTS compile
 #test:
 #  stage: test
