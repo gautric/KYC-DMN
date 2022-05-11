@@ -6,11 +6,11 @@
   <artifactId>kyc-dmn</artifactId>
   <version>1.0.0</version>
   <properties>
-    <quarkus-plugin.version>2.6.0.Final</quarkus-plugin.version>
+    <quarkus-plugin.version>2.8.0.Final</quarkus-plugin.version>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-    <quarkus.platform.version>2.6.0.Final</quarkus.platform.version>
-    <version.org.kogito>1.15.0.Final</version.org.kogito>
+    <quarkus.platform.version>2.8.0.Final</quarkus.platform.version>
+    <version.org.kogito>1.20.0.Final</version.org.kogito>
     <java.version>11</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
