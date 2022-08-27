@@ -10,7 +10,7 @@
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
     <quarkus.platform.version>2.11.2.Final</quarkus.platform.version>
-    <version.org.kogito>1.25.0.Final</version.org.kogito>
+    <version.org.kogito>1.26.0.Final</version.org.kogito>
     <java.version>11</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -71,11 +71,11 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
+    <!-- <dependency>
       <groupId>org.kie.kogito</groupId>
       <artifactId>kogito-test-utils</artifactId>
       <scope>test</scope>
-    </dependency>
+    </dependency> -->
     <dependency>
       <groupId>org.testcontainers</groupId>
       <artifactId>junit-jupiter</artifactId>
