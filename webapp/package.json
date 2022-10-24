@@ -49,7 +49,7 @@
     "@patternfly/react-icons": "^4.19.8",
     "@patternfly/react-styles": "^4.18.8",
     "@react-keycloak/web": "^3.4.0",
-    "@storybook/builder-webpack5": "^6.2.9",
+    "@storybook/builder-webpack5": "^6.5.13",
     "file-loader": "^6.2.0",
     "keycloak-js": "^16.1.0",
     "raw-loader": "^4.0.2",
