@@ -6,11 +6,11 @@
   <artifactId>kyc-dmn</artifactId>
   <version>1.0.0</version>
   <properties>
-    <quarkus-plugin.version>2.13.3.Final</quarkus-plugin.version>
+    <quarkus-plugin.version>2.16.0.Final</quarkus-plugin.version>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-    <quarkus.platform.version>2.13.3.Final</quarkus.platform.version>
-    <version.org.kogito>1.26.0.Final</version.org.kogito>
+    <quarkus.platform.version>${quarkus-plugin.version}</quarkus.platform.version>
+    <org.kogito.version>1.35.0.Final</org.kogito.version>
     <java.version>11</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -20,7 +20,7 @@
       <dependency>
         <groupId>org.kie.kogito</groupId>
         <artifactId>kogito-bom</artifactId>
-        <version>${version.org.kogito}</version>
+        <version>${org.kogito.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
