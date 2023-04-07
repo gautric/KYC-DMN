@@ -46,7 +46,7 @@ export class  URLInputBase extends React.Component<URLInputProps>  {
             ...props
         } = this.props;
         return (
-            <TextInput value={this.context.apiUrl} type="url" isReadOnly="true" aria-label="text input example" />
+            <TextInput value={this.context.apiUrl} type="url" isReadOnly aria-label="text input example" />
         );
     }
 }

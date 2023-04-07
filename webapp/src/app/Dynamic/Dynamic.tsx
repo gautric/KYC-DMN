@@ -23,24 +23,45 @@ import { Form,
 
 import { KYCContext } from '@app/KYCContext';
 
+
+interface IKYCAlert {
+  key: number, 
+  variant: string, 
+  title: string
+}
+
 interface IKYCState {
-  kyc: object,
-  result: object,
+  kyc: {
+    PEP: boolean,
+    Amount: number,
+    "Fiscal Residency": string
+  },
+  result: {
+    KYC: {
+      Level: number,
+      Score: string
+    }
+  },
   isResult: boolean,
-  alerts: Array<object>
+  alerts: Array<IKYCAlert>
 };
 
 class KYCDynamic extends React.Component<{},IKYCState> {
   static contextType = KYCContext;
   constructor(props) {
     super(props);
-    this.state = /*JSON.parse(window.localStorage.getItem('state')) ||*/ {
+    this.state = {
       kyc : {
         PEP: false,
         Amount: 1000,
         "Fiscal Residency": 'FR'
       },
-      result: {"KYC" : {"Level":0, "Score":"LOW"}},
+      result: {
+        KYC: {
+          Level: 0, 
+          Score: "LOW"
+        }
+      },
       isResult: false,
       alerts: []
     };
@@ -241,7 +262,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
               <DataListItemCells
                 dataListCells={[
                   <DataListCell key="TotalLabel" alignRight>
-                    Total Score KYC
+                    <b>Total</b>
                   </DataListCell>,
                   <DataListCell key="TotalForm"/>,
                   <DataListCell key="TotalValue" hidden={!this.state.isResult}>
