@@ -1,27 +1,23 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import {
-  Brand,
   Nav,
   NavList,
   NavItem,
+  NavExpandable,
   Page,
   PageHeader,
   PageSidebar,
-  PageHeaderTools,
   SkipToContent
 } from '@patternfly/react-core';
-import { routes } from '@app/routes';
-
-import { KYCAppLauncher } from '@app/UIComponent/KYCAppLauncher';
-
-import kycLogo from '../../images/KYC-icon-145.svg';
+import { routes, IAppRoute, IAppRouteGroup } from '@app/routes';
+import logo from '@app/bgimages/KYC-icon.svg';
 
 interface IAppLayout {
   children: React.ReactNode;
 }
 
-const AppLayout: React.FunctionComponent<IAppLayout> = ({children}) => {
+const AppLayout: React.FunctionComponent<IAppLayout> = ({ children }) => {
   const [isNavOpen, setIsNavOpen] = React.useState(true);
   const [isMobileView, setIsMobileView] = React.useState(true);
   const [isNavOpenMobile, setIsNavOpenMobile] = React.useState(false);
@@ -30,45 +26,82 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({children}) => {
   };
   const onNavToggle = () => {
     setIsNavOpen(!isNavOpen);
-  }
+  };
   const onPageResize = (props: { mobileView: boolean; windowSize: number }) => {
     setIsMobileView(props.mobileView);
   };
+
+  function LogoImg() {
+    const history = useHistory();
+    function handleClick() {
+      history.push('/');
+    }
+    return (
+      <img src={logo} onClick={handleClick} alt="KYC Logo" height="100" />
+    );
+  }
+
   const Header = (
     <PageHeader
-      logo={<span dangerouslySetInnerHTML={{__html: kycLogo}} />}         
+      logo={<LogoImg />}
       showNavToggle
       isNavOpen={isNavOpen}
       onNavToggle={isMobileView ? onNavToggleMobile : onNavToggle}
-      headerTools={<KYCAppLauncher/>}
     />
+  );
+
+  const location = useLocation();
+
+  const renderNavItem = (route: IAppRoute, index: number) => (
+    <NavItem key={`${route.label}-${index}`} id={`${route.label}-${index}`} isActive={route.path === location.pathname}>
+      <NavLink exact={route.exact} to={route.path}>
+        {route.label}
+      </NavLink>
+    </NavItem>
+  );
+
+  const renderNavGroup = (group: IAppRouteGroup, groupIndex: number) => (
+    <NavExpandable
+      key={`${group.label}-${groupIndex}`}
+      id={`${group.label}-${groupIndex}`}
+      title={group.label}
+      isActive={group.routes.some((route) => route.path === location.pathname)}
+    >
+      {group.routes.map((route, idx) => route.label && renderNavItem(route, idx))}
+    </NavExpandable>
   );
 
   const Navigation = (
     <Nav id="nav-primary-simple" theme="dark">
       <NavList id="nav-list-simple">
-        {routes.map((route, idx) => route.label && (
-            <NavItem key={`${route.label}-${idx}`} id={`${route.label}-${idx}`}>
-              <NavLink exact to={route.path} activeClassName="pf-m-current">{route.label}</NavLink>
-            </NavItem>
-          ))}
+        {routes.map(
+          (route, idx) => route.label && (!route.routes ? renderNavItem(route, idx) : renderNavGroup(route, idx))
+        )}
       </NavList>
     </Nav>
   );
+
   const Sidebar = (
     <PageSidebar
       theme="dark"
       nav={Navigation}
       isNavOpen={isMobileView ? isNavOpenMobile : isNavOpen} />
   );
+
+  const pageId = 'primary-app-container';
+
   const PageSkipToContent = (
-    <SkipToContent href="#primary-app-container">
+    <SkipToContent onClick={(event) => {
+      event.preventDefault();
+      const primaryContentContainer = document.getElementById(pageId);
+      primaryContentContainer && primaryContentContainer.focus();
+    }} href={`#${pageId}`}>
       Skip to Content
     </SkipToContent>
   );
   return (
     <Page
-      mainContainerId="primary-app-container"
+      mainContainerId={pageId}
       header={Header}
       sidebar={Sidebar}
       onPageResize={onPageResize}
@@ -76,6 +109,6 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({children}) => {
       {children}
     </Page>
   );
-}
+};
 
 export { AppLayout };

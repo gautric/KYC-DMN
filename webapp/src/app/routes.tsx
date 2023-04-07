@@ -1,111 +1,97 @@
 import * as React from 'react';
-import { Route, RouteComponentProps, Switch } from 'react-router-dom';
-import { Alert, PageSection } from '@patternfly/react-core';
-import { DynamicImport } from '@app/DynamicImport';
-import { accessibleRouteChangeHandler } from '@app/utils/utils';
-// import { Formular } from '@app/Formular/Formular';
+import { Route, RouteComponentProps, Switch, useLocation } from 'react-router-dom';
 import { Dynamic } from '@app/Dynamic/Dynamic';
+import { Monitoring } from '@app/Monitoring/Monitoring';
 import { Config } from '@app/Config/Config';
+
+import { GeneralSettings } from '@app/Settings/General/GeneralSettings';
+import { ProfileSettings } from '@app/Settings/Profile/ProfileSettings';
 import { NotFound } from '@app/NotFound/NotFound';
 import { useDocumentTitle } from '@app/utils/useDocumentTitle';
-import { LastLocationProvider, useLastLocation } from 'react-router-last-location';
 
 let routeFocusTimer: number;
-
-const getSupportModuleAsync = () => () => import(/* webpackChunkName: 'support' */ '@app/Monitoring/Monitoring');
-
-const Support = (routeProps: RouteComponentProps): React.ReactElement => {
-  const lastNavigation = useLastLocation();
-  return (
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    <DynamicImport load={getSupportModuleAsync()} focusContentAfterMount={lastNavigation !== null}>
-      {(Component: any) => {
-        let loadedComponent: any;
-        /* eslint-enable @typescript-eslint/no-explicit-any */
-        if (Component === null) {
-          loadedComponent = (
-            <PageSection aria-label="Loading Content Container">
-              <div className="pf-l-bullseye">
-                <Alert title="Loading" className="pf-l-bullseye__item" />
-              </div>
-            </PageSection>
-          );
-        } else {
-          loadedComponent = <Component.Monitoring {...routeProps} />;
-        }
-        return loadedComponent;
-      }}
-    </DynamicImport>
-  );
-};
-
 export interface IAppRoute {
-  label?: string;
+  label?: string; // Excluding the label will exclude the route from the nav sidebar in AppLayout
   /* eslint-disable @typescript-eslint/no-explicit-any */
   component: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>;
   /* eslint-enable @typescript-eslint/no-explicit-any */
   exact?: boolean;
   path: string;
   title: string;
-  isAsync?: boolean;
+  routes?: undefined;
 }
 
-const routes: IAppRoute[] = [
-  // {
-  //   component: Formular,
-  //   exact: true,
-  //   label: 'Formular',
-  //   path: '/',
-  //   title: 'KYC DMN | Formular',
-  // },
+export interface IAppRouteGroup {
+  label: string;
+  routes: IAppRoute[];
+}
+
+export type AppRouteConfig = IAppRoute | IAppRouteGroup;
+
+const routes: AppRouteConfig[] = [
   {
     component: Dynamic,
     exact: true,
     label: 'KYC',
     path: '/',
-    title: 'KYC DMN | Dynamic',
+    title: 'KYC',
   },
   {
-    component: Support,
-    exact: true,
-    isAsync: true,
-    label: 'Monitoring',
-    path: '/monitoring',
-    title: 'KYC DMN | Monitoring',
+    label: 'Divers',
+    routes: [
+      // {
+      //   component: GeneralSettings,
+      //   exact: true,
+      //   label: 'General',
+      //   path: '/settings/general',
+      //   title: 'PatternFly Seed | General Settings',
+      // },
+      {
+        component: Monitoring,
+        exact: true,
+        label: 'Monitoring',
+        path: '/monitoring',
+        title: 'KYC | Monitoring',
+      },
+      {
+        component: Config,
+        exact: true,
+        label: 'Config',
+        path: '/config',
+        title: 'KYC | Config',
+      },
+    ],
   },
-  {
-    component: Config,
-    exact: true,
-    label: 'Config',
-    path: '/config',
-    title: 'KYC DMN | Config',
-  }
 ];
 
 // a custom hook for sending focus to the primary content container
 // after a view has loaded so that subsequent press of tab key
 // sends focus directly to relevant content
-const useA11yRouteChange = (isAsync: boolean) => {
-  const lastNavigation = useLastLocation();
+// may not be necessary if https://github.com/ReactTraining/react-router/issues/5210 is resolved
+const useA11yRouteChange = () => {
+  const { pathname } = useLocation();
   React.useEffect(() => {
-    if (!isAsync && lastNavigation !== null) {
-      routeFocusTimer = accessibleRouteChangeHandler();
-    }
+    routeFocusTimer = window.setTimeout(() => {
+      const mainContainer = document.getElementById('primary-app-container');
+      if (mainContainer) {
+        mainContainer.focus();
+      }
+    }, 50);
     return () => {
       window.clearTimeout(routeFocusTimer);
     };
-  }, [isAsync, lastNavigation]);
+  }, [pathname]);
 };
 
-const RouteWithTitleUpdates = ({ component: Component, isAsync = false, title, ...rest }: IAppRoute) => {
-  useA11yRouteChange(isAsync);
+const RouteWithTitleUpdates = ({ component: Component, title, ...rest }: IAppRoute) => {
+  useA11yRouteChange();
   useDocumentTitle(title);
 
   function routeWithTitle(routeProps: RouteComponentProps) {
     return <Component {...rest} {...routeProps} />;
   }
 
-  return <Route render={routeWithTitle} />;
+  return <Route render={routeWithTitle} {...rest} />;
 };
 
 const PageNotFound = ({ title }: { title: string }) => {
@@ -113,22 +99,18 @@ const PageNotFound = ({ title }: { title: string }) => {
   return <Route component={NotFound} />;
 };
 
+const flattenedRoutes: IAppRoute[] = routes.reduce(
+  (flattened, route) => [...flattened, ...(route.routes ? route.routes : [route])],
+  [] as IAppRoute[]
+);
+
 const AppRoutes = (): React.ReactElement => (
-  <LastLocationProvider>
-    <Switch>
-      {routes.map(({ path, exact, component, title, isAsync }, idx) => (
-        <RouteWithTitleUpdates
-          path={path}
-          exact={exact}
-          component={component}
-          key={idx}
-          title={title}
-          isAsync={isAsync}
-        />
-      ))}
-      <PageNotFound title="404 Page Not Found" />
-    </Switch>
-  </LastLocationProvider>
+  <Switch>
+    {flattenedRoutes.map(({ path, exact, component, title }, idx) => (
+      <RouteWithTitleUpdates path={path} exact={exact} component={component} key={idx} title={title} />
+    ))}
+    <PageNotFound title="404 Page Not Found" />
+  </Switch>
 );
 
 export { AppRoutes, routes };
