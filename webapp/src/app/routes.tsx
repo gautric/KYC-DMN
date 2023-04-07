@@ -4,8 +4,8 @@ import { Dynamic } from '@app/Dynamic/Dynamic';
 import { Monitoring } from '@app/Monitoring/Monitoring';
 import { Config } from '@app/Config/Config';
 
-import { GeneralSettings } from '@app/Settings/General/GeneralSettings';
-import { ProfileSettings } from '@app/Settings/Profile/ProfileSettings';
+//import { GeneralSettings } from '@app/Settings/General/GeneralSettings';
+//import { ProfileSettings } from '@app/Settings/Profile/ProfileSettings';
 import { NotFound } from '@app/NotFound/NotFound';
 import { useDocumentTitle } from '@app/utils/useDocumentTitle';
 
@@ -36,9 +36,9 @@ const routes: AppRouteConfig[] = [
     path: '/',
     title: 'KYC',
   },
-  {
-    label: 'Divers',
-    routes: [
+  // {
+  //   label: 'Divers',
+  //   routes: [
       // {
       //   component: GeneralSettings,
       //   exact: true,
@@ -60,8 +60,8 @@ const routes: AppRouteConfig[] = [
         path: '/config',
         title: 'KYC | Config',
       },
-    ],
-  },
+  //   ],
+  // },
 ];
 
 // a custom hook for sending focus to the primary content container

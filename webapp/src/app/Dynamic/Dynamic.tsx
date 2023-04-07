@@ -34,7 +34,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
   static contextType = KYCContext;
   constructor(props) {
     super(props);
-    this.state = JSON.parse(window.localStorage.getItem('state')) || {
+    this.state = /*JSON.parse(window.localStorage.getItem('state')) ||*/ {
       kyc : {
         PEP: false,
         Amount: 1000,
@@ -261,7 +261,7 @@ const Dynamic: React.FunctionComponent = () => (
   <PageSection>
     <Card>
       <CardTitle>
-        <Title headingLevel="h1" size="lg">KYC Dynamic</Title>
+        <Title headingLevel="h1" size="lg">KYC</Title>
       </CardTitle>
       <CardBody>
         <KYCDynamic/>
