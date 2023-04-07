@@ -44,7 +44,7 @@ interface IKYCState {
   },
   isResult: boolean,
   alerts: Array<IKYCAlert>
-};
+}
 
 class KYCDynamic extends React.Component<{},IKYCState> {
   static contextType = KYCContext;
