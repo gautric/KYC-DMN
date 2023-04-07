@@ -46,10 +46,7 @@ class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
               elapsedTime:body['http.server.requests']['elapsedTime;method=POST;outcome=SUCCESS;status=200;uri=/KYC']
             });
           });
-        } else {
         }
-      },
-      (error) => {
       }
     );
   }
