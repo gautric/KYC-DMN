@@ -55,22 +55,22 @@ class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
     return (
       <>        
         <DataList aria-label="Simple data list example">
-          <DataListItem aria-labelledby="header" key="nbcall">
+          <DataListItem aria-labelledby="header" >
             <DataListItemRow>
               <DataListItemCells 
                 dataListCells={[
-                  <DataListCell>Number of call</DataListCell>,
-                  <DataListCell>{this.state.count}</DataListCell>
+                  <DataListCell key="nbcall">Number of call</DataListCell>,
+                  <DataListCell key="nbcallvalue">{this.state.count}</DataListCell>
                 ]}
               />
             </DataListItemRow>
           </DataListItem>
-          <DataListItem aria-labelledby="header" key="cumultime">
+          <DataListItem aria-labelledby="header" >
             <DataListItemRow>
               <DataListItemCells 
                 dataListCells={[
-                  <DataListCell>Cumulative response time</DataListCell>,
-                  <DataListCell>{this.state.elapsedTime} ms </DataListCell>
+                  <DataListCell key="cumultime">Cumulative response time</DataListCell>,
+                  <DataListCell key="cumultimevalue">{this.state.elapsedTime} ms </DataListCell>
                 ]}
               />
             </DataListItemRow>
