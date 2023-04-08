@@ -23,7 +23,6 @@ import { Form,
 
 import { KYCContext } from '@app/KYCContext';
 
-
 interface IKYCAlert {
   key: number, 
   variant: string, 
@@ -130,6 +129,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
     this.setState({
       alerts: [ ...this.state.alerts, { title: title, variant: variant, key }]
     });
+    setTimeout(() => this.removeAlert(key), 5000); // Remove alert after 5s
   };
 
   removeAlert = key => {
