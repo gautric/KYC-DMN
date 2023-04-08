@@ -4,7 +4,7 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const { stylePaths } = require('./stylePaths');
-const HOST = process.env.HOST || 'localhost';
+const HOST = process.env.HOST || '0.0.0.0';
 const PORT = process.env.PORT || '9000';
 const KYC_DMN_PROXY = process.env.KYC_DMN_PROXY || "http://127.0.0.1:8080";
 
