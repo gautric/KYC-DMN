@@ -1,0 +1,6 @@
+#dist
+src
+target/classes
+target/maven-*
+target/generated-*
+.dockerignore

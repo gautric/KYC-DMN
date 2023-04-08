@@ -1,34 +1,16 @@
 ####
-# This Dockerfile is used in order to build a container that runs the Quarkus application in JVM mode
 #
-# Before building the docker image run:
+## To Build Docker Image
+# $> mvn clean package -Dmaven.test.skip=true -Dquarkus.package.type=uber-jar 
+# $> docker build -f src/main/docker/Dockerfile.jvm -t kyc-engine .
 #
-# mvn package
-#
-# Then, build the image with:
-#
-# docker build -f src/main/docker/Dockerfile.jvm -t kyc-engine .
-#
-# Then run the container using:
-#
-# docker run -i --rm -p 8080:8080 kyc-engine
-#
-# If you want to include the debug port into your docker image
-# you will have to expose the debug port (default 5005) like this :  EXPOSE 8080 5050
-# 
-# Then run the container using : 
-#
-# docker run -i --rm -p 8080:8080 -p 5005:5005 -e JAVA_ENABLE_DEBUG="true" kyc-engine
-#
+## To Execute Container
+# $> docker run -i -t --rm -p 8080:8080 kyc-engine
 ###
-ARG KOGITO_VERSION=latest
-FROM quay.io/kiegroup/kogito-runtime-jvm:${KOGITO_VERSION}
-
-# check list here https://quay.io/repository/kiegroup/kogito-runtime-jvm
+FROM openjdk:17
 
 ENV RUNTIME_TYPE quarkus
+RUN mkdir /app
+COPY target/*.jar /app
 
-COPY target/quarkus-app/lib/ $KOGITO_HOME/bin/lib/
-COPY target/quarkus-app/*.jar $KOGITO_HOME/bin
-COPY target/quarkus-app/app/ $KOGITO_HOME/bin/app/
-COPY target/quarkus-app/quarkus/ $KOGITO_HOME/bin/quarkus/
+CMD java -jar /app/kyc-dmn-runner.jar
