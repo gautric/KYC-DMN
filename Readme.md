@@ -134,3 +134,27 @@ npm run start:dev
   "Level to Score": "function Level to Score( Level )"
 }
 ```
+
+## Docker Build
+
+### KYC Engine Image Build
+
+```
+cd engine
+mvn clean package -Dmaven.test.skip=true -Dquarkus.package.type=uber-jar 
+docker build -f src/main/docker/Dockerfile.jvm -t kyc-engine .
+```
+
+### KYC Web Application Image Build
+
+```
+cd webapp
+docker build -f Dockerfile -t kyc-webapp .
+```
+
+### Docker Compose Run
+
+```
+cd docker
+docker-compose up 
+```
