@@ -1,5 +1,5 @@
 {
-  "name": "kyc-dmn-webapp",
+  "name": "kyc-webapp",
   "version": "0.0.2",
   "description": "web app for KYC engine",
   "repository": "https://github.com/patternfly/patternfly-react-seed.git",
