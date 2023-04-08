@@ -55,7 +55,7 @@ class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
     return (
       <>        
         <DataList aria-label="Simple data list example">
-          <DataListItem aria-labelledby="header">
+          <DataListItem aria-labelledby="header" key="nbcall">
             <DataListItemRow>
               <DataListItemCells 
                 dataListCells={[
@@ -65,7 +65,7 @@ class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
               />
             </DataListItemRow>
           </DataListItem>
-          <DataListItem aria-labelledby="header">
+          <DataListItem aria-labelledby="header" key="cumultime">
             <DataListItemRow>
               <DataListItemCells 
                 dataListCells={[
