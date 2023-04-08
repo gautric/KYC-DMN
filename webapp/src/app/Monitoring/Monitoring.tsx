@@ -85,7 +85,7 @@ const Monitoring: React.FunctionComponent = () => (
   <PageSection>
     <Card>
       <CardTitle>
-        <Title headingLevel="h1" size="lg">KYC Monitoring</Title>
+        <Title headingLevel="h1" size="lg">Monitoring</Title>
       </CardTitle>
       <CardBody>
         <KYCMonitoring/>
