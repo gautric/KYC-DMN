@@ -35,6 +35,8 @@
     "@storybook/react": "^7.0.2",
     "@types/enzyme": "^3.10.8",
     "@types/jest": "^26.0.23",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
     "@types/react-router-dom": "^5.1.7",
     "@types/victory": "^33.1.4",
     "@typescript-eslint/eslint-plugin": "^4.26.1",
@@ -85,6 +87,7 @@
     "@storybook/builder-webpack5": "^6.2.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "sirv-cli": "^1.0.12"
+    "sirv-cli": "^1.0.12",
+    "zustand": "^4.3.7"
   }
 }
