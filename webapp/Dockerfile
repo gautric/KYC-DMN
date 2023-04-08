@@ -1,15 +1,11 @@
-# pull official base image
-# 
 
-#
-# Then, build the image with:
 #
 # docker build -f Dockerfile -t kyc-webapp .
 #
 # Then run the container using:
 #
 # docker run -i --rm -p 9000:9000 kyc-webapp
-FROM node:16.13.1
+FROM node:18.15.0
 
 # set working directory
 WORKDIR /app
@@ -26,5 +22,6 @@ RUN npm install
 # add app
 COPY . ./
 
+EXPOSE 9000
 # start app
 CMD ["npm", "run", "start:dev"]
