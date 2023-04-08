@@ -59,7 +59,7 @@ class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
             <DataListItemRow>
               <DataListItemCells 
                 dataListCells={[
-                  <DataListCell># KYC call</DataListCell>,
+                  <DataListCell>Number of call</DataListCell>,
                   <DataListCell>{this.state.count}</DataListCell>
                 ]}
               />
@@ -69,7 +69,7 @@ class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
             <DataListItemRow>
               <DataListItemCells 
                 dataListCells={[
-                  <DataListCell>Response time</DataListCell>,
+                  <DataListCell>Cumulative response time</DataListCell>,
                   <DataListCell>{this.state.elapsedTime} ms </DataListCell>
                 ]}
               />
