@@ -56,7 +56,7 @@ const routes: AppRouteConfig[] = [
       {
         component: Config,
         exact: true,
-        label: 'Config',
+        label: 'Configuration',
         path: '/config',
         title: 'KYC | Config',
       },
