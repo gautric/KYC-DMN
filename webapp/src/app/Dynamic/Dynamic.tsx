@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import 'whatwg-fetch';
 import { Form, 
   Card,
@@ -47,7 +47,7 @@ interface IKYCState {
 
 class KYCDynamic extends React.Component<{},IKYCState> {
   static contextType = KYCContext;
-  constructor(props) {
+  constructor(props: IKYCState) {
     super(props);
     this.state = {
       kyc : {
@@ -65,7 +65,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
       alerts: []
     };
   }
-
+  
   options = [
     { value: 'please choose', label: 'Please Choose', disabled: true },
     { value: 'FR', label: 'France', disabled: false },
