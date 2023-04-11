@@ -5,12 +5,16 @@ import { AppLayout } from '@app/AppLayout/AppLayout';
 import { AppRoutes } from '@app/routes';
 import '@app/app.css';
 
+import { KYCContextProvider } from './KYCContext';
+
 const App: React.FunctionComponent = () => (
-  <Router>
-    <AppLayout>
-      <AppRoutes />
-    </AppLayout>
-  </Router>
+  <KYCContextProvider>
+    <Router>
+      <AppLayout>
+        <AppRoutes />
+      </AppLayout>
+    </Router>
+  </KYCContextProvider>
 );
 
 export default App;
