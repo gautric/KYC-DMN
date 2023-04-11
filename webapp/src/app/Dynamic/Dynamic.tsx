@@ -8,6 +8,8 @@ import { Form,
   TextInput,
   FormSelect,
   FormSelectOption,
+  HelperText,
+  HelperTextItem,
   Switch,
   PageSection,
   Alert,
@@ -278,17 +280,25 @@ class KYCDynamic extends React.Component<{},IKYCState> {
   }
 }
 
-const Dynamic: React.FunctionComponent = () => (
-  <PageSection>
-    <Card>
-      <CardTitle>
-        <Title headingLevel="h1" size="lg">KYC</Title>
-      </CardTitle>
-      <CardBody>
-        <KYCDynamic/>
-      </CardBody>
-    </Card>
-  </PageSection>
-)
+const Dynamic: React.FunctionComponent = () => {
+
+  const context = useContext(Context)
+
+  return (
+    <PageSection>
+      <Card>
+        <CardTitle>
+          <Title headingLevel="h1" size="lg">KYC</Title>
+          <HelperText>
+            <HelperTextItem variant="indeterminate">Endpoint : {context.apiUrl}</HelperTextItem>
+          </HelperText>
+        </CardTitle>
+        <CardBody>
+          <KYCDynamic/>
+        </CardBody>
+      </Card>
+    </PageSection>
+  )
+}
 
 export { Dynamic };
