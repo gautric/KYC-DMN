@@ -2,12 +2,12 @@ import React, { createContext } from 'react';
 
 interface IContext {
   apiUrl: string,
-  updateApiUrl: (url:string) => {}
+  updateApiUrl: (url:string) => void
 }
 
 export const Context = createContext<IContext>({} as IContext);
 
-export class ContextProvider extends React.Component {
+export class ContextProvider extends React.Component<{children: any},{}> {
   updateApiUrl = (url:string) => {
     this.setState(
       state => ({
@@ -27,15 +27,14 @@ export class ContextProvider extends React.Component {
   }
 }
 
-// export class ContextConsumer extends React.Component<IContext,{children:ChildNode}> {
-//   render() {
-//     return <Context.Consumer>{this.props.children}</Context.Consumer>;
-//   }
-// }
-
-export const ContextConsumer = ({children}) => {
-  return <Context.Consumer>{children}</Context.Consumer>
+export class ContextConsumer extends React.Component<{children: any},{}> {
+  render() {
+    return <Context.Consumer>{this.props.children}</Context.Consumer>;
+  }
 }
-
+// Another option
+// export const ContextConsumer = ({children}) => {
+//   return <Context.Consumer>{children}</Context.Consumer>
+// }
 
 Context.displayName = 'Context';
