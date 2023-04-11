@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Route, RouteComponentProps, Switch, useLocation } from 'react-router-dom';
 import { Dynamic } from '@app/Dynamic/Dynamic';
 import { Monitoring } from '@app/Monitoring/Monitoring';
-import { Config } from '@app/Config/Config';
+import { Configuration } from '@app/Configuration/Configuration';
 
 //import { GeneralSettings } from '@app/Settings/General/GeneralSettings';
 //import { ProfileSettings } from '@app/Settings/Profile/ProfileSettings';
@@ -54,7 +54,7 @@ const routes: AppRouteConfig[] = [
         title: 'KYC | Monitoring',
       },
       {
-        component: Config,
+        component: Configuration,
         exact: true,
         label: 'Configuration',
         path: '/config',

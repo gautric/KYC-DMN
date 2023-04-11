@@ -27,7 +27,7 @@ class InputAPIURL extends React.Component {
   }
 }
 
-class Config extends React.Component {
+class Configuration extends React.Component {
   render() {
     return (
       <PageSection>
@@ -57,4 +57,4 @@ class Config extends React.Component {
   }
 };
 
-export { Config };
+export { Configuration };
