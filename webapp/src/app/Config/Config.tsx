@@ -33,7 +33,7 @@ class Config extends React.Component {
       <PageSection>
         <Card>
           <CardTitle>
-            <Title headingLevel="h1" size="lg">KYC Config</Title>
+            <Title headingLevel="h1" size="lg">Configuration</Title>
           </CardTitle>
           <CardBody>
             <>
