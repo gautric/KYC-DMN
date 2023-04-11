@@ -1,12 +1,12 @@
 import { string } from 'prop-types';
 import React, { createContext } from 'react';
 
-export const KYCContext = createContext({
+export const Context = createContext({
     apiUrl: string,
     updateApiUrl: (url:string) => {}
 });
 
-export class KYCContextProvider extends React.Component {
+export class ContextProvider extends React.Component {
   updateApiUrl = (url:string) => {
     this.setState(
       state => ({
@@ -22,14 +22,14 @@ export class KYCContextProvider extends React.Component {
   };
 
   render() {
-    return <KYCContext.Provider value={this.state}>{this.props.children}</KYCContext.Provider>;
+    return <Context.Provider value={this.state}>{this.props.children}</Context.Provider>;
   }
 }
 
-export class KYCContextConsumer extends React.Component {
+export class ContextConsumer extends React.Component {
   render() {
-    return <KYCContext.Consumer>{this.props.children}</KYCContext.Consumer>;
+    return <Context.Consumer>{this.props.children}</Context.Consumer>;
   }
 }
 
-KYCContext.displayName = 'KYCContext';
+Context.displayName = 'Context';

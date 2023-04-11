@@ -21,7 +21,7 @@ import { Form,
   DataListCell,
   Title } from '@patternfly/react-core';
 
-import { KYCContext } from '@app/KYCContext';
+import { Context } from '@app/Context/Context';
 
 interface IKYCAlert {
   key: number, 
@@ -46,7 +46,7 @@ interface IKYCState {
 }
 
 class KYCDynamic extends React.Component<{},IKYCState> {
-  static contextType = KYCContext;
+  static contextType = Context;
   constructor(props: IKYCState) {
     super(props);
     this.state = {

@@ -12,7 +12,7 @@ import {
   DataListCell,
   Title } from '@patternfly/react-core';
 
-import { KYCContext } from '@app/KYCContext';
+import { Context } from '@app/Context/Context';
 
 interface IKYCMonitoringState {
   count: number,
@@ -20,7 +20,7 @@ interface IKYCMonitoringState {
 }
 
 class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
-  static contextType = KYCContext;
+  static contextType = Context;
   constructor(props) {
     super(props);
     this.state = {

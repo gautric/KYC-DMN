@@ -13,16 +13,16 @@ import { Card,
   DataListCell,
   Title } from '@patternfly/react-core';
 
-import { KYCContextConsumer } from "@app/KYCContext";
+import { ContextConsumer } from "@app/Context/Context";
 
 class InputAPIURL extends React.Component {
   render() {
     return (
-      <KYCContextConsumer>
+      <ContextConsumer>
         {({ apiUrl, updateApiUrl }) => (
           <TextInput value={apiUrl} type="url" onChange={(v,e) => (updateApiUrl(v))} aria-label="text input example" />
         )}
-      </KYCContextConsumer>
+      </ContextConsumer>
     );
   }
 }
