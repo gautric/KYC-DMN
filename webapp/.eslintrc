@@ -45,7 +45,16 @@
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "react/prop-types": "off",
-    "@typescript-eslint/no-explicit-any": ["off"]
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "extendDefaults": true,
+        "types": {
+          "{}": false
+        }
+      }
+    ]
   },
   "env": {
     "browser": true,
