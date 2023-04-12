@@ -19,16 +19,14 @@ interface IKYCMonitoringState {
   elapsedTime: number
 }
 
-class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
+class KYCMonitoring extends React.Component<null,IKYCMonitoringState> {
   static contextType = Context;
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0,
-      elapsedTime: 0
-    };
-  }
-
+  
+  state = {
+    count: 0,
+    elapsedTime: 0
+  };
+  
   componentDidMount() {
 
     fetch(this.context.apiUrl + "/q/metrics", {

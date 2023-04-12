@@ -1,5 +1,5 @@
 //import * as React from 'react';
-import React from "react";
+import React, { ReactElement } from "react";
 import 'whatwg-fetch';
 import { Card,
   CardTitle,
@@ -16,11 +16,11 @@ import { Card,
 import { ContextConsumer } from "@app/Context/Context";
 
 class InputAPIURL extends React.Component {
-  render() {
+  render():ReactElement {
     return (
       <ContextConsumer>
         {({ apiUrl, updateApiUrl }) => (
-          <TextInput value={apiUrl} type="url" onChange={(v,e) => (updateApiUrl(v))} aria-label="text input example" />
+          <TextInput value={apiUrl} type="url" onChange={(v) => (updateApiUrl(v))} aria-label="text input example" />
         )}
       </ContextConsumer>
     );
@@ -28,7 +28,7 @@ class InputAPIURL extends React.Component {
 }
 
 class Configuration extends React.Component {
-  render() {
+  render():ReactElement {
     return (
       <PageSection>
         <Card>
@@ -55,6 +55,6 @@ class Configuration extends React.Component {
       </PageSection>
     )
   }
-};
+}
 
 export { Configuration };

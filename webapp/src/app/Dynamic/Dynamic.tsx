@@ -1,7 +1,6 @@
-import React, {useState, useContext} from "react";
+import React, {useContext} from "react";
 import 'whatwg-fetch';
-import { Form, 
-  Card,
+import { Card,
   CardTitle,
   CardBody,
   FormGroup,
@@ -47,26 +46,25 @@ interface IKYCState {
   alerts: Array<IKYCAlert>
 }
 
-class KYCDynamic extends React.Component<{},IKYCState> {
+class KYCDynamic extends React.Component<null,IKYCState> {
   static contextType = Context;
-  constructor(props: IKYCState) {
-    super(props);
-    this.state = {
-      kyc : {
-        PEP: false,
-        Amount: 1000,
-        "Fiscal Residency": 'FR'
-      },
-      result: {
-        KYC: {
-          Level: 0, 
-          Score: "LOW"
-        }
-      },
-      isResult: false,
-      alerts: []
-    };
-  }
+
+  state = {
+    kyc : {
+      PEP: false,
+      Amount: 1000,
+      "Fiscal Residency": 'FR'
+    },
+    result: {
+      KYC: {
+        Level: 0, 
+        Score: "LOW"
+      }
+    },
+    isResult: false,
+    alerts: []
+  } as IKYCState;
+  
   
   options = [
     { value: 'please choose', label: 'Please Choose', disabled: true },
@@ -143,7 +141,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
   };
 
   handleAmount = (amount, event) => {
-      this.setState((state, props) => ({kyc : {...this.state.kyc, Amount : parseInt(amount.replace(/\D/g,''))}}), () => (this.handleSubmit()));
+      this.setState((state, props) => ({kyc : {...this.state.kyc, Amount : parseInt(amount.replace(/\D/g,'') || 0)}}), () => (this.handleSubmit()));
   };
 
   handleFiscalResidency = (fiscalResidency, event) => {
