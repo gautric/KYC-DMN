@@ -5,6 +5,9 @@ on:
     branches:
       - master
       - release*
+    paths:
+      - 'webapp/**'
+      - '.github/**'
 
 jobs:
   lint:
