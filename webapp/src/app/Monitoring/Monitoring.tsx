@@ -19,9 +19,7 @@ interface IKYCMonitoringState {
   elapsedTime: number
 }
 
-type VoidProps = {}
-
-class KYCMonitoring extends React.Component<VoidProps,IKYCMonitoringState> {
+class KYCMonitoring extends React.Component<{},IKYCMonitoringState> {
   static contextType = Context;
   
   state = {

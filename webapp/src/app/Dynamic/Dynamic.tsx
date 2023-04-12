@@ -46,9 +46,7 @@ interface IKYCState {
   alerts: Array<IKYCAlert>
 }
 
-type VoidProps = {}
-
-class KYCDynamic extends React.Component<VoidProps,IKYCState> {
+class KYCDynamic extends React.Component<{},IKYCState> {
   static contextType = Context;
 
   state = {
