@@ -49,22 +49,25 @@ interface IKYCState {
 class KYCDynamic extends React.Component<{},IKYCState> {
   static contextType = Context;
 
-  state = {
-    kyc : {
-      PEP: false,
-      Amount: 1000,
-      "Fiscal Residency": 'FR'
-    },
-    result: {
-      KYC: {
-        Level: 0, 
-        Score: "LOW"
-      }
-    },
-    isResult: false,
-    alerts: []
-  } as IKYCState;
-  
+  constructor(props) {
+    super(props);   
+    // Store state into session
+    this.state = JSON.parse(window.sessionStorage.getItem('state')) || {
+      kyc : {
+        PEP: false,
+        Amount: 1000,
+        "Fiscal Residency": 'FR'
+      },
+      result: {
+        KYC: {
+          Level: 0, 
+          Score: "LOW"
+        }
+      },
+      isResult: false,
+      alerts: []
+    };
+  }
   
   options = [
     { value: 'please choose', label: 'Please Choose', disabled: true },
@@ -91,10 +94,10 @@ class KYCDynamic extends React.Component<{},IKYCState> {
         if(result.ok){
           result.json().then((body) => {
               this.setState({
-                result: body
+                result: body,
+                isResult : true
               });
-              this.setState({isResult : true});
-              window.localStorage.setItem('state', JSON.stringify(this.state));
+              window.sessionStorage.setItem('state', JSON.stringify(this.state));
             });
           } else {
             this.addAlert('Call Error : ' + result.status + ' ' + result.statusText , 'danger', this.getUniqueId());
