@@ -22,6 +22,7 @@ import { Card,
   DataListCell,
   Title } from '@patternfly/react-core';
 
+import { COUNTRY_OPTIONS, PEP_OPTIONS, LABELS } from '@app/Dynamic/FormData'
 import { Context } from '@app/Context/Context';
 
 interface IKYCAlert {
@@ -69,15 +70,6 @@ class KYCDynamic extends React.Component<{},IKYCState> {
     };
   }
   
-  options = [
-    { value: 'please choose', label: 'Please Choose', disabled: true },
-    { value: 'FR', label: 'France', disabled: false },
-    { value: 'JP', label: 'Japan', disabled: false },
-    { value: 'CY', label: 'Chyprus', disabled: false },
-    { value: 'RU', label: 'Russia', disabled: false },
-    { value: 'KP', label: 'North Korea', disabled: false }
-  ];
-
   getUniqueId = () => (new Date().getTime());
 
   handleSubmit() {
@@ -189,13 +181,13 @@ class KYCDynamic extends React.Component<{},IKYCState> {
                 dataListCells={[
                   <DataListCell key="PEPLabel" >
                     <FormGroup
-                      label="Political Exposed Person"
+                      label={LABELS.pep}
                       fieldId="pep-param"/>
                   </DataListCell>,
                   <DataListCell key="PEPform" > 
                     <Switch id="pep-param"
-                      label="Political Exposed Person"
-                      labelOff="Anonymous Person"
+                      label={PEP_OPTIONS.label}
+                      labelOff={PEP_OPTIONS.labelOff}
                       isChecked={this.state.kyc["PEP"]}
                       onChange={this.handlePep}
                       />
@@ -213,7 +205,7 @@ class KYCDynamic extends React.Component<{},IKYCState> {
                 dataListCells={[
                   <DataListCell key="AmountLabel" >
                     <FormGroup
-                      label="Amount"
+                      label={LABELS.amount}
                       isRequired
                       fieldId="amount-param"/>
                   </DataListCell>,
@@ -241,14 +233,14 @@ class KYCDynamic extends React.Component<{},IKYCState> {
                 dataListCells={[
                   <DataListCell key="FRLabel">
                     <FormGroup
-                      label="Fiscal Residency"
+                      label={LABELS.fiscal}
                       isRequired
                       fieldId="fiscalResidency-param"
                       />
                   </DataListCell>,
                   <DataListCell key="FRForm">
                     <FormSelect id="fiscalResidency-param" value={this.state.kyc["Fiscal Residency"]} onChange={this.handleFiscalResidency} aria-label="FormSelect Input">
-                      {this.options.map((option, index) => (
+                      {COUNTRY_OPTIONS.map((option, index) => (
                         <FormSelectOption isDisabled={option.disabled} key={option.value.toString()} value={option.value} label={option.label} />
                       ))}
                     </FormSelect>
