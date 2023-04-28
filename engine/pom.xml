@@ -12,7 +12,8 @@
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
     <quarkus.platform.version>${quarkus-plugin.version}</quarkus.platform.version>
-    <org.kogito.version>1.36.1.Final</org.kogito.version>
+    <org.kogito.version>1.37.0.Final</org.kogito.version>
+    <jakarta.version>8.0.0</jakarta.version>
     <java.version>17</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
