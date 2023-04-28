@@ -6,6 +6,8 @@
   <artifactId>kyc-dmn</artifactId>
   <version>1.0.0</version>
   <properties>
+    <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
+    <compiler-plugin.version>3.8.1</compiler-plugin.version>
     <quarkus-plugin.version>2.16.6.Final</quarkus-plugin.version>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
@@ -87,98 +89,60 @@
     </dependency>
   </dependencies>
   <build>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-      </resource>
-      <resource>
-        <filtering>true</filtering>
-        <directory>src/test/filtered-resources</directory>
-      </resource>
-    </resources>
-    <finalName>${project.artifactId}</finalName>
     <plugins>
       <plugin>
-        <groupId>io.quarkus</groupId>
+        <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
-        <version>${quarkus-plugin.version}</version>
+        <version>${quarkus.platform.version}</version>
+        <extensions>true</extensions>
         <executions>
           <execution>
             <goals>
               <goal>build</goal>
+              <goal>generate-code</goal>
+              <goal>generate-code-tests</goal>
             </goals>
           </execution>
         </executions>
       </plugin>
       <plugin>
-        <artifactId>maven-resources-plugin</artifactId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${compiler-plugin.version}</version>
+        <configuration>
+          <compilerArgs>
+            <arg>-parameters</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${surefire-plugin.version}</version>
+        <configuration>
+          <systemPropertyVariables>
+            <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+            <maven.home>${maven.home}</maven.home>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>${surefire-plugin.version}</version>
         <executions>
           <execution>
-            <id>copy-resources</id>
-            <phase>prepare-package</phase>
             <goals>
-              <goal>copy-resources</goal>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
             </goals>
             <configuration>
-              <outputDirectory>${project.basedir}/docker-compose/grafana/provisioning/dashboards</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>${project.build.directory}/classes/META-INF/resources/monitoring/dashboards</directory>
-                  <filtering>false</filtering>
-                  <excludes>
-                    <exclude>**/list.json</exclude>
-                  </excludes>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-          <execution>
-            <id>copy-docker-compose-for-tests</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.build.testOutputDirectory}</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>${project.basedir}</directory>
-                  <includes>
-                    <include>docker-compose.yml</include>
-                    <include>docker-compose/</include>
-                  </includes>
-                </resource>
-              </resources>
+              <systemPropertyVariables>
+                <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
+                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                <maven.home>${maven.home}</maven.home>
+              </systemPropertyVariables>
             </configuration>
           </execution>
         </executions>
       </plugin>
-      <!--plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>docker-build</id>
-            <phase>pre-integration-test</phase>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <configuration>
-              <skip>${skipTests}</skip>
-              <executable>docker</executable>
-              <workingDirectory>${project.basedir}</workingDirectory>
-              <arguments>
-                <argument>build</argument>
-                <argument>-f</argument>
-                <argument>${project.basedir}/src/test/resources/DockerfileTest.jvm</argument>
-                <argument>-t</argument>
-                <argument>${project.groupId}/${project.artifactId}:1.0</argument>
-                <argument>.</argument>
-              </arguments>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin-->
     </plugins>
   </build>
   <profiles>
@@ -195,6 +159,26 @@
         <tests.quarkus.http.port>8080</tests.quarkus.http.port>
         <quarkus.package.type>native</quarkus.package.type>
       </properties>
+    </profile>
+    <profile>
+      <id>aws</id>
+      <activation>
+        <property>
+          <name>aws</name>
+        </property>
+      </activation>
+      <properties>
+        <failsafe.include>**/Native*IT.java</failsafe.include>
+        <failsafe.exclude></failsafe.exclude>
+        <tests.quarkus.http.port>8080</tests.quarkus.http.port>
+        <quarkus.package.type>native</quarkus.package.type>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>io.quarkus</groupId>
+          <artifactId>quarkus-amazon-lambda-http</artifactId>
+        </dependency>
+      </dependencies>
     </profile>
   </profiles>
 </project>
